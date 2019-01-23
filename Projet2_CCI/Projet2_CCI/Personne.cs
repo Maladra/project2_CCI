@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI
 {
-    public class Personne
+    public abstract class Personne
     {
         public string Nom { get; set; }
         public string Prenom { get; set; }
@@ -22,9 +22,19 @@ namespace Projet2_CCI
 
     public class Employe : Personne
     {
-    }
+        public string groupe { get; set; }
+        public Employe(string nom, string prenom) : base(nom, prenom)
+        {
 
+
+        }
+    }
+  
     class Client : Personne
     {
+        public Client (string nom, string prenom) : base(nom, prenom)
+        {
+
+        }
     }
 }
