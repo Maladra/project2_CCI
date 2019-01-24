@@ -15,24 +15,13 @@ using System.Windows.Shapes;
 namespace Projet2_CCI
 {
     /// <summary>
-    /// Logique d'interaction pour Connexion.xaml
+    /// Logique d'interaction pour Administrateur.xaml
     /// </summary>
-    public partial class Connexion : Window
+    public partial class Administrateur : Window
     {
-
-        public Connexion()
+        public Administrateur()
         {
             InitializeComponent();
-        }
-
-        private void Button_Connexion_Click(object sender, RoutedEventArgs e)
-        {
-            Vendeur Vendeur = new Vendeur();
-            Administrateur Administrateur = new Administrateur();
-            this.Hide();
-            Vendeur.Show();
-            Administrateur.Show();
-
         }
     }
 }

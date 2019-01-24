@@ -30,9 +30,9 @@ namespace Projet2_CCI
         }
     }
   
-    class Client : Personne
+    class Client : Personne // location en cours
     {
-        public Client (string nom, string prenom) : base(nom, prenom)
+        public Client (string nom, string prenom) : base(nom, prenom) 
         {
 
         }

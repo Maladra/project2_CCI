@@ -1,19 +1,28 @@
-﻿<Window x:Class="Projet2_CCI.MainWindow"
+﻿<Window x:Class="Projet2_CCI.Vendeur"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet2_CCI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Location" Height="450" Width="800">
     <Grid>
       
         <Label Content="Welcome" HorizontalAlignment="Left" Margin="359,337,0,0" VerticalAlignment="Top"/>
         <TabControl>
-            <TabItem Header="premier">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Stock matériel">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
             </TabItem>
-            <TabItem Header="deuxieme">
+            <TabItem Header="Nouvelle Location">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="122*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Location en cours">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>

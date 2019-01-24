@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Projet2_CCI
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour Vendeur.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Vendeur : Window
     {
-        public MainWindow()
+        public Vendeur()
         {
             InitializeComponent();
         }
