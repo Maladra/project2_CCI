@@ -32,6 +32,7 @@ namespace Projet2_CCI
             this.Hide();
             Vendeur.Show();
             Administrateur.Show();
+            MessageBox.Show("Erreur pendant la connexion.");
 
         }
     }

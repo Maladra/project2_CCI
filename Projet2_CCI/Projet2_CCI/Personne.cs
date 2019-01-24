@@ -25,16 +25,18 @@ namespace Projet2_CCI
         public string groupe { get; set; }
         public Employe(string nom, string prenom) : base(nom, prenom)
         {
-
-
         }
     }
   
-    class Client : Personne // location en cours
+    class Client : Personne
     {
-        public Client (string nom, string prenom) : base(nom, prenom) 
+        public bool LocationEnCours { get; set; }
+        public int NbLocation { get; set; }
+        public Client (string nom, string prenom, bool locationEnCours, int nbLocation) : base(nom, prenom) 
         {
-
+            this.LocationEnCours = locationEnCours;
+            this.NbLocation = NbLocation;
         }
+
     }
 }
