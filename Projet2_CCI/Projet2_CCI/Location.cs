@@ -15,6 +15,7 @@ namespace Projet2_CCI
         public decimal Prix { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
+        
         // CONSTRUCTEUR
         public Location(string nom, string prenom, string typePaiement, int quantite, decimal prix, DateTime dateDebut, DateTime dateFin)
         {

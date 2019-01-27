@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace Projet2_CCI
 {
+
     /// <summary>
     /// Logique d'interaction pour Connexion.xaml
     /// </summary>
@@ -33,7 +34,7 @@ namespace Projet2_CCI
             Vendeur.Show();
             Administrateur.Show();
             MessageBox.Show("Erreur pendant la connexion.");
-
+            MessageBox.Show("Connerion réussie \n\r Bienvenue Bidule.");
         }
     }
 }

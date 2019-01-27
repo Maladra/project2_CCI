@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="Administrateur" Height="450" Width="800">
     <Grid>
-        
+        <ListBox HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" x:Name="listeUtilisateurs" ItemsSource="{Binding stringListe}">
+        </ListBox>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="263,209,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
 </Window>
