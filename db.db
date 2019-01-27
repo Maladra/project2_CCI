@@ -1,0 +1,83 @@
+CREATE TABLE planche_snowboard (
+    id_planche INTEGER PRIMARY KEY AUTOINCREMENT,
+    stock INTEGER,
+    --prix_planche
+    id_niveau INTEGER NOT NULL,
+        FOREIGN KEY (id_niveau) REFERENCES niveau(id_niveau),
+    id_marque INTEGER NOT NULL,
+        FOREIGN KEY (id_marque) REFERENCES marque(id_marque),
+    id_genre INTEGER NOT NULL,
+        FOREIGN KEY (id_genre) REFERENCES genre(id_genre),
+    id_style INTEGER NOT NULL,
+        FOREIGN KEY (id_style) REFERENCES style(id_style),
+    id_prix_reel INTEGER, 
+        FOREIGN KEY (id_prix_reel) REFERENCES prix_planche_facture(id_prix_reel)
+ );
+
+CREATE TABLE marque(
+    id_marque INTEGER PRIMARY KEY AUTOINCREMENT,
+    marque_planche TEXT
+);
+
+CREATE TABLE genre(
+    id_genre INTEGER PRIMARY KEY AUTOINCREMENT,
+    genre TEXT
+);
+
+CREATE TABLE niveau(
+    id_niveau INTEGER PRIMARY KEY AUTOINCREMENT
+    --niveau_planche,
+);
+
+CREATE TABLE style(
+    id_style INTEGER PRIMARY KEY AUTOINCREMENT
+    --style_planche
+);
+
+CREATE TABLE detail_location(
+    id_location INTEGER PRIMARY KEY AUTOINCREMENT,
+    --moyen_paiement,
+    quantite INTEGER NOT NULL,
+    --planche,
+    --date_debut,
+    --date_fin
+    id_prix_reel INTEGER, --FOREIGN
+        FOREIGN KEY (id_prix_reel) REFERENCES prix_planche_facture (id_prix_reel),
+    id_moyen_paiement INTEGER, --FOREIGN
+        FOREIGN KEY (id_moyen_paiement) REFERENCES moyen_paiement (id_moyen_paiement),
+    id_client INTEGER, --FOREIGN
+        FOREIGN KEY (id_client) REFERENCES client (id_client),
+    id_planche INTEGER, --FOREIGN
+        FOREIGN KEY (id_planche) REFERENCES planche_snowboard (id_planche)
+);
+
+CREATE TABLE prix_planche_facture(
+    id_prix_reel INTEGER PRIMARY KEY AUTOINCREMENT,
+    --prix_pour_location
+    id_planche INTEGER,
+        FOREIGN KEY (id_planche) REFERENCES planche_snowboard (id_planche)  
+);
+
+CREATE TABLE moyen_paiement(
+    id_moyen_paiement INTEGER PRIMARY KEY AUTOINCREMENT
+    --moyen_paiement
+);
+
+CREATE TABLE client(
+    id_client INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT,
+    prenom TEXT,
+    numero_telephone TEXT,
+    --adresse,
+    ville TEXT
+    --code_postale 
+);
+
+CREATE TABLE employe(
+    id_employe INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT,
+    prenom TEXT
+    --groupe,
+    --login_employe,
+    --password_employe;
+);
