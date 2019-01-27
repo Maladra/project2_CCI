@@ -22,6 +22,7 @@ namespace Projet2_CCI
     public partial class Administrateur : Window
     {
         ObservableCollection<string> stringListe = new ObservableCollection<string>();
+
         public Administrateur()
         {
             InitializeComponent();
@@ -57,10 +58,17 @@ namespace Projet2_CCI
 
             //stringListe.Add("hhh");
             //stringListe.RemoveAt(1);
+            string ma_value = this.listeUtilisateurs.SelectedItem.ToString();
+            this.test.Text = ma_value;
             MessageBox.Show(this.listeUtilisateurs.SelectedIndex.ToString());
             stringListe.RemoveAt(this.listeUtilisateurs.SelectedIndex);
+            
+        }
 
-
+        private void ListeUtilisateurs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string username = this.listeUtilisateurs.SelectedItem.ToString();
+            this.test.Text = username;
         }
     }
 }
