@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI
 {
+    // AJOUTER UNE LISTE DES PLANCHES louées ????
     class Location // client, type de paiement(cb cheque espece), prix,
     {
         public string Nom { get; set; }

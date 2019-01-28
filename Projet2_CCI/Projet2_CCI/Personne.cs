@@ -23,7 +23,7 @@ namespace Projet2_CCI
     public class Employe : Personne
     {
         public string groupe { get; set; }
-        public Employe(string nom, string prenom) : base(nom, prenom)
+        public Employe(string nom, string prenom, string groupe) : base(nom, prenom)
         {
         }
     }

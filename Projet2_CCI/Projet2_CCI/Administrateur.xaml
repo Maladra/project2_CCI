@@ -7,9 +7,25 @@
         mc:Ignorable="d"
         Title="Administrateur" Height="450" Width="800">
     <Grid>
-        <ListBox HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" x:Name="listeUtilisateurs" ItemsSource="{Binding stringListe}" SelectionChanged="ListeUtilisateurs_SelectionChanged">
+        <ListBox HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="151" x:Name="listeUtilisateurs" ItemsSource="{Binding stringListe}" SelectionChanged="ListeUtilisateurs_SelectionChanged">
         </ListBox>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="393,389,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="412,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="test" />
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="322,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="test" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="574,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="test_Copy" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="296,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="test_Copy1" />
+        
+        <Button Content="Editer utilisateur" HorizontalAlignment="Left" Margin="254,389,0,0" VerticalAlignment="Top" Width="97" Click="Button_Click"/>
+        <Button Content="Ajouter utilisateur" HorizontalAlignment="Left" Margin="560,389,0,0" VerticalAlignment="Top" Width="109" Click="Button_Click"/>
+        <Button Content="Supprimer utilisateur" HorizontalAlignment="Left" Margin="393,389,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="574,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="test_Copy2" />
+        <Label Content="Nom Utilisateur" HorizontalAlignment="Left" Margin="224,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="Mot de passe Utilisateur" HorizontalAlignment="Left" Margin="431,131,0,0" VerticalAlignment="Top"/>
+        <Label Content="Prénom utilisateur" HorizontalAlignment="Left" Margin="184,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.441,0.682"/>
+        <Label Content="Login Utilisateur" HorizontalAlignment="Left" Margin="478,77,0,0" VerticalAlignment="Top"/>
+        <Label Content="Groupe utilisateur" HorizontalAlignment="Left" Margin="283,210,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="398,214,0,0" VerticalAlignment="Top" Width="120" x:Name="ComboGroupeUtilisateur" ItemsSource="{Binding stringListe}"/>
+
+
     </Grid>
 </Window>
