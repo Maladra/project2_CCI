@@ -4,7 +4,7 @@ CREATE TABLE [Employe] (
 , [Nom] TEXT NOT NULL
 , [Prenom] TEXT NOT NULL
 , [Login] TEXT NOT NULL
-, [Password] BLOB NOT NULL
+, [Password] TEXT NOT NULL
 , [Groupe] TEXT NOT NULL
 , CONSTRAINT [PK_employe] PRIMARY KEY ([Id_employe])
 );

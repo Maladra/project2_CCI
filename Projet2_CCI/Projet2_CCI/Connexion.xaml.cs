@@ -24,10 +24,12 @@ namespace Projet2_CCI
         public Connexion()
         {
             InitializeComponent();
+
         }
 
         private void Button_Connexion_Click(object sender, RoutedEventArgs e)
         {
+            SQLHelper.SQLiteRead("SELECT * FROM Marque_snowboard;", "Data Source = C:/Users/adai101/Desktop/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3");
             Vendeur Vendeur = new Vendeur();
             Administrateur Administrateur = new Administrateur();
             this.Hide();

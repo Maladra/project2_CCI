@@ -30,12 +30,14 @@ namespace Projet2_CCI
   
     class Client : Personne
     {
+        public string NumeroTelephone { get; set; }
         public bool LocationEnCours { get; set; }
         public int NbLocation { get; set; }
-        public Client (string nom, string prenom, bool locationEnCours, int nbLocation) : base(nom, prenom) 
+        public Client (string nom, string prenom, bool locationEnCours, int nbLocation, string numeroTelephone) : base(nom, prenom) 
         {
             this.LocationEnCours = locationEnCours;
             this.NbLocation = NbLocation;
+            this.NumeroTelephone = numeroTelephone;
         }
 
     }

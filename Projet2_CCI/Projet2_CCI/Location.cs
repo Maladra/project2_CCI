@@ -6,27 +6,28 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI
 {
-    // AJOUTER UNE LISTE DES PLANCHES louées ????
     class Location // client, type de paiement(cb cheque espece), prix,
     {
         public string Nom { get; set; }
         public string Prenom { get; set; }
-        public string TypePaiement { get; set; }
+        public string MoyenPaiement { get; set; }
         public int Quantite { get; set; }
-        public decimal Prix { get; set; }
+        public decimal PrixTotalHT { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
+        public decimal TVA { get; set; }
         
         // CONSTRUCTEUR
-        public Location(string nom, string prenom, string typePaiement, int quantite, decimal prix, DateTime dateDebut, DateTime dateFin)
+        public Location(string nom, string prenom, string moyenPaiement, int quantite, decimal prixTotalHT, DateTime dateDebut, DateTime dateFin, decimal TVA)
         {
             this.Nom = nom;
             this.Prenom = prenom;
-            this.TypePaiement = typePaiement;
+            this.MoyenPaiement = moyenPaiement;
             this.Quantite = quantite;
-            this.Prix = prix;
+            this.PrixTotalHT = prixTotalHT;
             this.DateDebut = dateDebut;
             this.DateFin = dateFin;
+            this.TVA = TVA;
         }
 
     }

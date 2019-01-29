@@ -77,6 +77,7 @@
       <DependentUpon>Administrateur.xaml</DependentUpon>
     </Compile>
     <Compile Include="Location.cs" />
+    <Compile Include="RequeteSQL.cs" />
     <Compile Include="Snowboard.cs" />
     <Page Include="Administrateur.xaml">
       <SubType>Designer</SubType>
