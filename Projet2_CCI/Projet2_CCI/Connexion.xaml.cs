@@ -20,6 +20,7 @@ namespace Projet2_CCI
     /// </summary>
     public partial class Connexion : Window
     {
+        string connString = "Data Source = D:/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3";
 
         public Connexion()
         {
@@ -29,7 +30,7 @@ namespace Projet2_CCI
 
         private void Button_Connexion_Click(object sender, RoutedEventArgs e)
         {
-            SQLHelper.SQLiteRead("SELECT * FROM Marque_snowboard;", "Data Source = C:/Users/adai101/Desktop/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3");
+            SQLHelper.SQLiteRead("SELECT * FROM Planche_snowboard;", connString);
             Vendeur Vendeur = new Vendeur();
             Administrateur Administrateur = new Administrateur();
             this.Hide();

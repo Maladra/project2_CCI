@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,15 @@ namespace Projet2_CCI
     /// </summary>
     public partial class Vendeur : Window
     {
+        
+
         public Vendeur()
         {
             InitializeComponent();
+            //string connString = "Data Source = D:/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3";
+            //SQLHelper.SQLiteRead("SELECT * FROM Marque_snowboard", connString);
+            //ObservableCollection
         }
+
     }
 }
