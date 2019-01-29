@@ -11,7 +11,7 @@ namespace Projet2_CCI
 {
     static class SQLHelper
     {
-        public static void SQLiteRead(string requeteString, string stringConnection)
+        public static ObservableCollection SQLiteRead(string requeteString, string stringConnection)
         {
 
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(stringConnection))
@@ -41,8 +41,9 @@ namespace Projet2_CCI
                         foreach (var Snowboard in snowboardListe)
                         {
                             Console.WriteLine("Snowboard : {0}, {1}, {2}", Snowboard.Prix, Snowboard.Niveau, Snowboard.Marque);
+
                         }
-                        
+
                         //Console.WriteLine(snowboardListe[1]);
                         //Console.WriteLine(snowboardListe[1]);
                         //Console.WriteLine(snowboard);
@@ -55,6 +56,7 @@ namespace Projet2_CCI
                 {
 
                 }
+                return snowboardListe;
             }
         }
     }
