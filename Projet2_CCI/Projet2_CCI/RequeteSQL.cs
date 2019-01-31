@@ -9,17 +9,19 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI
 {
+    // CONTIENT REQUETE SQL
     static class SQLHelper
     {
-        public static ObservableCollection SQLiteRead(string requeteString, string stringConnection)
+        // QUERY PLANCHE
+        public static ObservableCollection<Snowboard> SQLitePlancheRead()
         {
-
-            using (SQLiteConnection SQLiteConn = new SQLiteConnection(stringConnection))
+            string connString = "Data Source = D:/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3"; // CONNECTION STRING
+            ObservableCollection<Snowboard> snowboardListe = new ObservableCollection<Snowboard>(); // RETURNED VALUE
+            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
-                ObservableCollection<Snowboard> snowboardListe = new ObservableCollection<Snowboard>();
                 try
                 {
-                    SQLiteCommand SQLiteCommand = new SQLiteCommand(requeteString, SQLiteConn);
+                    SQLiteCommand SQLiteCommand = new SQLiteCommand("SELECT * FROM Planche_snowboard;", SQLiteConn);
                     SQLiteCommand.Connection.Open();
                     SQLiteDataReader SQLiteReader = SQLiteCommand.ExecuteReader();
                     while (SQLiteReader.Read())
@@ -29,35 +31,45 @@ namespace Projet2_CCI
                         string niveauSnowboard = SQLiteReader["Fk_niveau"].ToString();
                         string styleSnowboard = SQLiteReader["Fk_style"].ToString();
                         string prixSnowboard = SQLiteReader["Prix"].ToString();
-                        decimal test = decimal.Parse(prixSnowboard);
-                        //Snowboard snowboard = new Snowboard(marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, test);
-                        //Console.WriteLine(SQLiteReader[0]);
-                        //Console.WriteLine(SQLiteReader[2]);
+                        decimal prixSnowboardDecimal = decimal.Parse(prixSnowboard);
 
-                        //Console.WriteLine(snowboard);
-                        //Console.WriteLine(genreSnowboard);
-                        snowboardListe.Add(new Snowboard(marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, test));
-                        //snowboardListe.Add(snowboard1);
+                        snowboardListe.Add(new Snowboard(marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardDecimal)); // ADD Snowboard ITEM IN LIST
                         foreach (var Snowboard in snowboardListe)
                         {
                             Console.WriteLine("Snowboard : {0}, {1}, {2}", Snowboard.Prix, Snowboard.Niveau, Snowboard.Marque);
-
                         }
-
-                        //Console.WriteLine(snowboardListe[1]);
-                        //Console.WriteLine(snowboardListe[1]);
-                        //Console.WriteLine(snowboard);
                     }
-                    SQLiteReader.Close();
+                    SQLiteReader.Close(); // FERMETURE CONNEXION
                     SQLiteConn.Close();
-                    //return snowboardListe
                 }
                 catch
                 {
 
                 }
                 return snowboardListe;
-            }
+                
+            };
         }
+        public static void SQLiteAddMarque(string MarqueInsert)
+        {
+            string connString = "Data Source = D:/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3";
+            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
+            {
+                string queryInsert = "INSERT INTO Marque_snowboard (Marque) VALUES (?)";
+                SQLiteCommand SQLiteInstert = new SQLiteCommand(queryInsert, SQLiteConn);
+                SQLiteInstert.Parameters.AddWithValue("@Marque", MarqueInsert);
+
+                try {
+                    SQLiteInstert.ExecuteNonQuery();
+                                       
+                }
+                catch
+                {
+
+                }
+                SQLiteConn.Close();
+
+            }
+                    }
     }
 } 

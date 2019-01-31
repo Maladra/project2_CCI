@@ -26,9 +26,12 @@ namespace Projet2_CCI
         public Vendeur()
         {
             InitializeComponent();
-            //string connString = "Data Source = D:/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3";
-            //SQLHelper.SQLiteRead("SELECT * FROM Marque_snowboard", connString);
-            //ObservableCollection
+
+//            SQLHelper.SQLiteAddMarque("TEEEEEEST");
+
+            ObservableCollection<Snowboard> snowboardListe = SQLHelper.SQLitePlancheRead();
+
+            this.stockAffichage.ItemsSource = snowboardListe;
         }
 
     }
