@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+
 
 namespace Projet2_CCI
 {
@@ -15,8 +17,8 @@ namespace Projet2_CCI
         // QUERY PLANCHE
         public static ObservableCollection<Snowboard> SQLitePlancheRead()
         {
-            string connString = "Data Source = C:/Users/adai101/Desktop/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3"; // CONNECTION STRING
-            ObservableCollection<Snowboard> snowboardListe = new ObservableCollection<Snowboard>(); // RETURNED VALUE
+            string connString = ConfigurationManager.AppSettings["connectionString"]; // CONNECTION STRING
+            ObservableCollection <Snowboard> snowboardListe = new ObservableCollection<Snowboard>(); // RETURNED VALUE
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 SQLiteCommand SQLiteCommand = new SQLiteCommand("SELECT Stock,Prix,Niveau,Marque,Genre,Style FROM Planche_snowboard " +
@@ -47,7 +49,7 @@ namespace Projet2_CCI
         }
         public static void SQLiteAddMarque(string MarqueInsert)
         {
-            string connString = "Data Source = C:/Users/adai101/Desktop/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3";
+            string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 string queryInsert = "INSERT INTO Marque_snowboard (Marque) VALUES (?)";
@@ -59,7 +61,7 @@ namespace Projet2_CCI
         }
         public static void SQLiteAddStyle(string MarqueInsert)
         {
-            string connString = "Data Source = C:/Users/adai101/Desktop/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3";
+            string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 string queryInsert = "INSERT INTO Style_snowboard (Style) VALUES (?)";
