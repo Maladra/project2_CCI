@@ -50,27 +50,22 @@ namespace Projet2_CCI
             string connString = "Data Source = C:/Users/adai101/Desktop/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3";
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
-
                 string queryInsert = "INSERT INTO Marque_snowboard (Marque) VALUES (?)";
                 SQLiteConn.Open();
                 SQLiteCommand SQLiteInstert = new SQLiteCommand(queryInsert, SQLiteConn);
-                SQLiteInstert.Parameters.AddWithValue("@Marque", MarqueInsert);
-       
+                SQLiteInstert.Parameters.AddWithValue("@Marque", MarqueInsert);     
                 SQLiteInstert.ExecuteNonQuery();                      
             }
         }
-
         public static void SQLiteAddStyle(string MarqueInsert)
         {
             string connString = "Data Source = C:/Users/adai101/Desktop/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3";
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
-
                 string queryInsert = "INSERT INTO Style_snowboard (Style) VALUES (?)";
                 SQLiteConn.Open();
                 SQLiteCommand SQLiteInstert = new SQLiteCommand(queryInsert, SQLiteConn);
                 SQLiteInstert.Parameters.AddWithValue("@Style", MarqueInsert);
-
                 SQLiteInstert.ExecuteNonQuery();
             }
         }
