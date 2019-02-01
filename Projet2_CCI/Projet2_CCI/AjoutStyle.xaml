@@ -1,0 +1,17 @@
+﻿<Window x:Class="Projet2_CCI.AjoutStyle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projet2_CCI"
+        mc:Ignorable="d"
+        Title="AjoutStyle" Height="450" Width="800">
+    <Grid>
+        
+        <Label Content="Label" HorizontalAlignment="Left" Margin="312,192,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="390,192,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="nomStyle"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Margin="221,291,0,0" VerticalAlignment="Top" Width="75" Click="Button_Valider_Click"/>
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="390,291,0,0" VerticalAlignment="Top" Width="75" Click="Button_Retour_Click"/>
+
+    </Grid>
+</Window>

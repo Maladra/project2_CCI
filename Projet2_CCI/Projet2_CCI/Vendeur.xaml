@@ -18,9 +18,9 @@
                         <ColumnDefinition Width="533*"/>
                     </Grid.ColumnDefinitions>
                     <DataGrid HorizontalAlignment="Left" Height="371" Margin="10,10,0,0" VerticalAlignment="Top" Width="227" Grid.ColumnSpan="2" x:Name="stockAffichage" ItemsSource="{Binding Source=snowboardListe}"></DataGrid>
-                    <Button Content="Ajouter une planche" Grid.Column="2" HorizontalAlignment="Left" Margin="85,254,0,0" VerticalAlignment="Top" Width="177"/>
-                    <Button Content="Ajouter une marque de snowboard" Grid.Column="2" HorizontalAlignment="Left" Margin="85,336,0,0" VerticalAlignment="Top" Width="196"/>
-                    <Button Content="Ajouter un style de snowboard" Grid.Column="2" HorizontalAlignment="Left" Margin="85,293,0,0" VerticalAlignment="Top" Width="177"/>
+                    <Button Content="Ajouter un snowboard" Grid.Column="2" HorizontalAlignment="Left" Margin="85,254,0,0" VerticalAlignment="Top" Width="177" Click="Button_ajoutSnowboard_Click"/>
+                    <Button Content="Ajouter une marque de snowboard" Grid.Column="2" HorizontalAlignment="Left" Margin="85,336,0,0" VerticalAlignment="Top" Width="196" Click="Button_ajoutMarque_Click"/>
+                    <Button Content="Ajouter un style de snowboard" Grid.Column="2" HorizontalAlignment="Left" Margin="85,293,0,0" VerticalAlignment="Top" Width="177" Click="Button_ajoutStyle_Click"/>
                 </Grid>
             </TabItem>
 

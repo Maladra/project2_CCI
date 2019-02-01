@@ -26,13 +26,25 @@ namespace Projet2_CCI
         public Vendeur()
         {
             InitializeComponent();
-
-//            SQLHelper.SQLiteAddMarque("TEEEEEEST");
-
             ObservableCollection<Snowboard> snowboardListe = SQLHelper.SQLitePlancheRead();
-
             this.stockAffichage.ItemsSource = snowboardListe;
         }
 
+        private void Button_ajoutMarque_Click(object sender, RoutedEventArgs e)
+        {
+            AjoutMarque ajoutMarque = new AjoutMarque();
+            ajoutMarque.ShowDialog();
+        }
+
+        private void Button_ajoutStyle_Click(object sender, RoutedEventArgs e)
+        {
+            AjoutStyle ajoutStyle = new AjoutStyle();
+            ajoutStyle.ShowDialog();
+        }
+
+        private void Button_ajoutSnowboard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -77,10 +77,24 @@
     <Compile Include="Administrateur.xaml.cs">
       <DependentUpon>Administrateur.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AjoutMarque.xaml.cs">
+      <DependentUpon>AjoutMarque.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AjoutStyle.xaml.cs">
+      <DependentUpon>AjoutStyle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Location.cs" />
     <Compile Include="RequeteSQL.cs" />
     <Compile Include="Snowboard.cs" />
     <Page Include="Administrateur.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AjoutMarque.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AjoutStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

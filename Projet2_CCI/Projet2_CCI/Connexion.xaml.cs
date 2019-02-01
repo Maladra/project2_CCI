@@ -30,7 +30,6 @@ namespace Projet2_CCI
 
         private void Button_Connexion_Click(object sender, RoutedEventArgs e)
         {
-            //SQLHelper.SQLitePlancheRead("SELECT * FROM Planche_snowboard;", connString);
             Vendeur Vendeur = new Vendeur();
             Administrateur Administrateur = new Administrateur();
             this.Hide();
