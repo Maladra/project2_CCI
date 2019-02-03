@@ -22,9 +22,14 @@ namespace Projet2_CCI
 
     public class Employe : Personne
     {
-        public string groupe { get; set; }
-        public Employe(string nom, string prenom, string groupe) : base(nom, prenom)
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string Groupe { get; set; }
+        public Employe(string nom, string prenom,string login, string password, string groupe) : base(nom, prenom)
         {
+            this.Login = login;
+            this.Login = Password;
+            this.Login = Groupe;
         }
     }
   

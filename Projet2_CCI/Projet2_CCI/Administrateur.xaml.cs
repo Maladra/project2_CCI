@@ -32,7 +32,7 @@ namespace Projet2_CCI
         {
             InitializeComponent();
             // CREATION OBJET USER
-            Employe employe1 = new Employe("gnu", "aaa","Administrateur");
+            Employe employe1 = new Employe("gnu", "aaa", "login3", "password3", "Administrateur");
             // POPULATE LISTE
             stringListe.Add("aaa");
             stringListe.Add("bbb");
@@ -55,19 +55,10 @@ namespace Projet2_CCI
 
         }
         // EVENT BUTTON CLICK
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // RECUPERE VALUE SELECTED
-            string ma_value = this.listeUtilisateurs.SelectedItem.ToString();
+        
 
-            // DISPLAY VALUE IN TEXT
-            this.test.Text = ma_value;
 
-            // DISPLAY INDEX SELECTED ITEM
-            MessageBox.Show(this.listeUtilisateurs.SelectedIndex.ToString());
-            // REMOVE ITEM 
-            stringListe.RemoveAt(this.listeUtilisateurs.SelectedIndex);           
-        }
+
 
         private void ListeUtilisateurs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -83,6 +74,23 @@ namespace Projet2_CCI
             }
         }
 
+        private void Button_AjouterUtilisateur_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
+        private void Button_SupprimerUser_Click(object sender, RoutedEventArgs e)
+        {   // RECUPERE VALUE SELECTED
+            string ma_value = this.listeUtilisateurs.SelectedItem.ToString();
+            // DISPLAY VALUE IN TEXT
+            this.test.Text = ma_value;
+            // DISPLAY INDEX SELECTED ITEM
+            MessageBox.Show(this.listeUtilisateurs.SelectedIndex.ToString());
+            // REMOVE ITEM 
+            stringListe.RemoveAt(this.listeUtilisateurs.SelectedIndex);
+        }
+        private void Button_EditerUtilisateur_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

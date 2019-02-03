@@ -37,10 +37,6 @@ namespace Projet2_CCI
                     string prixSnowboard = SQLiteReader["Prix"].ToString();
                     decimal prixSnowboardDecimal = decimal.Parse(prixSnowboard);
                     snowboardListe.Add(new Snowboard(marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardDecimal)); // ADD Snowboard ITEM IN LIST
-                    foreach (var Snowboard in snowboardListe)
-                        {
-                            Console.WriteLine("Snowboard : {0}, {1}, {2}", Snowboard.Prix, Snowboard.Niveau, Snowboard.Marque);
-                        }
                 }
                     SQLiteReader.Close(); // FERMETURE READER
                 return snowboardListe;
@@ -71,5 +67,20 @@ namespace Projet2_CCI
                 SQLiteInstert.ExecuteNonQuery();
             }
         }
-    }  
+        public static string SQLiteConnexion(string username)
+        {
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
+            {
+                string querySelectUsername = "SELECT Login FROM Employe WHERE Login LIKE 'aaaa' LIMIT 1;";
+                SQLiteCommand SQLiteCommandUsername = new SQLiteCommand(querySelectUsername, SQLiteConn);
+
+                SQLiteConn.Open();
+                SQLiteDataReader SQLiteUsernameaReader = SQLiteCommandUsername.ExecuteReader();
+                SQLiteUsernameaReader.Read();
+                return "erreur";
+            }
+              
+        }
+    }
 } 
