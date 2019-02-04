@@ -35,7 +35,7 @@ namespace Projet2_CCI
             this.Hide();
             Vendeur.Show();
             Administrateur.Show();
-            //SQLHelper.SQLiteConnexion("login1");
+            SQLHelper.SQLiteConnexion("login1");
             MessageBox.Show(SQLHelper.SQLiteConnexion("login1"));
             MessageBox.Show("Erreur pendant la connexion.");
             MessageBox.Show("Connerion réussie \n\r Bienvenue Bidule.");
