@@ -20,8 +20,6 @@ namespace Projet2_CCI
     /// </summary>
     public partial class Connexion : Window
     {
-        //string connString = "Data Source = D:/project2_CCI/Projet2_CCI/dataBase/gestion.db; Version = 3";
-
         public Connexion()
         {
             InitializeComponent();
@@ -33,10 +31,10 @@ namespace Projet2_CCI
             Vendeur Vendeur = new Vendeur();
             Administrateur Administrateur = new Administrateur();
             this.Hide();
-            Vendeur.Show();
-            Administrateur.Show();
-            SQLHelper.SQLiteConnexion("login1");
-            MessageBox.Show(SQLHelper.SQLiteConnexion("login1"));
+            //Vendeur.Show();
+            //Administrateur.Show();
+            //SQLHelper.SQLiteConnexion("login1");
+            MessageBox.Show(SQLHelper.SQLiteConnexion(this.UsernameText.Text)); //this.UsernameText.Text
             MessageBox.Show("Erreur pendant la connexion.");
             MessageBox.Show("Connerion réussie \n\r Bienvenue Bidule.");
         }

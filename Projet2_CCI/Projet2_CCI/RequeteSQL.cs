@@ -72,15 +72,23 @@ namespace Projet2_CCI
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
-                string querySelectUsername = "SELECT Login FROM Employe WHERE Login = 'login1';";
+                string querySelectUsername = "SELECT Login,Password,Nom,Prenom FROM Employe WHERE Login = @login LIMIT 1;";
+
                 SQLiteCommand SQLiteCommandUsername = new SQLiteCommand(querySelectUsername, SQLiteConn);
 
                 SQLiteConn.Open();
-                // SQLiteDataReader SQLiteUsernameaReader = SQLiteCommandUsername.ExecuteReader();
-                string value = SQLiteCommandUsername.ExecuteScalar().ToString();
+                SQLiteCommandUsername.Parameters.AddWithValue("login", username);
                 
-                Console.WriteLine(value);
-                return value;
+                try {
+                    string value = SQLiteCommandUsername.ExecuteScalar().ToString(); // a remplacer par un reader
+                    return value;
+                }
+                catch(System.NullReferenceException)
+                {
+                    string value = "erreur";
+                    return value;
+                }
+                
             }
               
         }
