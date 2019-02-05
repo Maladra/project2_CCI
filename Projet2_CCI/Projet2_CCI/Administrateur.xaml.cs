@@ -55,10 +55,6 @@ namespace Projet2_CCI
 
         }
         // EVENT BUTTON CLICK
-        
-
-
-
 
         private void ListeUtilisateurs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
