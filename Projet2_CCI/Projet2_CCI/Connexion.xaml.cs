@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 
 namespace Projet2_CCI
 {
-
     /// <summary>
     /// Logique d'interaction pour Connexion.xaml
     /// </summary>
@@ -23,7 +22,6 @@ namespace Projet2_CCI
         public Connexion()
         {
             InitializeComponent();
-
         }
 
         private void Button_Connexion_Click(object sender, RoutedEventArgs e)
