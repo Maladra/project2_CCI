@@ -21,11 +21,14 @@ namespace Projet2_CCI
             ObservableCollection <Snowboard> snowboardListe = new ObservableCollection<Snowboard>(); // RETURNED VALUE
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
+                // REQUEST STRING
                 SQLiteCommand SQLiteCommand = new SQLiteCommand("SELECT Stock,Prix,Niveau,Marque,Genre,Style FROM Planche_snowboard " +
                     "INNER JOIN Niveau_snowboard ON Niveau_snowboard.Id_niveau = Planche_snowboard.Fk_niveau " +
                     "INNER JOIN Marque_snowboard ON Marque_snowboard.Id_marque = Planche_snowboard.Fk_marque " +
                     "INNER JOIN Genre_snowboard ON Genre_snowboard.Id_genre = Planche_snowboard.Fk_genre " +
                     "INNER JOIN  Style_snowboard ON Style_snowboard.Id_style = Planche_snowboard.Fk_style; ", SQLiteConn);
+
+                // OUVERTURE CONNECTION ET LECTURE BD
                 SQLiteCommand.Connection.Open();
                 SQLiteDataReader SQLiteReader = SQLiteCommand.ExecuteReader();
                 while (SQLiteReader.Read())
@@ -40,7 +43,6 @@ namespace Projet2_CCI
                 }
                     SQLiteReader.Close(); // FERMETURE READER
                 return snowboardListe;
-                
             }
         }
         public static void SQLiteAddMarque(string MarqueInsert)
@@ -67,28 +69,41 @@ namespace Projet2_CCI
                 SQLiteInstert.ExecuteNonQuery();
             }
         }
-        public static string SQLiteConnexion(string username)
+        public static string[] SQLiteConnexion(string username, string password)
         {
+            // DEF VARIABLE
+            string[] returnValue = new string[3];
+            returnValue[0] = "erreur"; // Nom
+            returnValue[1] = "erreur"; // prenom
+            returnValue[2] = "erreur"; // groupe
+            //string valueUsername = "erreur";
+            //string valueGroupe;
+            //string valueNom;
+            //string valuePrenom;
+
+
+            // DEF SQL
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
-                string querySelectUsername = "SELECT Login,Password,Nom,Prenom FROM Employe WHERE Login = @login LIMIT 1;";
-
-                SQLiteCommand SQLiteCommandUsername = new SQLiteCommand(querySelectUsername, SQLiteConn);
-
+                // SQL QUERY
+                string querySelectUser = "SELECT Login,Nom,Prenom,Groupe FROM Employe WHERE Login = @login AND Password = @password LIMIT 1;";
+                // SQL QUERY USERNAME
+                SQLiteCommand SQLiteCommandUser = new SQLiteCommand(querySelectUser, SQLiteConn);
                 SQLiteConn.Open();
-                SQLiteCommandUsername.Parameters.AddWithValue("login", username);
-                
-                try {
-                    string value = SQLiteCommandUsername.ExecuteScalar().ToString(); // a remplacer par un reader
-                    return value;
+                SQLiteCommandUser.Parameters.AddWithValue("login", username);
+                SQLiteCommandUser.Parameters.AddWithValue("password", password);
+
+                SQLiteDataReader SQLiteReaderUser = SQLiteCommandUser.ExecuteReader();
+                while  (SQLiteReaderUser.Read())
+                { 
+                    //valueUsername = SQLiteReaderUser["Login"].ToString();
+                    returnValue[2] = SQLiteReaderUser["Groupe"].ToString();
+                    returnValue[0] = SQLiteReaderUser["Nom"].ToString();
+                    returnValue[1] = SQLiteReaderUser["Prenom"].ToString();
                 }
-                catch(System.NullReferenceException)
-                {
-                    string value = "erreur";
-                    return value;
-                }
-                
+                SQLiteReaderUser.Close();
+                return returnValue;
             }
               
         }

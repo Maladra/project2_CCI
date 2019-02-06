@@ -29,14 +29,25 @@ namespace Projet2_CCI
         private void Button_Connexion_Click(object sender, RoutedEventArgs e)
         {
             Vendeur Vendeur = new Vendeur();
-            Administrateur Administrateur = new Administrateur();
-            this.Hide();
-            //Vendeur.Show();
-            //Administrateur.Show();
-            //SQLHelper.SQLiteConnexion("login1");
-            MessageBox.Show(SQLHelper.SQLiteConnexion(this.UsernameText.Text)); //this.UsernameText.Text
-            MessageBox.Show("Erreur pendant la connexion.");
-            MessageBox.Show("Connerion réussie \n\r Bienvenue Bidule.");
+            Administrateur Administrateur = new Administrateur();            
+            string[] testValue = SQLHelper.SQLiteConnexion(this.UsernameText.Text, this.PasswordText.Password.ToString());
+            if (testValue[0] != "erreur")
+            {
+                this.Close();
+                MessageBox.Show("Bienvenue " + testValue[0]+" "+testValue[1]);
+                if (testValue[2] =="Administrateur" )
+                {
+                    Administrateur.Show();
+                }
+                else
+                {
+                    Vendeur.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Erreur pendant la connexion");
+            }
         }
     }
 }
