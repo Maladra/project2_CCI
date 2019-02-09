@@ -25,64 +25,50 @@ namespace Projet2_CCI
     {
 
         // VAR 
-        ObservableCollection<string> stringListe = new ObservableCollection<string>();
-        List<string> roleListe = new List<string>();
+        ObservableCollection<Employe> usersList = new ObservableCollection<Employe>();
+        
+        //List<string> roleListe = new List<string>();
 
         public Administrateur()
         {
             InitializeComponent();
-            // CREATION OBJET USER
-            Employe employe1 = new Employe("gnu", "aaa", "login3", "password3", "Administrateur");
-            // POPULATE LISTE
-            stringListe.Add("aaa");
-            stringListe.Add("bbb");
-            stringListe.Add("ccc");
-            stringListe.Add("ccc");
-            stringListe.Add("ccc");
-            stringListe.Add("ccc");
-            stringListe.Add("ccc");
-            stringListe.Add("ccc");
-            stringListe.Add("ccc");
-            stringListe.Add("ddd");
-            stringListe.Add("ddd");
-            stringListe.Add(employe1.Nom);
-            roleListe.Add("Vendeur");
-            roleListe.Add("Administrateur");
+            usersList = SQLHelper.SQLiteListUsers();
 
             // COMMUNICATION AVEC INTERFACE
-            this.listeUtilisateurs.ItemsSource = stringListe;
-            this.ComboGroupeUtilisateur.ItemsSource = roleListe;
+            this.listeUtilisateurs.ItemsSource = usersList;
+            //this.ComboGroupeUtilisateur.ItemsSource = roleListe;
 
         }
         // EVENT BUTTON CLICK
 
         private void ListeUtilisateurs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            object username = this.listeUtilisateurs.SelectedItem;
-            Console.WriteLine(username);
-            if (username == null)
-            {
-                this.test.Text = "";
-            }
-            else
-            {
-                this.test.Text = username.ToString();
-            }
+            //object username = this.listeUtilisateurs.SelectedItem;
+            //Console.WriteLine(username);
+            //if (username == null)
+            //{
+            //    this.test.Text = string.Empty;
+            //}
+            //else
+            //{
+            //    this.test.Text = username.ToString();
+            //}
         }
 
         private void Button_AjouterUtilisateur_Click(object sender, RoutedEventArgs e)
         {
-
+            AjoutUtilisateur ajoutUtilisateur = new AjoutUtilisateur();
+            ajoutUtilisateur.ShowDialog();
         }
         private void Button_SupprimerUser_Click(object sender, RoutedEventArgs e)
-        {   // RECUPERE VALUE SELECTED
-            string ma_value = this.listeUtilisateurs.SelectedItem.ToString();
-            // DISPLAY VALUE IN TEXT
-            this.test.Text = ma_value;
-            // DISPLAY INDEX SELECTED ITEM
-            MessageBox.Show(this.listeUtilisateurs.SelectedIndex.ToString());
-            // REMOVE ITEM 
-            stringListe.RemoveAt(this.listeUtilisateurs.SelectedIndex);
+        {  // // RECUPERE VALUE SELECTED
+           // string ma_value = this.listeUtilisateurs.SelectedItem.ToString();
+           // // DISPLAY VALUE IN TEXT
+           // this.test.Text = ma_value;
+           // // DISPLAY INDEX SELECTED ITEM
+           // MessageBox.Show(this.listeUtilisateurs.SelectedIndex.ToString());
+           // // REMOVE ITEM 
+           // stringListe.RemoveAt(this.listeUtilisateurs.SelectedIndex);
         }
         private void Button_EditerUtilisateur_Click(object sender, RoutedEventArgs e)
         {

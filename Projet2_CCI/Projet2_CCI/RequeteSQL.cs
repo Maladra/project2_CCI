@@ -18,7 +18,7 @@ namespace Projet2_CCI
         public static ObservableCollection<Snowboard> SQLitePlancheRead()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"]; // CONNECTION STRING
-            ObservableCollection <Snowboard> snowboardListe = new ObservableCollection<Snowboard>(); // RETURNED VALUE
+            ObservableCollection<Snowboard> snowboardListe = new ObservableCollection<Snowboard>(); // RETURNED VALUE
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 // REQUEST STRING
@@ -41,9 +41,9 @@ namespace Projet2_CCI
                     decimal prixSnowboardDecimal = decimal.Parse(prixSnowboard);
                     snowboardListe.Add(new Snowboard(marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardDecimal)); // ADD Snowboard ITEM IN LIST
                 }
-                    SQLiteReader.Close(); // FERMETURE READER
-                return snowboardListe;
+                SQLiteReader.Close(); // FERMETURE READER
             }
+            return snowboardListe;
         }
         public static void SQLiteAddMarque(string MarqueInsert)
         {
@@ -73,9 +73,9 @@ namespace Projet2_CCI
         {
             // DEF VARIABLE
             string[] returnValue = new string[3];
-            returnValue[0] = "erreur"; // Nom
-            returnValue[1] = "erreur"; // prenom
-            returnValue[2] = "erreur"; // groupe
+            returnValue[0] = "erreur"; // Nom //string.Empty
+            returnValue[1] = "erreur"; // prenom // string.Empty
+            returnValue[2] = "erreur"; // groupe // string.Empty
             //string valueUsername = "erreur";
             //string valueGroupe;
             //string valueNom;
@@ -106,6 +106,29 @@ namespace Projet2_CCI
                 return returnValue;
             }
               
+        }
+        public static ObservableCollection<Employe> SQLiteListUsers()
+        {
+            string connString = ConfigurationManager.AppSettings["connectionString"]; // CONNECTION STRING
+            ObservableCollection<Employe> usersList = new ObservableCollection<Employe>();
+            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
+            {
+                SQLiteCommand SQLiteCommand = new SQLiteCommand("SELECT Nom, Prenom, Login, Password, Groupe FROM Employe ", SQLiteConn);
+                SQLiteCommand.Connection.Open();
+                SQLiteDataReader SQLiteReader = SQLiteCommand.ExecuteReader();
+                while (SQLiteReader.Read())
+                { 
+                    string nomEmploye = SQLiteReader["Nom"].ToString();
+                    string prenomEmploye = SQLiteReader["Prenom"].ToString();
+                    string loginEmploye = SQLiteReader["Login"].ToString();
+                    string passwordEmploye = SQLiteReader["Password"].ToString();
+                    string groupeEmploye = SQLiteReader["Groupe"].ToString();
+                    usersList.Add(new Employe(nomEmploye, prenomEmploye, loginEmploye, passwordEmploye, groupeEmploye));
+                }
+                SQLiteReader.Close();
+                
+            }
+            return usersList;
         }
     }
 } 

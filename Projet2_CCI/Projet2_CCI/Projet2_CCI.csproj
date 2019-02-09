@@ -84,6 +84,10 @@
     <Compile Include="AjoutStyle.xaml.cs">
       <DependentUpon>AjoutStyle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AjoutUtilisateur.xaml.cs">
+      <DependentUpon>AjoutUtilisateur.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HashingPassword.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="RequeteSQL.cs" />
     <Compile Include="Snowboard.cs" />
@@ -96,6 +100,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AjoutStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AjoutUtilisateur.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

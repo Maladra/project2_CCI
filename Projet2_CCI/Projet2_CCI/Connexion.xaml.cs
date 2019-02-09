@@ -26,6 +26,9 @@ namespace Projet2_CCI
 
         private void Button_Connexion_Click(object sender, RoutedEventArgs e)
         {
+            HashingPassword test= new HashingPassword();
+            Console.WriteLine(test.HashPassword("aaa"));
+            
             Vendeur Vendeur = new Vendeur();
             Administrateur Administrateur = new Administrateur();            
             string[] testValue = SQLHelper.SQLiteConnexion(this.UsernameText.Text, this.PasswordText.Password.ToString());
