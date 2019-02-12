@@ -19,7 +19,6 @@ namespace Projet2_CCI
             byte[] salt = new byte[24];
             rng.GetBytes(salt);
             string saltString = BitConverter.ToString(salt);
-            Console.WriteLine(saltString);
             return saltString;
         }
 
