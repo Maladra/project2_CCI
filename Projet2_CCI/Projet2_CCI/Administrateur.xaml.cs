@@ -43,16 +43,7 @@ namespace Projet2_CCI
 
         private void ListeUtilisateurs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //object username = this.listeUtilisateurs.SelectedItem;
-            //Console.WriteLine(username);
-            //if (username == null)
-            //{
-            //    this.test.Text = string.Empty;
-            //}
-            //else
-            //{
-            //    this.test.Text = username.ToString();
-            //}
+            MessageBox.Show(listeUtilisateurs.SelectedItem.ToString());
         }
 
         private void Button_AjouterUtilisateur_Click(object sender, RoutedEventArgs e)

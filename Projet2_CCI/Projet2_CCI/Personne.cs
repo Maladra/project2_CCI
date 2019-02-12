@@ -32,6 +32,10 @@ namespace Projet2_CCI
             this.Password = password;
             this.Groupe = groupe;
         }
+        public override string ToString()
+        {
+            return Nom;
+        }
     }
 
   
@@ -45,6 +49,7 @@ namespace Projet2_CCI
             this.LocationEnCours = locationEnCours;
             this.NbLocation = NbLocation;
             this.NumeroTelephone = numeroTelephone;
+            
         }
 
     }
