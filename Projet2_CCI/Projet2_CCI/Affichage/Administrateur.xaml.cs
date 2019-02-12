@@ -24,7 +24,8 @@ namespace Projet2_CCI
     public partial class Administrateur : Window
     {
 
-        // VAR 
+        // VAR
+
         ObservableCollection<Employe> usersList = new ObservableCollection<Employe>();
         
         //List<string> roleListe = new List<string>();
@@ -43,7 +44,8 @@ namespace Projet2_CCI
 
         private void ListeUtilisateurs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show(listeUtilisateurs.SelectedItem.ToString());
+            var user = (Employe)this.listeUtilisateurs.SelectedItem;
+            MessageBox.Show(user.Login);
         }
 
         private void Button_AjouterUtilisateur_Click(object sender, RoutedEventArgs e)

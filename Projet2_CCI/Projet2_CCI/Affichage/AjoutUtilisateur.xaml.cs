@@ -22,6 +22,13 @@ namespace Projet2_CCI
         public AjoutUtilisateur()
         {
             InitializeComponent();
+            this.listeGroupe.Items.Add("Vendeur");
+            this.listeGroupe.Items.Add("Administrateur");
+        }
+
+        private void ButtonRetour_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

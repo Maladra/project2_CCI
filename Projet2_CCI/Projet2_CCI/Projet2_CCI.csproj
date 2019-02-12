@@ -75,43 +75,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Administrateur.xaml.cs">
+    <Compile Include="Affichage\Administrateur.xaml.cs">
       <DependentUpon>Administrateur.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AjoutMarque.xaml.cs">
+    <Compile Include="Affichage\AjoutMarque.xaml.cs">
       <DependentUpon>AjoutMarque.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AjoutStyle.xaml.cs">
+    <Compile Include="Affichage\AjoutStyle.xaml.cs">
       <DependentUpon>AjoutStyle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AjoutUtilisateur.xaml.cs">
+    <Compile Include="Affichage\AjoutUtilisateur.xaml.cs">
       <DependentUpon>AjoutUtilisateur.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HashingPassword.cs" />
+    <Compile Include="DAL\HashingPassword.cs" />
     <Compile Include="Location.cs" />
-    <Compile Include="RequeteSQL.cs" />
+    <Compile Include="DAL\RequeteSQL.cs" />
     <Compile Include="Snowboard.cs" />
-    <Page Include="Administrateur.xaml">
+    <Page Include="Affichage\Administrateur.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AjoutMarque.xaml">
+    <Page Include="Affichage\AjoutMarque.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AjoutStyle.xaml">
+    <Page Include="Affichage\AjoutStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AjoutUtilisateur.xaml">
+    <Page Include="Affichage\AjoutUtilisateur.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Connexion.xaml">
+    <Page Include="Affichage\Connexion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vendeur.xaml">
+    <Page Include="Affichage\Vendeur.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -119,10 +119,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Connexion.xaml.cs">
+    <Compile Include="Affichage\Connexion.xaml.cs">
       <DependentUpon>Connexion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vendeur.xaml.cs">
+    <Compile Include="Affichage\Vendeur.xaml.cs">
       <DependentUpon>Vendeur.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
