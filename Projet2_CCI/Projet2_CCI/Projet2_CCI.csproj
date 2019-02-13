@@ -81,6 +81,9 @@
     <Compile Include="Affichage\AjoutMarque.xaml.cs">
       <DependentUpon>AjoutMarque.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Affichage\AjoutSnowboard.xaml.cs">
+      <DependentUpon>AjoutSnowboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Affichage\AjoutStyle.xaml.cs">
       <DependentUpon>AjoutStyle.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,8 @@
       <DependentUpon>AjoutUtilisateur.xaml</DependentUpon>
     </Compile>
     <Compile Include="DAL\HashingPassword.cs" />
+    <Compile Include="DAL\SnowboardRequete.cs" />
+    <Compile Include="DAL\UtilisateurRequete.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="DAL\RequeteSQL.cs" />
     <Compile Include="Snowboard.cs" />
@@ -96,6 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Affichage\AjoutMarque.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Affichage\AjoutSnowboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

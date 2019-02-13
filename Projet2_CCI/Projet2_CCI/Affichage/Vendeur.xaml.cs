@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Projet2_CCI.Affichage;
+using Projet2_CCI.DAL;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -26,7 +28,7 @@ namespace Projet2_CCI
         public Vendeur()
         {
             InitializeComponent();
-            ObservableCollection<Snowboard> snowboardListe = SQLHelper.SQLitePlancheRead();
+            ObservableCollection<SnowboardRequete> snowboardListe = SQLHelper.SQLitePlancheRead();
             this.stockAffichage.ItemsSource = snowboardListe;
         }
 
@@ -44,7 +46,13 @@ namespace Projet2_CCI
 
         private void Button_ajoutSnowboard_Click(object sender, RoutedEventArgs e)
         {
+            AjoutSnowboard ajoutSnowboard = new AjoutSnowboard();
+            ajoutSnowboard.ShowDialog();
+        }
 
+        private void ButtonValider_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Erreur pendant la création de la location");
         }
     }
 }

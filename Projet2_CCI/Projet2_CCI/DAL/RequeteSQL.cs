@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-
+using Projet2_CCI.DAL;
 
 namespace Projet2_CCI
 {
@@ -15,10 +15,10 @@ namespace Projet2_CCI
     static class SQLHelper
     {
         // QUERY PLANCHE
-        public static ObservableCollection<Snowboard> SQLitePlancheRead()
+        public static ObservableCollection<DAL.SnowboardRequete> SQLitePlancheRead()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"]; // CONNECTION STRING
-            ObservableCollection<Snowboard> snowboardListe = new ObservableCollection<Snowboard>(); // RETURNED VALUE
+            ObservableCollection<SnowboardRequete> snowboardListe = new ObservableCollection<SnowboardRequete>(); // RETURNED VALUE
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 // REQUEST STRING
@@ -39,7 +39,8 @@ namespace Projet2_CCI
                     string styleSnowboard = SQLiteReader["Style"].ToString();
                     string prixSnowboard = SQLiteReader["Prix"].ToString();
                     decimal prixSnowboardDecimal = decimal.Parse(prixSnowboard);
-                    snowboardListe.Add(new Snowboard(marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardDecimal)); // ADD Snowboard ITEM IN LIST
+                    string stockSnowboard = SQLiteReader["Stock"].ToString();
+                    snowboardListe.Add(new SnowboardRequete(marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardDecimal, Convert.ToInt32(stockSnowboard))); // ADD Snowboard ITEM IN LIST
                 }
                 SQLiteReader.Close(); // FERMETURE READER
             }
@@ -69,25 +70,17 @@ namespace Projet2_CCI
                 SQLiteInstert.ExecuteNonQuery();
             }
         }
-        public static string[] SQLiteConnexion(string username, string password)
+        public static UtilisateurConnexion SQLiteConnexion(string username, string password)
         {
             // DEF VARIABLE
-            string[] returnValue = new string[3];
-            returnValue[0] = "erreur"; // Nom //string.Empty
-            returnValue[1] = "erreur"; // prenom // string.Empty
-            returnValue[2] = "erreur"; // groupe // string.Empty
-            //string valueUsername = "erreur";
-            //string valueGroupe;
-            //string valueNom;
-            //string valuePrenom;
-
+            UtilisateurConnexion utilisateurConnexion = new UtilisateurConnexion(string.Empty, string.Empty, string.Empty);
 
             // DEF SQL
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 // SQL QUERY
-                string querySelectUser = "SELECT Login,Nom,Prenom,Groupe FROM Employe WHERE Login = @login AND Password = @password LIMIT 1;";
+                string querySelectUser = "SELECT Nom,Prenom,Groupe FROM Employe WHERE Login = @login AND Password = @password LIMIT 1;";
                 // SQL QUERY USERNAME
                 SQLiteCommand SQLiteCommandUser = new SQLiteCommand(querySelectUser, SQLiteConn);
                 SQLiteConn.Open();
@@ -97,13 +90,13 @@ namespace Projet2_CCI
                 SQLiteDataReader SQLiteReaderUser = SQLiteCommandUser.ExecuteReader();
                 while  (SQLiteReaderUser.Read())
                 { 
-                    //valueUsername = SQLiteReaderUser["Login"].ToString();
-                    returnValue[2] = SQLiteReaderUser["Groupe"].ToString();
-                    returnValue[0] = SQLiteReaderUser["Nom"].ToString();
-                    returnValue[1] = SQLiteReaderUser["Prenom"].ToString();
+                    utilisateurConnexion.Nom = SQLiteReaderUser["Nom"].ToString(); ;
+                    utilisateurConnexion.Prenom = SQLiteReaderUser["Prenom"].ToString();
+                    utilisateurConnexion.Groupe = SQLiteReaderUser["Groupe"].ToString();
+
                 }
                 SQLiteReaderUser.Close();
-                return returnValue;
+                return utilisateurConnexion;
             }
               
         }

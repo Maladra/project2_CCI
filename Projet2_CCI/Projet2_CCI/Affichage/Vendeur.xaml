@@ -31,12 +31,15 @@
                         <ColumnDefinition Width="9*"/>
                         <ColumnDefinition Width="122*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Nom Client" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,71,0,0"/>
-                    <Label Content="Prénom Client" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,121,0,0"/>
-                    <Label Content="Moyen paiement" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,171,0,0"/>
-                    <Label Content="Date début" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,222,0,0"/>
-                    <Label Content="Date fin" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,267,0,0"/>
-                    <Button Content="Valider" Grid.Column="1" HorizontalAlignment="Left" Margin="250,343,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Label Content="Nom Client :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,71,0,0"/>
+                    <Label Content="Prénom Client :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,121,0,0"/>
+                    <Label Content="Moyen paiement :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,171,0,0"/>
+                    <Label Content="Date début :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,222,0,0"/>
+                    <Label Content="Date fin :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,267,0,0"/>
+                    <Button Content="Valider" Grid.Column="1" HorizontalAlignment="Left" Margin="250,343,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="233,102,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="233,143,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="233,194,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
                 </Grid>
             </TabItem>
 

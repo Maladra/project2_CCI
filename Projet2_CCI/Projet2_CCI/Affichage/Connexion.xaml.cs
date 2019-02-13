@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet2_CCI.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,13 +31,13 @@ namespace Projet2_CCI
             Console.WriteLine(test.HashPassword("aaa"));
             
             Vendeur Vendeur = new Vendeur();
-            Administrateur Administrateur = new Administrateur();            
-            string[] testValue = SQLHelper.SQLiteConnexion(this.UsernameText.Text, this.PasswordText.Password.ToString());
-            if (testValue[0] != "erreur")
+            Administrateur Administrateur = new Administrateur();
+            UtilisateurConnexion utilisateur = SQLHelper.SQLiteConnexion(this.UsernameText.Text, this.PasswordText.Password.ToString());
+            if (utilisateur.Groupe != string.Empty)
             {
                 this.Close();
-                MessageBox.Show("Bienvenue " + testValue[0]+" "+testValue[1]);
-                if (testValue[2] =="Administrateur" )
+                MessageBox.Show("Bienvenue " + utilisateur.Prenom+" "+utilisateur.Nom);
+                if (utilisateur.Groupe =="Administrateur" )
                 {
                     Administrateur.Show();
                 }
