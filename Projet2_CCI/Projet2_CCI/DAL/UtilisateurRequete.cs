@@ -8,9 +8,9 @@ namespace Projet2_CCI.DAL
 {
     class UtilisateurConnexion
     {
-    public string Nom { get; set; }
-    public string Prenom { get; set; }  
-    public string Groupe { get; set; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }  
+        public string Groupe { get; set; }
         public UtilisateurConnexion(string nom, string prenom, string groupe)
         {
             this.Nom = nom;

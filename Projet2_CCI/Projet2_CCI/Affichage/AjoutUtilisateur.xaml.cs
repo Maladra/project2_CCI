@@ -30,5 +30,17 @@ namespace Projet2_CCI
         {
             this.Close();
         }
+
+        private void ButtonValider_Click(object sender, RoutedEventArgs e)
+        {
+
+            string nomEmploye = nom.Text;
+            string prenomEmploye = prenom.Text;
+            string loginEmploye = login.Text;
+            string passwordEmploye = password.Text;
+            string groupeEmploye = listeGroupe.Text;
+            MessageBox.Show(groupeEmploye);
+            Employe employe = new Employe("aaa", "bbb", "ccc","test","test");
+        }
     }
 }

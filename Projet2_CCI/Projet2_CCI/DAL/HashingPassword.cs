@@ -10,27 +10,26 @@ using System.Security.Cryptography;
 
 namespace Projet2_CCI
 {
-    class HashingPassword
+    public class HashingPassword
     {
-        public string SaltGeneration()
+        static RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+        public static byte[] SaltGeneration()
         {
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-
             byte[] salt = new byte[24];
             rng.GetBytes(salt);
-            string saltString = BitConverter.ToString(salt);
-            return saltString;
+            return salt;
         }
 
-        public string HashPassword(string password)
+        public static byte[] HashPasswordSalt(string password, byte[] salt)
         {
-            SHA256 sha256 = SHA256Managed.Create();
-            HashingPassword salt = new HashingPassword();
-            byte[] saltByte = Encoding.UTF8.GetBytes(salt.SaltGeneration());
-            byte[] passwordByte = Encoding.UTF8.GetBytes(password);
-            byte[] saltPassword = passwordByte;
-
-            return saltPassword.ToString();
+            using (SHA256 sha256 = SHA256Managed.Create())
+            {
+                //byte[] saltByte = SaltGeneration();
+                byte[] passwordByte = Encoding.UTF8.GetBytes(password);
+                sha256.TransformBlock(passwordByte, 0, passwordByte.Length, null, 0);
+                sha256.TransformBlock(salt, 0, salt.Length, null, 0);
+                return sha256.Hash;
+            }
         }
     }
 }

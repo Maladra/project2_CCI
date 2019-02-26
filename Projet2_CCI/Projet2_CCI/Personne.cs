@@ -31,6 +31,7 @@ namespace Projet2_CCI
             this.Login = login;
             this.Password = password;
             this.Groupe = groupe;
+
         }
         public override string ToString()
         {

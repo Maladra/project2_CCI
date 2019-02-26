@@ -46,7 +46,7 @@ namespace Projet2_CCI
             }
             return snowboardListe;
         }
-        public static void SQLiteAddMarque(string MarqueInsert)
+        public static void SQLiteAddMarque(string marqueInsert)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
@@ -54,11 +54,11 @@ namespace Projet2_CCI
                 string queryInsert = "INSERT INTO Marque_snowboard (Marque) VALUES (?)";
                 SQLiteConn.Open();
                 SQLiteCommand SQLiteInstert = new SQLiteCommand(queryInsert, SQLiteConn);
-                SQLiteInstert.Parameters.AddWithValue("@Marque", MarqueInsert);     
+                SQLiteInstert.Parameters.AddWithValue("@Marque", marqueInsert);     
                 SQLiteInstert.ExecuteNonQuery();                      
             }
         }
-        public static void SQLiteAddStyle(string MarqueInsert)
+        public static void SQLiteAddStyle(string marqueInsert)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
@@ -66,7 +66,7 @@ namespace Projet2_CCI
                 string queryInsert = "INSERT INTO Style_snowboard (Style) VALUES (?)";
                 SQLiteConn.Open();
                 SQLiteCommand SQLiteInstert = new SQLiteCommand(queryInsert, SQLiteConn);
-                SQLiteInstert.Parameters.AddWithValue("@Style", MarqueInsert);
+                SQLiteInstert.Parameters.AddWithValue("@Style", marqueInsert);
                 SQLiteInstert.ExecuteNonQuery();
             }
         }
@@ -122,6 +122,18 @@ namespace Projet2_CCI
                 
             }
             return usersList;
+        }
+        public static void SQLiteAddUser(Employe employe, string password)
+        {
+            byte[] salt = HashingPassword.SaltGeneration();
+            password = "aaa";
+            HashingPassword.HashPasswordSalt(password, salt);
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection SqliteConn = new SQLiteConnection(connString))
+            {
+
+                string queryInsert = "INSERT INTO Employe (Nom,Prenom,Login,Password,Groupe,Salt) VALUES (?,?,?,?,?,?)";
+            }
         }
     }
 } 

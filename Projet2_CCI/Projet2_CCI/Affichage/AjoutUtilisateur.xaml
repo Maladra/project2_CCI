@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="AjoutUtilisateur" Height="450" Width="800">
     <Grid>
-        <Button Content="Valider" HorizontalAlignment="Left" Margin="222,343,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Margin="222,343,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
         <Button Content="Retour" HorizontalAlignment="Left" Margin="574,343,0,0" VerticalAlignment="Top" Width="75" Click="ButtonRetour_Click"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="222,64,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="511,124,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="222,124,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="511,64,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.669,0.252"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="222,64,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="nom"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="511,124,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="password"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="222,124,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="prenom"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="511,64,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.669,0.252" x:Name="login"/>
         <Label Content="Nom :" HorizontalAlignment="Left" Margin="180,60,0,0" VerticalAlignment="Top"/>
         <Label Content="Prenom :" HorizontalAlignment="Left" Margin="165,120,0,0" VerticalAlignment="Top"/>
         <Label Content="Password :" HorizontalAlignment="Left" Margin="446,120,0,0" VerticalAlignment="Top"/>
