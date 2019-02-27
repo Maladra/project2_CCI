@@ -87,16 +87,19 @@ namespace Projet2_CCI
                 SQLiteCommandUser.Parameters.AddWithValue("login", username);
                 SQLiteCommandUser.Parameters.AddWithValue("password", password);
 
-                SQLiteDataReader SQLiteReaderUser = SQLiteCommandUser.ExecuteReader();
-                while  (SQLiteReaderUser.Read())
-                { 
-                    utilisateurConnexion.Nom = SQLiteReaderUser["Nom"].ToString(); ;
-                    utilisateurConnexion.Prenom = SQLiteReaderUser["Prenom"].ToString();
-                    utilisateurConnexion.Groupe = SQLiteReaderUser["Groupe"].ToString();
+                using (SQLiteDataReader SQLiteReaderUser = SQLiteCommandUser.ExecuteReader())
+                {
+                    if (SQLiteReaderUser.Read())
+                    {
+                        utilisateurConnexion.Nom = SQLiteReaderUser["Nom"].ToString(); ;
+                        utilisateurConnexion.Prenom = SQLiteReaderUser["Prenom"].ToString();
+                        utilisateurConnexion.Groupe = SQLiteReaderUser["Groupe"].ToString();
 
-                }
-                SQLiteReaderUser.Close();
+                    }
+                    else
+                        return null;
                 return utilisateurConnexion;
+                }
             }
               
         }
@@ -123,16 +126,32 @@ namespace Projet2_CCI
             }
             return usersList;
         }
-        public static void SQLiteAddUser(Employe employe, string password)
+        //Ajout d'utilisateur
+        public static void SQLiteAddUser(Employe employe)
         {
+            //Recupere uSalt
             byte[] salt = HashingPassword.SaltGeneration();
-            password = "aaa";
-            HashingPassword.HashPasswordSalt(password, salt);
+            // Convert en byte array le password
+            byte[] employePasswordByte = Encoding.UTF8.GetBytes(employe.Password);
+            // Creation Hash a partir du password et du salt
+            employePasswordByte = HashingPassword.HashPasswordSalt(employe.Password, salt);
+
+            // REQUETE SQL
             string connString = ConfigurationManager.AppSettings["connectionString"];
-            using (SQLiteConnection SqliteConn = new SQLiteConnection(connString))
+            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
 
                 string queryInsert = "INSERT INTO Employe (Nom,Prenom,Login,Password,Groupe,Salt) VALUES (?,?,?,?,?,?)";
+                SQLiteConn.Open();
+                // SQL INSERT
+                SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
+                SQLiteInsert.Parameters.AddWithValue("@Nom", employe.Nom);
+                SQLiteInsert.Parameters.AddWithValue("@Prenom", employe.Prenom);
+                SQLiteInsert.Parameters.AddWithValue("@Login", employe.Login);
+                SQLiteInsert.Parameters.AddWithValue("@Password", employePasswordByte);
+                SQLiteInsert.Parameters.AddWithValue("@Groupe", employe.Groupe);
+                SQLiteInsert.Parameters.AddWithValue("@Salt", salt);
+                SQLiteInsert.ExecuteNonQuery();
             }
         }
     }

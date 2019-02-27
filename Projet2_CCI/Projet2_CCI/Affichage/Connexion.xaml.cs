@@ -30,7 +30,7 @@ namespace Projet2_CCI
             Vendeur Vendeur = new Vendeur();
             Administrateur Administrateur = new Administrateur();
             UtilisateurConnexion utilisateur = SQLHelper.SQLiteConnexion(this.UsernameText.Text, this.PasswordText.Password.ToString());
-            if (utilisateur.Groupe != string.Empty)
+            if (utilisateur != null)
             {
                 this.Close();
                 MessageBox.Show("Bienvenue " + utilisateur.Prenom+" "+utilisateur.Nom);

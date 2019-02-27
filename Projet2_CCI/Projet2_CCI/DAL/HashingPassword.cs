@@ -27,7 +27,7 @@ namespace Projet2_CCI
                 //byte[] saltByte = SaltGeneration();
                 byte[] passwordByte = Encoding.UTF8.GetBytes(password);
                 sha256.TransformBlock(passwordByte, 0, passwordByte.Length, null, 0);
-                sha256.TransformBlock(salt, 0, salt.Length, null, 0);
+                sha256.TransformFinalBlock(salt, 0, salt.Length);
                 return sha256.Hash;
             }
         }

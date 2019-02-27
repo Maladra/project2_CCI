@@ -39,8 +39,8 @@ namespace Projet2_CCI
             string loginEmploye = login.Text;
             string passwordEmploye = password.Text;
             string groupeEmploye = listeGroupe.Text;
-            MessageBox.Show(groupeEmploye);
-            Employe employe = new Employe("aaa", "bbb", "ccc","test","test");
+            Employe employe = new Employe(nom.Text, prenom.Text, login.Text, password.Text, listeGroupe.Text);
+            SQLHelper.SQLiteAddUser(employe);
         }
     }
 }
