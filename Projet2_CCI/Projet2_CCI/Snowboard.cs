@@ -8,6 +8,7 @@ namespace Projet2_CCI
 {
     class Snowboard
     {
+        public string Nom { get; set; }
         public string Marque { get; set; } // marque du snow
         public string Genre { get; set; } // sexe homme femme enfant
         public string Niveau { get; set; } // debutant intermediaire expert
@@ -15,8 +16,9 @@ namespace Projet2_CCI
         public decimal Prix { get; set; }
 
         // CONSTRUCTEUR
-        public Snowboard(string marque, string genre, string niveau, string style, decimal prix)
+        public Snowboard(string nom, string marque, string genre, string niveau, string style, decimal prix)
         {
+            this.Nom = nom;
             this.Marque = marque;
             this.Genre = genre;
             this.Niveau = niveau;
