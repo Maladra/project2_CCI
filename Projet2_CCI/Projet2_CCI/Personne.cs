@@ -35,7 +35,7 @@ namespace Projet2_CCI
         }
         public override string ToString()
         {
-            return Nom;
+            return Nom + " " + Prenom;
         }
     }
 

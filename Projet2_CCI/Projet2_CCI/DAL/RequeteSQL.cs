@@ -128,34 +128,51 @@ namespace Projet2_CCI
             return usersList;
         }
         //Ajout d'utilisateur
-        public static void SQLiteAddUser(Employe employe)
+        public static bool SQLiteAddUser(Employe employe)
         {
-            //Recupere uSalt
-            byte[] salt = HashingPassword.SaltGeneration();
-            // Convert en byte array le password
-            byte[] employePasswordByte = Encoding.UTF8.GetBytes(employe.Password);
-            // Creation Hash a partir du password et du salt
-            employePasswordByte = HashingPassword.HashPasswordSalt(employe.Password, salt);
-
-            // REQUETE SQL
+            // CONNEXION BDD
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
-
-                string queryInsert = "INSERT INTO Employe (Nom,Prenom,Login,Password,Groupe,Salt) VALUES (?,?,?,?,?,?)";
                 SQLiteConn.Open();
-                // SQL INSERT
-                SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
-                SQLiteInsert.Parameters.AddWithValue("@Nom", employe.Nom);
-                SQLiteInsert.Parameters.AddWithValue("@Prenom", employe.Prenom);
-                SQLiteInsert.Parameters.AddWithValue("@Login", employe.Login);
-                SQLiteInsert.Parameters.AddWithValue("@Password", employePasswordByte);
-                SQLiteInsert.Parameters.AddWithValue("@Groupe", employe.Groupe);
-                SQLiteInsert.Parameters.AddWithValue("@Salt", salt);
-                SQLiteInsert.ExecuteNonQuery();
+
+                // VERIFICATION USERS
+                string queryVerifUser = "SELECT Login FROM Employe WHERE Login = @login";
+                SQLiteCommand SQLiteVerificationUser = new SQLiteCommand(queryVerifUser, SQLiteConn);
+                SQLiteVerificationUser.Parameters.AddWithValue("@login", employe.Login);
+
+                using (SQLiteDataReader SQLiteReadUser = SQLiteVerificationUser.ExecuteReader())
+                {
+                    if (!SQLiteReadUser.Read())
+                    {
+
+                        // Generation Salt
+                        byte[] salt = HashingPassword.SaltGeneration();
+                        // Convert en byte array le password
+                        byte[] employePasswordByte = Encoding.UTF8.GetBytes(employe.Password);
+                        // Creation Hash a partir du password et du salt
+                        employePasswordByte = HashingPassword.HashPasswordSalt(employe.Password, salt);
+                        // SQL INSERT
+                        string queryInsert = "INSERT INTO Employe (Nom,Prenom,Login,Password,Groupe,Salt) VALUES (?,?,?,?,?,?)";
+                        SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
+                        SQLiteInsert.Parameters.AddWithValue("@Nom", employe.Nom);
+                        SQLiteInsert.Parameters.AddWithValue("@Prenom", employe.Prenom);
+                        SQLiteInsert.Parameters.AddWithValue("@Login", employe.Login);
+                        SQLiteInsert.Parameters.AddWithValue("@Password", employePasswordByte);
+                        SQLiteInsert.Parameters.AddWithValue("@Groupe", employe.Groupe);
+                        SQLiteInsert.Parameters.AddWithValue("@Salt", salt);
+                        SQLiteInsert.ExecuteNonQuery();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+
             }
         }
-
         public static UtilisateurConnexion SQLiteConnexionHash(string username, string password)
         {
             // DEF VARIABLE

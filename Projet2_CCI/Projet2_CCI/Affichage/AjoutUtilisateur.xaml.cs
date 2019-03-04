@@ -40,7 +40,15 @@ namespace Projet2_CCI
             string passwordEmploye = password.Text;
             string groupeEmploye = listeGroupe.Text;
             Employe employe = new Employe(nom.Text, prenom.Text, login.Text, password.Text, listeGroupe.Text);
-            SQLHelper.SQLiteAddUser(employe);
+            if (SQLHelper.SQLiteAddUser(employe))
+            {
+                MessageBox.Show("L'utilisateur a été crée");
+            }
+            else
+            {
+                MessageBox.Show("Erreur pendant la création de l'utilisateur");
+            }
         }
+
     }
 }
