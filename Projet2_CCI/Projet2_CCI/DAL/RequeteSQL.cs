@@ -176,13 +176,14 @@ namespace Projet2_CCI
                 {
                     if (SQLiteReaderUser.Read())
                     {
-                        byte[] saltVerification = SQLiteReaderUser["Salt"]; // fonction pour convert en byte ????
+                        byte[] saltVerification =(byte[])SQLiteReaderUser["Salt"]; // fonction pour convert en byte ????
+                        byte[] passwordVerification = (byte[])SQLiteReaderUser["Password"]; // fonction pour convert en byte ????
                         byte[] hashTest = HashingPassword.HashPasswordSalt(password, saltVerification);
-                        if (hashTest.SequenceEqual(saltVerification))
+                        if (hashTest.SequenceEqual(passwordVerification))
                         {
-                            utilisateurConnexion.Nom = SQLiteReaderUser["Nom"].ToString();
-                            utilisateurConnexion.Prenom = SQLiteReaderUser["Prenom"].ToString();
-                            utilisateurConnexion.Groupe = SQLiteReaderUser["Groupe"].ToString();
+                            utilisateurConnexion.Nom = (string)SQLiteReaderUser["Nom"];
+                            utilisateurConnexion.Prenom = (string)SQLiteReaderUser["Prenom"];
+                            utilisateurConnexion.Groupe = (string)SQLiteReaderUser["Groupe"];
                         }
                         else return null;
 
