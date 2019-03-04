@@ -23,21 +23,22 @@ namespace Projet2_CCI
     /// </summary>
     public partial class Administrateur : Window
     {
-
         // VAR
-
         ObservableCollection<Employe> usersList = new ObservableCollection<Employe>();
-        
-        //List<string> roleListe = new List<string>();
-
-        public Administrateur()
+        // COMMUNICATION BD
+        private void loadUserList()
         {
-            InitializeComponent();
             usersList = SQLHelper.SQLiteListUsers();
 
             // COMMUNICATION AVEC INTERFACE
             this.listeUtilisateurs.ItemsSource = usersList;
-            //this.ComboGroupeUtilisateur.ItemsSource = roleListe;
+        }
+
+
+        public Administrateur()
+        {
+            InitializeComponent();
+            loadUserList();
 
         }
         // EVENT BUTTON CLICK
@@ -52,6 +53,7 @@ namespace Projet2_CCI
         {
             AjoutUtilisateur ajoutUtilisateur = new AjoutUtilisateur();
             ajoutUtilisateur.ShowDialog();
+            loadUserList();
         }
         private void Button_SupprimerUser_Click(object sender, RoutedEventArgs e)
         {  // // RECUPERE VALUE SELECTED

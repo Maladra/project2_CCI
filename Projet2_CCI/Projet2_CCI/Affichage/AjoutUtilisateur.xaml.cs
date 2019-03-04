@@ -43,6 +43,7 @@ namespace Projet2_CCI
             if (SQLHelper.SQLiteAddUser(employe))
             {
                 MessageBox.Show("L'utilisateur a été crée");
+                this.Close();
             }
             else
             {
