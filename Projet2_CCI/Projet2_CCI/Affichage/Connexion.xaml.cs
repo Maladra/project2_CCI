@@ -24,12 +24,14 @@ namespace Projet2_CCI
         {
             InitializeComponent();
         }
-
+        
+        /// <summary>
+        /// REALISE LA CONNEXION A L'APPLICATION
+        /// </summary>
         private void Button_Connexion_Click(object sender, RoutedEventArgs e)
         {            
             Vendeur Vendeur = new Vendeur();
             Administrateur Administrateur = new Administrateur();
-            //UtilisateurConnexion utilisateur = SQLHelper.SQLiteConnexion(this.UsernameText.Text, this.PasswordText.Password.ToString());
             UtilisateurConnexion utilisateur = SQLHelper.SQLiteConnexionHash(this.UsernameText.Text, this.PasswordText.Password.ToString());
 
             if (utilisateur != null)

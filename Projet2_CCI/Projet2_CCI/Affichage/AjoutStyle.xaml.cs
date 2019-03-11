@@ -26,9 +26,12 @@ namespace Projet2_CCI
 
         private void Button_Valider_Click(object sender, RoutedEventArgs e)
         {
-
+            // TODO: VALIDATION CHAMP (NON VIDE) + AJOUT BD Style Snowboard
         }
 
+        /// <summary>
+        /// ANNULE ET FERME LA FENETRE
+        /// </summary>
         private void Button_Retour_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

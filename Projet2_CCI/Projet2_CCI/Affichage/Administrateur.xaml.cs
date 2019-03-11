@@ -12,8 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-//using System.Data.SQLite;
-//using System.Data.SQLite.Linq;
+
 
 namespace Projet2_CCI
 {
@@ -23,9 +22,11 @@ namespace Projet2_CCI
     /// </summary>
     public partial class Administrateur : Window
     {
-        // VAR
+        // Liste d'utilisateur pour affichage
         ObservableCollection<Employe> usersList = new ObservableCollection<Employe>();
-        // COMMUNICATION BD
+        /// <summary>
+        /// Charge la liste d'utilisateur depuis la BD et refresh l'interface
+        /// </summary>
         private void loadUserList()
         {
             usersList = SQLHelper.SQLiteListUsers();
@@ -41,30 +42,52 @@ namespace Projet2_CCI
             loadUserList();
 
         }
-        // EVENT BUTTON CLICK
 
-        private void ListeUtilisateurs_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var user = (Employe)this.listeUtilisateurs.SelectedItem;
-            MessageBox.Show(user.Login);
-        }
-
+        /// <summary>
+        /// Fonction pour l'ajout d'utilisateur
+        /// </summary>
         private void Button_AjouterUtilisateur_Click(object sender, RoutedEventArgs e)
         {
             AjoutUtilisateur ajoutUtilisateur = new AjoutUtilisateur();
             ajoutUtilisateur.ShowDialog();
             loadUserList();
         }
+       
+        /// <summary>
+        /// Supprime l'utilisateur selectionne
+        /// </summary>
         private void Button_SupprimerUser_Click(object sender, RoutedEventArgs e)
-        {  // // RECUPERE VALUE SELECTED
-           // string ma_value = this.listeUtilisateurs.SelectedItem.ToString();
-           // // DISPLAY VALUE IN TEXT
-           // this.test.Text = ma_value;
-           // // DISPLAY INDEX SELECTED ITEM
-           // MessageBox.Show(this.listeUtilisateurs.SelectedIndex.ToString());
-           // // REMOVE ITEM 
-           // stringListe.RemoveAt(this.listeUtilisateurs.SelectedIndex);
+        {
+            var user = (Employe)this.listeUtilisateurs.SelectedItem;
+            if (user != null)
+            {
+                //DELETE
+                var res = MessageBox.Show(this, "Confirmation suppression utilisateur", "Confirmation suppression", MessageBoxButton.OKCancel,
+                MessageBoxImage.Question);
+
+
+                
+                if (res == MessageBoxResult.OK)
+                {
+                    SQLHelper.SQLiteDeleteUser(user.Login);
+                    loadUserList();
+
+                }
+                else
+                { 
+                    
+                }
+            }
+            else
+            {
+                MessageBox.Show("Merci de selectionner un utilisateur");
+            }
+
         }
+
+        /// <summary>
+        /// Edition de l'utilisateur selectionne
+        /// </summary>
         private void Button_EditerUtilisateur_Click(object sender, RoutedEventArgs e)
         {
 

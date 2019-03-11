@@ -24,14 +24,22 @@ namespace Projet2_CCI
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// AJOUT MARQUE SNOWBOARD DANS BD
+        /// </summary>
         private void Button_Valider_Click(object sender, RoutedEventArgs e)
         {
+            // TODO: VERIFICATION CHAMP NON VIDE
             SQLHelper.SQLiteAddMarque(this.NomMarque.Text);
             this.Hide();
             MessageBox.Show("Ajout de la marque avec succés");
             
         }
 
+        /// <summary>
+        /// ANNULE ET FERME LA FENETRE
+        /// </summary>
         private void Button_Annuler_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

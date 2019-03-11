@@ -96,6 +96,7 @@
     <Compile Include="Location.cs" />
     <Compile Include="DAL\RequeteSQL.cs" />
     <Compile Include="Snowboard.cs" />
+    <Compile Include="Utils\UtilsClass.cs" />
     <Page Include="Affichage\Administrateur.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

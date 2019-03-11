@@ -212,5 +212,22 @@ namespace Projet2_CCI
             }
 
         }
+        public static bool SQLiteDeleteUser(string login)
+        {
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
+            {
+                // TODO: AJOUTER VERIF QU'IL RESTE UN ADMIN
+                string queryDeleteUser = "DELETE FROM Employe WHERE Login = @login LIMIT 1;";
+                SQLiteCommand SQLiteCommandDeleteUser = new SQLiteCommand(queryDeleteUser, SQLiteConn);
+                SQLiteCommandDeleteUser.Parameters.AddWithValue("login", login);
+                SQLiteConn.Open();
+
+                SQLiteCommandDeleteUser.ExecuteNonQuery();
+                return true;
+            }
+
+            return false;
+        }
     }
 } 
