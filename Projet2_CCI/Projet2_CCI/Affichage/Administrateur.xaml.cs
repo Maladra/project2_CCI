@@ -43,7 +43,7 @@ namespace Projet2_CCI
         }
         // EVENT BUTTON CLICK
 
-        private void ListeUtilisateurs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListeUtilisateurs_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var user = (Employe)this.listeUtilisateurs.SelectedItem;
             MessageBox.Show(user.Login);
@@ -69,5 +69,6 @@ namespace Projet2_CCI
         {
 
         }
+
     }
 }
