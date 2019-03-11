@@ -26,7 +26,7 @@ namespace Projet2_CCI
         }
         
         /// <summary>
-        /// REALISE LA CONNEXION A L'APPLICATION
+        /// Réalise la connexion de l'utilisateur a l'application
         /// </summary>
         private void Button_Connexion_Click(object sender, RoutedEventArgs e)
         {            

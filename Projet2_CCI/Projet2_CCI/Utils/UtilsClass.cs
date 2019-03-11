@@ -9,7 +9,7 @@ namespace Projet2_CCI.Utils
     static class UtilsClass
     {
         /// <summary>
-        /// prend un array de string si au moins un string est vide ou un espace return false sinon retourne true
+        /// prend un array de string si au moins un string est vide ou a un espace return false sinon retourne true
         /// </summary>
         public static bool VerifString(params string[] strings)
         => !strings.Any(string.IsNullOrWhiteSpace);

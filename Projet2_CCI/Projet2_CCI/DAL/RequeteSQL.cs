@@ -11,10 +11,14 @@ using Projet2_CCI.DAL;
 
 namespace Projet2_CCI
 {
-    // CONTIENT REQUETE SQL
+    /// <summary>
+    /// Contient les fonctions pour les requêtes SQL
+    /// </summary>
     static class SQLHelper
     {
-        // QUERY PLANCHE
+        /// <summary>
+        /// Requete SQL qui retourne une liste de planche de snowboard
+        /// </summary>
         public static ObservableCollection<DAL.SnowboardRequete> SQLitePlancheRead()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"]; // CONNECTION STRING
@@ -47,6 +51,10 @@ namespace Projet2_CCI
             }
             return snowboardListe;
         }
+
+        /// <summary>
+        /// Prend un string et fait une requete SQL pour inserer une marque de snowboard dans la BD
+        /// </summary>
         public static void SQLiteAddMarque(string marqueInsert)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
@@ -59,7 +67,11 @@ namespace Projet2_CCI
                 SQLiteInstert.ExecuteNonQuery();                      
             }
         }
-        public static void SQLiteAddStyle(string marqueInsert)
+
+        /// <summary>
+        /// Prend un string et fait une requete SQL pour inserer un style de snowboard dans la BD
+        /// </summary>
+        public static void SQLiteAddStyle(string styleInsert)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
@@ -67,43 +79,52 @@ namespace Projet2_CCI
                 string queryInsert = "INSERT INTO Style_snowboard (Style) VALUES (?)";
                 SQLiteConn.Open();
                 SQLiteCommand SQLiteInstert = new SQLiteCommand(queryInsert, SQLiteConn);
-                SQLiteInstert.Parameters.AddWithValue("@Style", marqueInsert);
+                SQLiteInstert.Parameters.AddWithValue("@Style", styleInsert);
                 SQLiteInstert.ExecuteNonQuery();
             }
         }
-        public static UtilisateurConnexion SQLiteConnexion(string username, string password)
-        {
-            // DEF VARIABLE
-            UtilisateurConnexion utilisateurConnexion = new UtilisateurConnexion(string.Empty, string.Empty, string.Empty);
 
-            // DEF SQL
-            string connString = ConfigurationManager.AppSettings["connectionString"];
-            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
-            {
-                // SQL QUERY
-                string querySelectUser = "SELECT Nom,Prenom,Groupe FROM Employe WHERE Login = @login AND Password = @password LIMIT 1;";
-                // SQL QUERY USERNAME
-                SQLiteCommand SQLiteCommandUser = new SQLiteCommand(querySelectUser, SQLiteConn);
-                SQLiteConn.Open();
-                SQLiteCommandUser.Parameters.AddWithValue("login", username);
-                SQLiteCommandUser.Parameters.AddWithValue("password", password);
+        /// <summary>
+        /// Prend deux string (username et password) et test la connexion de l'utilisateur a l'application
+        /// </summary>
+        //public static UtilisateurConnexion SQLiteConnexion(string username, string password)
+        //{
+        //    // DEF VARIABLE
+        //    UtilisateurConnexion utilisateurConnexion = new UtilisateurConnexion(string.Empty, string.Empty, string.Empty);
+        //
+        //    // DEF SQL
+        //    string connString = ConfigurationManager.AppSettings["connectionString"];
+        //    using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
+        //    {
+        //        // SQL QUERY
+        //        string querySelectUser = "SELECT Nom,Prenom,Groupe FROM Employe WHERE Login = @login AND Password = @password LIMIT 1;";
+        //        // SQL QUERY USERNAME
+        //        SQLiteCommand SQLiteCommandUser = new SQLiteCommand(querySelectUser, SQLiteConn);
+        //        SQLiteConn.Open();
+        //        SQLiteCommandUser.Parameters.AddWithValue("login", username);
+        //        SQLiteCommandUser.Parameters.AddWithValue("password", password);
+        //
+        //        using (SQLiteDataReader SQLiteReaderUser = SQLiteCommandUser.ExecuteReader())
+        //        {
+        //            if (SQLiteReaderUser.Read())
+        //            {
+        //                utilisateurConnexion.Nom = SQLiteReaderUser["Nom"].ToString(); ;
+        //                utilisateurConnexion.Prenom = SQLiteReaderUser["Prenom"].ToString();
+        //                utilisateurConnexion.Groupe = SQLiteReaderUser["Groupe"].ToString();
+        //
+        //            }
+        //            else
+        //                return null;
+        //        return utilisateurConnexion;
+        //        }
+        //    }
+        //      
+        //}
 
-                using (SQLiteDataReader SQLiteReaderUser = SQLiteCommandUser.ExecuteReader())
-                {
-                    if (SQLiteReaderUser.Read())
-                    {
-                        utilisateurConnexion.Nom = SQLiteReaderUser["Nom"].ToString(); ;
-                        utilisateurConnexion.Prenom = SQLiteReaderUser["Prenom"].ToString();
-                        utilisateurConnexion.Groupe = SQLiteReaderUser["Groupe"].ToString();
 
-                    }
-                    else
-                        return null;
-                return utilisateurConnexion;
-                }
-            }
-              
-        }
+        /// <summary>
+        /// Retourne une liste des utilisateurs
+        /// </summary>
         public static ObservableCollection<Employe> SQLiteListUsers()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"]; // CONNECTION STRING
@@ -127,7 +148,10 @@ namespace Projet2_CCI
             }
             return usersList;
         }
-        //Ajout d'utilisateur
+
+        /// <summary>
+        /// Prend un objet employe et l'ajoute dans la BD
+        /// </summary>
         public static bool SQLiteAddUser(Employe employe)
         {
             // CONNEXION BDD
@@ -173,6 +197,10 @@ namespace Projet2_CCI
 
             }
         }
+
+        /// <summary>
+        /// Prend 2 string (username et password) et test la connexion de l'utilisateur a l'application
+        /// </summary>
         public static UtilisateurConnexion SQLiteConnexionHash(string username, string password)
         {
             // DEF VARIABLE
@@ -212,6 +240,10 @@ namespace Projet2_CCI
             }
 
         }
+
+        /// <summary>
+        /// Prend un string (le login de l'utilisateur) et supprime l'utilisateur de la BD
+        /// </summary>
         public static bool SQLiteDeleteUser(string login)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];

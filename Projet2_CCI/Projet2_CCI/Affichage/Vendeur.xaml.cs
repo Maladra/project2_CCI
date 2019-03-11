@@ -32,18 +32,28 @@ namespace Projet2_CCI
             this.stockAffichage.ItemsSource = snowboardListe;
         }
 
+
+        /// <summary>
+        /// Déclenche l'ajout d'une marque de snowboard
+        /// </summary>
         private void Button_ajoutMarque_Click(object sender, RoutedEventArgs e)
         {
             AjoutMarque ajoutMarque = new AjoutMarque();
             ajoutMarque.ShowDialog();
         }
 
+        /// <summary>
+        /// Déclenche l'ajout d'un style de snowboard
+        /// </summary>
         private void Button_ajoutStyle_Click(object sender, RoutedEventArgs e)
         {
             AjoutStyle ajoutStyle = new AjoutStyle();
             ajoutStyle.ShowDialog();
         }
 
+        /// <summary>
+        /// Déclenche l'ajout d'un snowboard
+        /// </summary>
         private void Button_ajoutSnowboard_Click(object sender, RoutedEventArgs e)
         {
             AjoutSnowboard ajoutSnowboard = new AjoutSnowboard();
@@ -51,7 +61,7 @@ namespace Projet2_CCI
         }
 
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
-        {
+        { // TODO: VERIFIER UTILITE DE CETTE FONCTION (BIND)
             MessageBox.Show("Erreur pendant la création de la location");
         }
     }

@@ -10,6 +10,10 @@ using System.Security.Cryptography;
 
 namespace Projet2_CCI
 {
+
+    /// <summary>
+    /// Retourne le salt pour le password
+    /// </summary>
     public class HashingPassword
     {
         static RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
@@ -20,6 +24,9 @@ namespace Projet2_CCI
             return salt;
         }
 
+        /// <summary>
+        /// Prend un string (password) et un byte[] (salt) et return le hash du password+salt
+        /// </summary>
         public static byte[] HashPasswordSalt(string password, byte[] salt)
         {
             using (SHA256 sha256 = SHA256Managed.Create())

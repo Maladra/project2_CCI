@@ -61,7 +61,7 @@ namespace Projet2_CCI
             var user = (Employe)this.listeUtilisateurs.SelectedItem;
             if (user != null)
             {
-                //DELETE
+                // Message Box de suppression de l'utilisateur selectionné
                 var res = MessageBox.Show(this, "Confirmation suppression utilisateur", "Confirmation suppression", MessageBoxButton.OKCancel,
                 MessageBoxImage.Question);
 
