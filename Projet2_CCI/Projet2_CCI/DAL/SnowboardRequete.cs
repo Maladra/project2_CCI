@@ -6,28 +6,23 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.DAL
 {
-    class SnowboardRequete
+
+    /// <summary>
+    /// Class retournée par requete SQL Snowboard <see cref="SQLHelper.SQLitePlancheRead"/>
+    /// </summary>
+    class SnowboardRequete : Snowboard
     {
-        public string Nom { get; set; }
-        public string Marque { get; set; } // marque du snow
-        public string Genre { get; set; } // sexe homme femme enfant
-        public string Niveau { get; set; } // debutant intermediaire expert
-        public string Style { get; set; } // Freestyle Park, freeride, carving, polyvalent
-        public decimal Prix_euro { get; set; }
-        public decimal Prix_dollar { get; set; }
+
         public int Stock { get; set; }
 
             // CONSTRUCTEUR
-        public SnowboardRequete(string nom, string marque, string genre, string niveau, string style, decimal prix_euro,decimal prix_dollar, int stock)
+        public SnowboardRequete(string nom, string marque, string genre, string niveau, string style, decimal prixEuro,decimal prixDollar, int stock) : base (nom, marque, genre, niveau, style, prixEuro, prixDollar)
         {
-            this.Nom = nom;
-            this.Marque = marque;
-            this.Genre = genre;
-            this.Niveau = niveau;
-            this.Style = style;
-            this.Prix_euro = prix_euro;
-            this.Prix_dollar = prix_dollar;
             this.Stock = stock;
         }
     }
 }
+
+
+// TODO: MODIFICATION BASE DE DONNÉE (SUPPRIMER TABLE Niveau_snowboard, Genre_Snowboard)
+// TODO: MODIFICATION table Planche_snowboard (les FK si modification de la DB) 

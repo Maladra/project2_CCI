@@ -30,7 +30,7 @@ namespace Projet2_CCI
                     "INNER JOIN Niveau_snowboard ON Niveau_snowboard.Id_niveau = Planche_snowboard.Fk_niveau " +
                     "INNER JOIN Marque_snowboard ON Marque_snowboard.Id_marque = Planche_snowboard.Fk_marque " +
                     "INNER JOIN Genre_snowboard ON Genre_snowboard.Id_genre = Planche_snowboard.Fk_genre " +
-                    "INNER JOIN  Style_snowboard ON Style_snowboard.Id_style = Planche_snowboard.Fk_style; ", SQLiteConn);
+                    "INNER JOIN Style_snowboard ON Style_snowboard.Id_style = Planche_snowboard.Fk_style;", SQLiteConn);
 
                 // OUVERTURE CONNECTION ET LECTURE BD
                 SQLiteCommand.Connection.Open();
@@ -85,44 +85,6 @@ namespace Projet2_CCI
                 SQLiteInstert.ExecuteNonQuery();
             }
         }
-
-        /// <summary>
-        /// Prend deux string (username et password) et test la connexion de l'utilisateur a l'application
-        /// </summary>
-        //public static UtilisateurConnexion SQLiteConnexion(string username, string password)
-        //{
-        //    // DEF VARIABLE
-        //    UtilisateurConnexion utilisateurConnexion = new UtilisateurConnexion(string.Empty, string.Empty, string.Empty);
-        //
-        //    // DEF SQL
-        //    string connString = ConfigurationManager.AppSettings["connectionString"];
-        //    using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
-        //    {
-        //        // SQL QUERY
-        //        string querySelectUser = "SELECT Nom,Prenom,Groupe FROM Employe WHERE Login = @login AND Password = @password LIMIT 1;";
-        //        // SQL QUERY USERNAME
-        //        SQLiteCommand SQLiteCommandUser = new SQLiteCommand(querySelectUser, SQLiteConn);
-        //        SQLiteConn.Open();
-        //        SQLiteCommandUser.Parameters.AddWithValue("login", username);
-        //        SQLiteCommandUser.Parameters.AddWithValue("password", password);
-        //
-        //        using (SQLiteDataReader SQLiteReaderUser = SQLiteCommandUser.ExecuteReader())
-        //        {
-        //            if (SQLiteReaderUser.Read())
-        //            {
-        //                utilisateurConnexion.Nom = SQLiteReaderUser["Nom"].ToString(); ;
-        //                utilisateurConnexion.Prenom = SQLiteReaderUser["Prenom"].ToString();
-        //                utilisateurConnexion.Groupe = SQLiteReaderUser["Groupe"].ToString();
-        //
-        //            }
-        //            else
-        //                return null;
-        //        return utilisateurConnexion;
-        //        }
-        //    }
-        //      
-        //}
-
 
         /// <summary>
         /// Retourne une liste des utilisateurs
