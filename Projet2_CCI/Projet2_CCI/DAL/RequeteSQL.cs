@@ -26,7 +26,7 @@ namespace Projet2_CCI
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 // REQUEST STRING
-                SQLiteCommand SQLiteCommand = new SQLiteCommand("SELECT Nom,Stock,Prix,Niveau,Marque,Genre,Style FROM Planche_snowboard " +
+                SQLiteCommand SQLiteCommand = new SQLiteCommand("SELECT Nom_modele,Stock,Prix_euro,Prix_dollar,Niveau,Marque,Genre,Style FROM Planche_snowboard " +
                     "INNER JOIN Niveau_snowboard ON Niveau_snowboard.Id_niveau = Planche_snowboard.Fk_niveau " +
                     "INNER JOIN Marque_snowboard ON Marque_snowboard.Id_marque = Planche_snowboard.Fk_marque " +
                     "INNER JOIN Genre_snowboard ON Genre_snowboard.Id_genre = Planche_snowboard.Fk_genre " +
@@ -37,15 +37,17 @@ namespace Projet2_CCI
                 SQLiteDataReader SQLiteReader = SQLiteCommand.ExecuteReader();
                 while (SQLiteReader.Read())
                 {
-                    string nomSnowboard = SQLiteReader["Nom"].ToString();
+                    string nomSnowboard = SQLiteReader["Nom_modele"].ToString();
                     string marqueSnowboard = SQLiteReader["Marque"].ToString();
                     string genreSnowboard = SQLiteReader["Genre"].ToString();
                     string niveauSnowboard = SQLiteReader["Niveau"].ToString();
                     string styleSnowboard = SQLiteReader["Style"].ToString();
-                    string prixSnowboard = SQLiteReader["Prix"].ToString();
-                    decimal prixSnowboardDecimal = decimal.Parse(prixSnowboard);
+                    string prixSnowboarEuro = SQLiteReader["Prix_euro"].ToString();
+                    string prixSnowboarDollar = SQLiteReader["Prix_euro"].ToString();
+                    decimal prixSnowboardEuroDecimal = decimal.Parse(prixSnowboarEuro);
+                    decimal prixSnowboardDollarDecimal = decimal.Parse(prixSnowboarDollar);
                     string stockSnowboard = SQLiteReader["Stock"].ToString();
-                    snowboardListe.Add(new SnowboardRequete(nomSnowboard,marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardDecimal, Convert.ToInt32(stockSnowboard))); // ADD Snowboard ITEM IN LIST
+                    snowboardListe.Add(new SnowboardRequete(nomSnowboard,marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardEuroDecimal, prixSnowboardDollarDecimal, Convert.ToInt32(stockSnowboard))); // ADD Snowboard to LIST
                 }
                 SQLiteReader.Close(); // FERMETURE READER
             }
