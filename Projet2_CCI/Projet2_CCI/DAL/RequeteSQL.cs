@@ -47,7 +47,7 @@ namespace Projet2_CCI
                     decimal prixSnowboardEuroDecimal = decimal.Parse(prixSnowboarEuro);
                     decimal prixSnowboardDollarDecimal = decimal.Parse(prixSnowboarDollar);
                     string stockSnowboard = SQLiteReader["Stock"].ToString();
-                    snowboardListe.Add(new SnowboardRequete(nomSnowboard,marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardEuroDecimal, prixSnowboardDollarDecimal, Convert.ToInt32(stockSnowboard))); // ADD Snowboard to LIST
+                    snowboardListe.Add(new SnowboardRequete(nomSnowboard, marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardEuroDecimal, prixSnowboardDollarDecimal, Convert.ToInt32(stockSnowboard))); // ADD Snowboard to LIST
                 }
                 SQLiteReader.Close(); // FERMETURE READER
             }
@@ -65,8 +65,8 @@ namespace Projet2_CCI
                 string queryInsert = "INSERT INTO Marque_snowboard (Marque) VALUES (?)";
                 SQLiteConn.Open();
                 SQLiteCommand SQLiteInstert = new SQLiteCommand(queryInsert, SQLiteConn);
-                SQLiteInstert.Parameters.AddWithValue("@Marque", marqueInsert);     
-                SQLiteInstert.ExecuteNonQuery();                      
+                SQLiteInstert.Parameters.AddWithValue("@Marque", marqueInsert);
+                SQLiteInstert.ExecuteNonQuery();
             }
         }
 
@@ -99,7 +99,7 @@ namespace Projet2_CCI
                 SQLiteCommand.Connection.Open();
                 SQLiteDataReader SQLiteReader = SQLiteCommand.ExecuteReader();
                 while (SQLiteReader.Read())
-                { 
+                {
                     string nomEmploye = SQLiteReader["Nom"].ToString();
                     string prenomEmploye = SQLiteReader["Prenom"].ToString();
                     string loginEmploye = SQLiteReader["Login"].ToString();
@@ -108,7 +108,7 @@ namespace Projet2_CCI
                     usersList.Add(new Employe(nomEmploye, prenomEmploye, loginEmploye, passwordEmploye, groupeEmploye));
                 }
                 SQLiteReader.Close();
-                
+
             }
             return usersList;
         }
@@ -185,8 +185,8 @@ namespace Projet2_CCI
                 {
                     if (SQLiteReaderUser.Read())
                     {
-                        byte[] saltVerification =(byte[])SQLiteReaderUser["Salt"]; // fonction pour convert en byte ????
-                        byte[] passwordVerification = (byte[])SQLiteReaderUser["Password"]; // fonction pour convert en byte ????
+                        byte[] saltVerification = (byte[])SQLiteReaderUser["Salt"];
+                        byte[] passwordVerification = (byte[])SQLiteReaderUser["Password"];
                         byte[] hashTest = HashingPassword.HashPasswordSalt(password, saltVerification);
                         if (hashTest.SequenceEqual(passwordVerification))
                         {
@@ -206,24 +206,97 @@ namespace Projet2_CCI
         }
 
         /// <summary>
-        /// Prend un string (le login de l'utilisateur) et supprime l'utilisateur de la BD
+        /// Prend un string (le login de l'utilisateur) et supprime l'utilisateur de la BD 
         /// </summary>
-        public static bool SQLiteDeleteUser(string login)
+        public static string SQLiteDeleteUser(string login)
         {
+            //TODO: VERIFICATION si il reste au moins 1 administrateur :
+            // selectionner user a selectionner si il est admin verifier qu'il en reste plus que 1 si oui delete si non rien faire
+            // si user n'est pas admin delete
             string connString = ConfigurationManager.AppSettings["connectionString"];
+
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
-                // TODO: AJOUTER VERIF QU'IL RESTE UN ADMIN
+                // erreur avec le LIMIT SQL logic error near "LIMIT": syntax error alors que ca marchait
                 string queryDeleteUser = "DELETE FROM Employe WHERE Login = @login LIMIT 1;";
                 SQLiteCommand SQLiteCommandDeleteUser = new SQLiteCommand(queryDeleteUser, SQLiteConn);
                 SQLiteCommandDeleteUser.Parameters.AddWithValue("login", login);
                 SQLiteConn.Open();
 
                 SQLiteCommandDeleteUser.ExecuteNonQuery();
-                return true;
+                return "L'utilisateur a été supprimé";
             }
+            return "Erreur pendant la requête";
 
-            return false;
+        }
+
+
+        /// <summary>
+        /// Prend 2 classes Employe en parametre et update dans la BD, verifie que le login est toujours unique
+        /// </summary>
+        public static bool SQLiteEditUser(Employe employeBefore, Employe employeAfter)
+        {
+            // CONNEXION BDD
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
+            {
+                SQLiteConn.Open();
+
+                // VERIFICATION USERS
+                string queryVerifUser = "SELECT Login FROM Employe WHERE Login = @loginAfter LIMIT 1;";
+                SQLiteCommand SQLiteVerificationUser = new SQLiteCommand(queryVerifUser, SQLiteConn);
+                SQLiteVerificationUser.Parameters.AddWithValue("@loginAfter", employeAfter.Login);
+
+                using (SQLiteDataReader SQLiteReadUser = SQLiteVerificationUser.ExecuteReader())
+                {
+                    if (!SQLiteReadUser.Read())
+                    { 
+                            // Generation Salt
+                            byte[] salt = HashingPassword.SaltGeneration();
+                            // Convert en byte array le password
+                            byte[] employePasswordByte = Encoding.UTF8.GetBytes(employeAfter.Password);
+                            // Creation Hash a partir du password et du salt
+                            employePasswordByte = HashingPassword.HashPasswordSalt(employeAfter.Password, salt);
+                            // SQL INSERT
+                            string queryInsert = "UPDATE Employe SET Nom=@Nom, Prenom=@Prenom, Login=@loginAfter, Password=@Password, Groupe=@Groupe ,Salt=@Salt WHERE Login=@LoginBefore;";
+                            SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
+                            SQLiteInsert.Parameters.AddWithValue("@Nom", employeAfter.Nom);
+                            SQLiteInsert.Parameters.AddWithValue("@Prenom", employeAfter.Prenom);
+                            SQLiteInsert.Parameters.AddWithValue("@LoginAfter", employeAfter.Login);
+                            SQLiteInsert.Parameters.AddWithValue("@Password", employePasswordByte);
+                            SQLiteInsert.Parameters.AddWithValue("@Groupe", employeAfter.Groupe);
+                            SQLiteInsert.Parameters.AddWithValue("@Salt", salt);
+                            SQLiteInsert.Parameters.AddWithValue("@LoginBefore", employeBefore.Login);
+                            SQLiteInsert.ExecuteNonQuery();
+                            return true;
+                        
+                    }
+                    else if (employeBefore.Login == employeAfter.Login)
+                    {
+                        // Generation Salt
+                        byte[] salt = HashingPassword.SaltGeneration();
+                        // Convert en byte array le password
+                        byte[] employePasswordByte = Encoding.UTF8.GetBytes(employeAfter.Password);
+                        // Creation Hash a partir du password et du salt
+                        employePasswordByte = HashingPassword.HashPasswordSalt(employeAfter.Password, salt);
+                        // SQL INSERT
+                        string queryInsert = "UPDATE Employe SET Nom=@Nom, Prenom=@Prenom, Password=@Password, Groupe=@Groupe ,Salt=@Salt WHERE Login=@LoginBefore;";
+                        SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
+                        SQLiteInsert.Parameters.AddWithValue("@Nom", employeAfter.Nom);
+                        SQLiteInsert.Parameters.AddWithValue("@Prenom", employeAfter.Prenom);
+                        SQLiteInsert.Parameters.AddWithValue("@Password", employePasswordByte);
+                        SQLiteInsert.Parameters.AddWithValue("@Groupe", employeAfter.Groupe);
+                        SQLiteInsert.Parameters.AddWithValue("@Salt", salt);
+                        SQLiteInsert.Parameters.AddWithValue("@LoginBefore", employeBefore.Login);
+                        SQLiteInsert.ExecuteNonQuery();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
         }
     }
-} 
+}
