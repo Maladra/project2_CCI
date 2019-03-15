@@ -298,5 +298,35 @@ namespace Projet2_CCI
                 }
             }
         }
+
+
+        // FONCTION probablement inutile
+        public static Employe SQLiteSelectUser(string login)
+        {
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+
+
+            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
+            {
+                string selectUset = "SELECT Nom, Prenom, Login, Password, Groupe FROM Employe WHERE Login=@login LIMIT 1;";
+                SQLiteCommand SQLiteCommandSelectUser = new SQLiteCommand(selectUset, SQLiteConn);
+                SQLiteConn.Open();
+                SQLiteCommandSelectUser.Parameters.AddWithValue("login", login);
+                using (SQLiteDataReader dataReadUser = SQLiteCommandSelectUser.ExecuteReader())
+                {
+                    string nomEmploye = dataReadUser["Nom"].ToString();
+                    string prenomEmploye = dataReadUser["Prenom"].ToString();
+                    string loginEmploye = dataReadUser["Login"].ToString();
+                    string passwordEmploye = dataReadUser["Password"].ToString();
+                    string groupeEmploye = dataReadUser["Groupe"].ToString();
+
+                    Employe employe = new Employe(nomEmploye, prenomEmploye, loginEmploye, passwordEmploye, groupeEmploye);
+
+            
+            return employe;
+                }
+            }
+        }
     }
 }
+

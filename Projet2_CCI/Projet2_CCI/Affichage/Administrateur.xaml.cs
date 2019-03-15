@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet2_CCI.Affichage;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -90,7 +91,18 @@ namespace Projet2_CCI
         /// </summary>
         private void Button_EditerUtilisateur_Click(object sender, RoutedEventArgs e)
         {
+            var user = (Employe)this.listeUtilisateurs.SelectedItem;
+            if (user !=null)
+            {
+                EditUtilisateur editUtilisateur = new EditUtilisateur(user.Nom,user.Prenom,user.Login,user.Groupe);
+                editUtilisateur.ShowDialog();
+                loadUserList();
 
+            }
+            else
+            {
+                MessageBox.Show("Merci de selectionner un utilisateur");
+            }
         }
 
     }

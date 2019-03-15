@@ -90,6 +90,9 @@
     <Compile Include="Affichage\AjoutUtilisateur.xaml.cs">
       <DependentUpon>AjoutUtilisateur.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Affichage\EditUtilisateur.xaml.cs">
+      <DependentUpon>EditUtilisateur.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DAL\HashingPassword.cs" />
     <Compile Include="DAL\SnowboardRequete.cs" />
     <Compile Include="DAL\UtilisateurRequete.cs" />
@@ -118,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Affichage\Connexion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Affichage\EditUtilisateur.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
