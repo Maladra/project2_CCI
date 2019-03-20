@@ -208,23 +208,50 @@ namespace Projet2_CCI
         /// <summary>
         /// Prend un string (le login de l'utilisateur) et supprime l'utilisateur de la BD 
         /// </summary>
-        public static string SQLiteDeleteUser(string login)
+        public static string SQLiteDeleteUser(Employe employe)
         {
             //TODO: VERIFICATION si il reste au moins 1 administrateur :
             // selectionner user a selectionner si il est admin verifier qu'il en reste plus que 1 si oui delete si non rien faire
             // si user n'est pas admin delete
             string connString = ConfigurationManager.AppSettings["connectionString"];
 
-            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
+            using (SQLiteConnection sqliteConn = new SQLiteConnection(connString))
             {
-                // erreur avec le LIMIT SQL logic error near "LIMIT": syntax error alors que ca marchait
-                string queryDeleteUser = "DELETE FROM Employe WHERE Login = @login LIMIT 1;";
-                SQLiteCommand SQLiteCommandDeleteUser = new SQLiteCommand(queryDeleteUser, SQLiteConn);
-                SQLiteCommandDeleteUser.Parameters.AddWithValue("login", login);
-                SQLiteConn.Open();
+                string queryDeleteUser = "DELETE FROM Employe WHERE Login = @login;";
+                SQLiteCommand sqliteCommandDeleteUser = new SQLiteCommand(queryDeleteUser, sqliteConn);
+                sqliteCommandDeleteUser.Parameters.AddWithValue("login", employe.Login);
 
-                SQLiteCommandDeleteUser.ExecuteNonQuery();
-                return "L'utilisateur a été supprimé";
+                string queryCountAdministrateur = "SELECT COUNT(*) FROM Employe WHERE Groupe = 'Administrateur'";
+                SQLiteCommand sqliteCountAdmin = new SQLiteCommand(queryCountAdministrateur, sqliteConn);
+
+
+                if (employe.Groupe == "Administrateur")
+                {
+                    sqliteConn.Open();
+                    long count = (long)sqliteCountAdmin.ExecuteScalar();
+
+                    if (count > 1)
+                    {
+                        sqliteCommandDeleteUser.ExecuteNonQuery();
+                        return "Le compte a bien été supprimé.";
+                    }
+                    else
+                    {
+                        return "Il doit y avoir au moins un administrateur.";
+                    }
+
+                    
+
+
+                }
+                else
+                {
+
+                    sqliteConn.Open();
+
+                    sqliteCommandDeleteUser.ExecuteNonQuery();
+                    return "Le compte a bien été supprimé.";
+                }
             }
             return "Erreur pendant la requête";
 

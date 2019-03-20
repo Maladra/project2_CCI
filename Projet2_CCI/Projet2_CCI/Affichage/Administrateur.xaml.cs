@@ -70,7 +70,7 @@ namespace Projet2_CCI
                 
                 if (res == MessageBoxResult.OK)
                 {
-                    MessageBox.Show(SQLHelper.SQLiteDeleteUser(user.Login));
+                    MessageBox.Show(SQLHelper.SQLiteDeleteUser(user));
                     loadUserList();
                     
                 }
