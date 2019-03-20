@@ -228,6 +228,7 @@ namespace Projet2_CCI
                 if (employe.Groupe == "Administrateur")
                 {
                     sqliteConn.Open();
+                    // TODO: FAIRE PROPRE 
                     long count = (long)sqliteCountAdmin.ExecuteScalar();
 
                     if (count > 1)
