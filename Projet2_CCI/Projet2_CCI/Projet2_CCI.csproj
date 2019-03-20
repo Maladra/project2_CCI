@@ -96,9 +96,9 @@
     <Compile Include="DAL\HashingPassword.cs" />
     <Compile Include="DAL\SnowboardRequete.cs" />
     <Compile Include="DAL\UtilisateurRequete.cs" />
-    <Compile Include="Location.cs" />
+    <Compile Include="Donnee\Location.cs" />
     <Compile Include="DAL\RequeteSQL.cs" />
-    <Compile Include="Snowboard.cs" />
+    <Compile Include="Donnee\Snowboard.cs" />
     <Compile Include="Utils\UtilsClass.cs" />
     <Page Include="Affichage\Administrateur.xaml">
       <SubType>Designer</SubType>
@@ -145,7 +145,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Personne.cs" />
+    <Compile Include="Donnee\Personne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
