@@ -57,34 +57,41 @@ namespace Projet2_CCI
         /// <summary>
         /// Prend un string et fait une requete SQL pour inserer une marque de snowboard dans la BD
         /// </summary>
-        public static void SQLiteAddMarque(string marqueInsert)
+        public static void SQLiteAddMarque(string marque)
         {
+
+            // TODO : VERIFIER QUE LA MARQUE N'EST PAS DEJA PRESENT
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 string queryInsert = "INSERT INTO Marque_snowboard (Marque) VALUES (?)";
                 SQLiteConn.Open();
-                SQLiteCommand SQLiteInstert = new SQLiteCommand(queryInsert, SQLiteConn);
-                SQLiteInstert.Parameters.AddWithValue("@Marque", marqueInsert);
-                SQLiteInstert.ExecuteNonQuery();
+                SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
+                SQLiteInsert.Parameters.AddWithValue("@Marque", marque);
+                SQLiteInsert.ExecuteNonQuery();
             }
         }
 
         /// <summary>
         /// Prend un string et fait une requete SQL pour inserer un style de snowboard dans la BD
         /// </summary>
-        public static void SQLiteAddStyle(string styleInsert)
+        public static void SQLiteAddStyle(string style)
         {
+            // TODO : VERIFIER QUE LE STYLE N'EST PAS DEJA PRESENT
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 string queryInsert = "INSERT INTO Style_snowboard (Style) VALUES (?)";
                 SQLiteConn.Open();
-                SQLiteCommand SQLiteInstert = new SQLiteCommand(queryInsert, SQLiteConn);
-                SQLiteInstert.Parameters.AddWithValue("@Style", styleInsert);
-                SQLiteInstert.ExecuteNonQuery();
+                SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
+                SQLiteInsert.Parameters.AddWithValue("@Style", style);
+                SQLiteInsert.ExecuteNonQuery();
             }
         }
+
+
+
+
 
         /// <summary>
         /// Retourne une liste des utilisateurs
@@ -228,7 +235,7 @@ namespace Projet2_CCI
                 if (employe.Groupe == "Administrateur")
                 {
                     sqliteConn.Open();
-                    // TODO: FAIRE PROPRE 
+                    // TODO: FAIRE PROPRE (virer les strings a mettre dans interface)
                     long count = (long)sqliteCountAdmin.ExecuteScalar();
 
                     if (count > 1)
@@ -329,32 +336,32 @@ namespace Projet2_CCI
 
 
         // FONCTION probablement inutile
-        public static Employe SQLiteSelectUser(string login)
-        {
-            string connString = ConfigurationManager.AppSettings["connectionString"];
-
-
-            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
-            {
-                string selectUset = "SELECT Nom, Prenom, Login, Password, Groupe FROM Employe WHERE Login=@login LIMIT 1;";
-                SQLiteCommand SQLiteCommandSelectUser = new SQLiteCommand(selectUset, SQLiteConn);
-                SQLiteConn.Open();
-                SQLiteCommandSelectUser.Parameters.AddWithValue("login", login);
-                using (SQLiteDataReader dataReadUser = SQLiteCommandSelectUser.ExecuteReader())
-                {
-                    string nomEmploye = dataReadUser["Nom"].ToString();
-                    string prenomEmploye = dataReadUser["Prenom"].ToString();
-                    string loginEmploye = dataReadUser["Login"].ToString();
-                    string passwordEmploye = dataReadUser["Password"].ToString();
-                    string groupeEmploye = dataReadUser["Groupe"].ToString();
-
-                    Employe employe = new Employe(nomEmploye, prenomEmploye, loginEmploye, passwordEmploye, groupeEmploye);
-
-            
-            return employe;
-                }
-            }
-        }
+        //public static Employe SQLiteSelectUser(string login)
+        //{
+        //    string connString = ConfigurationManager.AppSettings["connectionString"];
+        //
+        //
+        //    using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
+        //    {
+        //        string selectUset = "SELECT Nom, Prenom, Login, Password, Groupe FROM Employe WHERE Login=@login LIMIT 1;";
+        //        SQLiteCommand SQLiteCommandSelectUser = new SQLiteCommand(selectUset, SQLiteConn);
+        //        SQLiteConn.Open();
+        //        SQLiteCommandSelectUser.Parameters.AddWithValue("login", login);
+        //        using (SQLiteDataReader dataReadUser = SQLiteCommandSelectUser.ExecuteReader())
+        //        {
+        //            string nomEmploye = dataReadUser["Nom"].ToString();
+        //            string prenomEmploye = dataReadUser["Prenom"].ToString();
+        //            string loginEmploye = dataReadUser["Login"].ToString();
+        //            string passwordEmploye = dataReadUser["Password"].ToString();
+        //            string groupeEmploye = dataReadUser["Groupe"].ToString();
+        //
+        //            Employe employe = new Employe(nomEmploye, prenomEmploye, loginEmploye, passwordEmploye, groupeEmploye);
+        //
+        //    
+        //    return employe;
+        //        }
+        //    }
+        //}
     }
 }
 

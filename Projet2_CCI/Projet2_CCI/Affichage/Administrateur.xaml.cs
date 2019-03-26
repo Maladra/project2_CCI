@@ -94,7 +94,7 @@ namespace Projet2_CCI
             var user = (Employe)this.listeUtilisateurs.SelectedItem;
             if (user !=null)
             {
-                EditUtilisateur editUtilisateur = new EditUtilisateur(user.Nom,user.Prenom,user.Login,user.Groupe);
+                EditUtilisateur editUtilisateur = new EditUtilisateur(user);
                 editUtilisateur.ShowDialog();
                 loadUserList();
 

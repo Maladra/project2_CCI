@@ -9,8 +9,16 @@
     <Grid>
         <Button Content="Valider" HorizontalAlignment="Left" Margin="162,333,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
         <Button Content="Retour" HorizontalAlignment="Left" Margin="609,333,0,0" VerticalAlignment="Top" Width="75" Click="ButtonRetour_Click"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="140,91,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="220,91,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="loginUtilisateur"/>
+        <Label Content="Login de l'utilisateur : " HorizontalAlignment="Left" Margin="94,87,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="218,91,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="loginUtilisateur"/>
+        <Label Content="Nom de l'utilisateur :" HorizontalAlignment="Left" Margin="106,151,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="218,155,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="nomUtilisateur"/>
+        <Label Content="Prénom de l'utilisateur" HorizontalAlignment="Left" Margin="84,197,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="218,197,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="prenomUtilisateur"/>
+        <Label Content="Groupe de l'utilisateur :" HorizontalAlignment="Left" Margin="478,87,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="609,91,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="groupeUtilisateur"/>
+        <Label Content="Password de l'utilisateur :" HorizontalAlignment="Left" Margin="551,141,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="609,141,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="passwordUtilisateur"/>
 
     </Grid>
 </Window>

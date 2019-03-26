@@ -19,10 +19,14 @@ namespace Projet2_CCI.Affichage
     /// </summary>
     public partial class EditUtilisateur : Window
     {
-        public EditUtilisateur(string nomUser, string prenomUser, string userLogin,string userGroupe)
+        public EditUtilisateur(Employe user)
         {
             InitializeComponent();
-            this.loginUtilisateur.Text = userLogin;
+            this.loginUtilisateur.Text = user.Login;
+            this.nomUtilisateur.Text = user.Nom;
+            this.prenomUtilisateur.Text = user.Prenom;
+            this.groupeUtilisateur.Text = user.Groupe;
+            this.passwordUtilisateur.Text = user.Password;
         }
 
         private void ButtonValider_Click(object sender, RoutedEventArgs e)

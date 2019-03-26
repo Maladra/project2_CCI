@@ -26,7 +26,7 @@ namespace Projet2_CCI
 
         private void Button_Valider_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: VALIDATION CHAMP (NON VIDE) + AJOUT BD Style Snowboard
+            // TODO: VALIDATION CHAMP (NON VIDE) + AJOUT BD Style Snowboard + verif que ce style n'existe pas
         }
 
         /// <summary>

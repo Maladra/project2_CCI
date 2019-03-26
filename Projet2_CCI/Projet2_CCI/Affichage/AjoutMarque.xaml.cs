@@ -30,7 +30,7 @@ namespace Projet2_CCI
         /// </summary>
         private void Button_Valider_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: VERIFICATION CHAMP NON VIDE
+            // TODO: VERIFICATION CHAMP NON VIDE et verif que marque n'existe pas deja
             SQLHelper.SQLiteAddMarque(this.NomMarque.Text);
             this.Hide();
             MessageBox.Show("Ajout de la marque avec succés");
