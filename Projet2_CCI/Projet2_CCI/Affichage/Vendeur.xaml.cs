@@ -32,7 +32,7 @@ namespace Projet2_CCI
         }
 
         /// <summary>
-        /// Déclenche l'ajout d'une marque de snowboard
+        /// Déclenche la fenetre d'ajout d'une marque de snowboard
         /// </summary>
         private void Button_ajoutMarque_Click(object sender, RoutedEventArgs e)
         {
@@ -41,7 +41,7 @@ namespace Projet2_CCI
         }
 
         /// <summary>
-        /// Déclenche l'ajout d'un style de snowboard
+        /// Déclenche la fenetre d'ajout d'un style de snowboard
         /// </summary>
         private void Button_ajoutStyle_Click(object sender, RoutedEventArgs e)
         {
@@ -50,7 +50,7 @@ namespace Projet2_CCI
         }
 
         /// <summary>
-        /// Déclenche l'ajout d'un snowboard
+        /// Déclenche la fenetre d'ajout de snowboard
         /// </summary>
         private void Button_ajoutSnowboard_Click(object sender, RoutedEventArgs e)
         {
