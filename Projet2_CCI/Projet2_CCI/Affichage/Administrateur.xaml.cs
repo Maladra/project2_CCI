@@ -1,4 +1,5 @@
 ﻿using Projet2_CCI.Affichage;
+using Projet2_CCI.DAL;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,7 +31,7 @@ namespace Projet2_CCI
         /// </summary>
         private void loadUserList()
         {
-            usersList = SQLHelper.SQLiteListUsers();
+            usersList = RequeteSqlUser.SQLiteListUsers();
 
             // COMMUNICATION AVEC INTERFACE
             this.listeUtilisateurs.ItemsSource = usersList;
@@ -70,7 +71,7 @@ namespace Projet2_CCI
                 
                 if (res == MessageBoxResult.OK)
                 {
-                    MessageBox.Show(SQLHelper.SQLiteDeleteUser(user));
+                    MessageBox.Show(RequeteSqlUser.SQLiteDeleteUser(user));
                     loadUserList();
                     
                 }

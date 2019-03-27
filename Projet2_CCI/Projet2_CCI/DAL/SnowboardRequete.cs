@@ -16,7 +16,7 @@ namespace Projet2_CCI.DAL
         public int Stock { get; set; }
 
             // CONSTRUCTEUR
-        public SnowboardRequete(string nom, string marque, string genre, string niveau, string style, decimal prixEuro,decimal prixDollar, int stock) : base (nom, marque, genre, niveau, style, prixEuro, prixDollar)
+        public SnowboardRequete(string nom, string marque, string genre, string niveau, string style, int prixEuro, int prixDollar, int stock) : base (nom, marque, genre, niveau, style, prixEuro, prixDollar)
         {
             this.Stock = stock;
         }

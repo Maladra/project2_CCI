@@ -21,8 +21,8 @@
         <TextBox HorizontalAlignment="Left" Margin="146,179,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" x:Name="styleSnowboard"/>
         <TextBox HorizontalAlignment="Left" Margin="146,206,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" x:Name="prixEuroSnowboard"/>
         <TextBox HorizontalAlignment="Left" Margin="146,259,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" x:Name="stockSnowboard"/>
-        <Button Content="Valider" HorizontalAlignment="Left" Margin="263,287,0,0" VerticalAlignment="Top" Width="75" x:Name="boutonValider"/>
-        <Button Content="Retour" HorizontalAlignment="Left" Margin="412,287,0,0" VerticalAlignment="Top" Width="75" x:Name="boutonRetour"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Margin="263,287,0,0" VerticalAlignment="Top" Width="75" x:Name="boutonValider" Click="BoutonValider_Click"/>
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="412,287,0,0" VerticalAlignment="Top" Width="75" x:Name="boutonRetour" Click="BoutonRetour_Click"/>
         <Label Content="Prix en Dollar :" HorizontalAlignment="Left" Margin="66,229,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="152,233,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="prixDollarSnowboard"/>
 

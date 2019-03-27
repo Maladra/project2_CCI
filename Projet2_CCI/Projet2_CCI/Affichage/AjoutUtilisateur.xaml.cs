@@ -1,4 +1,5 @@
-﻿using Projet2_CCI.Utils;
+﻿using Projet2_CCI.DAL;
+using Projet2_CCI.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,7 @@ namespace Projet2_CCI
             {
 
                 Employe employe = new Employe(nom.Text, prenom.Text, login.Text, password.Text, listeGroupe.Text);
-                if (SQLHelper.SQLiteAddUser(employe))
+                if (RequeteSqlUser.SQLiteAddUser(employe))
                 {
                     MessageBox.Show("L'utilisateur a été crée");
                     this.Close();

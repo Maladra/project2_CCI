@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet2_CCI.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace Projet2_CCI
         private void Button_Valider_Click(object sender, RoutedEventArgs e)
         {
             // TODO: VERIFICATION CHAMP NON VIDE et verif que marque n'existe pas deja
-            SQLHelper.SQLiteAddMarque(this.NomMarque.Text);
+            RequeteSqlSnowboard.SQLiteAddMarque(this.NomMarque.Text);
             this.Hide();
             MessageBox.Show("Ajout de la marque avec succés");
             

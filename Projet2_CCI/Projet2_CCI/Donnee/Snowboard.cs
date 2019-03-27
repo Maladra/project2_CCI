@@ -17,7 +17,7 @@ namespace Projet2_CCI
         public decimal PrixDollar { get; set; }
 
         // CONSTRUCTEUR
-        public Snowboard(string nom, string marque, string genre, string niveau, string style, decimal prixEuro, decimal prixDollar)
+        public Snowboard(string nom, string marque, string genre, string niveau, string style, int prixEuro, int prixDollar)
         {
             this.Nom = nom;
             this.Marque = marque;

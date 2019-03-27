@@ -32,7 +32,7 @@ namespace Projet2_CCI
         {            
             Vendeur Vendeur = new Vendeur();
             Administrateur Administrateur = new Administrateur();
-            UtilisateurConnexion utilisateur = SQLHelper.SQLiteConnexionHash(this.UsernameText.Text, this.PasswordText.Password.ToString());
+            UtilisateurConnexion utilisateur = RequeteSqlConnexion.SQLiteConnexionHash(this.UsernameText.Text, this.PasswordText.Password.ToString());
 
             if (utilisateur != null)
             {

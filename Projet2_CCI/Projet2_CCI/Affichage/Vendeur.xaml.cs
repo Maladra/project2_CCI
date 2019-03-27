@@ -24,14 +24,12 @@ namespace Projet2_CCI
     public partial class Vendeur : Window
     {
         
-
         public Vendeur()
         {
             InitializeComponent();
-            ObservableCollection<SnowboardRequete> snowboardListe = SQLHelper.SQLitePlancheRead();
+            ObservableCollection<SnowboardRequete> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
             this.stockAffichage.ItemsSource = snowboardListe;
         }
-
 
         /// <summary>
         /// Déclenche l'ajout d'une marque de snowboard
