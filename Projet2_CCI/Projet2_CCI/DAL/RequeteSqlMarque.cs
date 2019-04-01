@@ -27,6 +27,7 @@ namespace Projet2_CCI.DAL
                 SQLiteInsert.ExecuteNonQuery();
             }
         }
+
         public static List<string> SqlReadMarque()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];

@@ -52,6 +52,14 @@ namespace Projet2_CCI.DAL
         public static void SQLAddSnowboard (SnowboardRequete snowboard)
         {
             //TODO: tronquer chiffre (2 chiffre après virgule et comparer les 2)
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection sqliteCon = new SQLiteConnection(connString))
+            {
+                // VOIR LA DOC ENVOYEE SUR MON DISCORD
+                SQLiteCommand sqliteCommand = new SQLiteCommand("INSERT INTO Planche_snowboard(Stock, Prix_euro, Prix_dollar, Nom_modele, Fk_niveau, Fk_marque, Fk_genre, Fk_style) VALUES (?,?,?,?,?,?,?,?)");
+
+            }
+            
         }
     }
 }
