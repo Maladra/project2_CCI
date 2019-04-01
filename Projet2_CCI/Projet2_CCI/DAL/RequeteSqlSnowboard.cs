@@ -47,42 +47,7 @@ namespace Projet2_CCI.DAL
                 SQLiteReader.Close(); // FERMETURE READER
             }
             return snowboardListe;
-        }
-
-        /// <summary>
-        /// Prend un string et fait une requete SQL pour inserer une marque de snowboard dans la BD
-        /// </summary>
-        public static void SQLiteAddMarque(string marque)
-        {
-
-            // TODO : VERIFIER QUE LA MARQUE N'EST PAS DEJA PRESENT
-            string connString = ConfigurationManager.AppSettings["connectionString"];
-            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
-            {
-                string queryInsert = "INSERT INTO Marque_snowboard (Marque) VALUES (?)";
-                SQLiteConn.Open();
-                SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
-                SQLiteInsert.Parameters.AddWithValue("@Marque", marque);
-                SQLiteInsert.ExecuteNonQuery();
-            }
-        }
-
-        /// <summary>
-        /// Prend un string et fait une requete SQL pour inserer un style de snowboard dans la BD
-        /// </summary>
-        public static void SQLiteAddStyle(string style)
-        {
-            // TODO : VERIFIER QUE LE STYLE N'EST PAS DEJA PRESENT
-            string connString = ConfigurationManager.AppSettings["connectionString"];
-            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
-            {
-                string queryInsert = "INSERT INTO Style_snowboard (Style) VALUES (?)";
-                SQLiteConn.Open();
-                SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
-                SQLiteInsert.Parameters.AddWithValue("@Style", style);
-                SQLiteInsert.ExecuteNonQuery();
-            }
-        }
+        } 
 
         public static void SQLAddSnowboard (SnowboardRequete snowboard)
         {

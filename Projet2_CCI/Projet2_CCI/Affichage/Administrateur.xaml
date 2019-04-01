@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Administrateur" Height="450" Width="800">
     <Grid>
-        <ListBox HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="151" x:Name="listeUtilisateurs" ItemsSource="{Binding Login}">
+        <ListBox HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="151" x:Name="listeUtilisateurs" >
         </ListBox>
 
         <Button Content="Editer utilisateur" HorizontalAlignment="Left" Margin="254,389,0,0" VerticalAlignment="Top" Width="97" Click="Button_EditerUtilisateur_Click"/>

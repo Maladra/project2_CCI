@@ -33,6 +33,7 @@ namespace Projet2_CCI
         {
             usersList = RequeteSqlUser.SQLiteListUsers();
 
+
             // COMMUNICATION AVEC INTERFACE
             this.listeUtilisateurs.ItemsSource = usersList;
         }
