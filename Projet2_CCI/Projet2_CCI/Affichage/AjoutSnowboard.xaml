@@ -21,10 +21,10 @@
         <Button Content="Retour" HorizontalAlignment="Left" Margin="412,287,0,0" VerticalAlignment="Top" Width="75" x:Name="boutonRetour" Click="BoutonRetour_Click"/>
         <Label Content="Prix en Dollar :" HorizontalAlignment="Left" Margin="66,229,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="152,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="prixDollarSnowboard"/>
-        <ComboBox HorizontalAlignment="Left" Margin="146,127,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="146,154,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="146,127,0,0" VerticalAlignment="Top" Width="120" x:Name="cbGenre"/>
+        <ComboBox HorizontalAlignment="Left" Margin="146,154,0,0" VerticalAlignment="Top" Width="120" x:Name="cbNiveau"/>
         <ComboBox HorizontalAlignment="Left" Margin="146,179,0,0" VerticalAlignment="Top" Width="120" x:Name="cbStyle"/>
-        <ComboBox HorizontalAlignment="Left" Margin="146,102,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="146,102,0,0" VerticalAlignment="Top" Width="120" x:Name="cbMarque"/>
 
 
 

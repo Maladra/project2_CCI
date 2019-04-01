@@ -24,8 +24,9 @@ namespace Projet2_CCI
     /// </summary>
     public partial class Administrateur : Window
     {
-        // Liste d'utilisateur pour affichage
+
         ObservableCollection<Employe> usersList = new ObservableCollection<Employe>();
+
         /// <summary>
         /// Charge la liste d'utilisateur depuis la BD et refresh l'interface
         /// </summary>
@@ -38,6 +39,35 @@ namespace Projet2_CCI
             this.listeUtilisateurs.ItemsSource = usersList;
         }
 
+        /// <summary>
+        /// Prend un Employe en parametre et declenche sa suppression
+        /// </summary>
+        private void deleteUser(Employe user)
+        {
+
+            if (user != null)
+            {
+                // Message Box de suppression de l'utilisateur selectionné
+                var res = MessageBox.Show(this, "Confirmation suppression utilisateur", "Confirmation suppression", MessageBoxButton.OKCancel,
+                MessageBoxImage.Question);
+
+                if (res == MessageBoxResult.OK)
+                {
+                    MessageBox.Show(RequeteSqlUser.SQLiteDeleteUser(user));
+                    loadUserList();
+
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Merci de selectionner un utilisateur");
+            }
+
+        }
 
         public Administrateur()
         {
@@ -62,29 +92,7 @@ namespace Projet2_CCI
         private void Button_SupprimerUser_Click(object sender, RoutedEventArgs e)
         {
             var user = (Employe)this.listeUtilisateurs.SelectedItem;
-            if (user != null)
-            {
-                // Message Box de suppression de l'utilisateur selectionné
-                var res = MessageBox.Show(this, "Confirmation suppression utilisateur", "Confirmation suppression", MessageBoxButton.OKCancel,
-                MessageBoxImage.Question);
-
-
-                
-                if (res == MessageBoxResult.OK)
-                {
-                    MessageBox.Show(RequeteSqlUser.SQLiteDeleteUser(user));
-                    loadUserList();
-                    
-                }
-                else
-                { 
-                    
-                }
-            }
-            else
-            {
-                MessageBox.Show("Merci de selectionner un utilisateur");
-            }
+            deleteUser(user);
 
         }
 

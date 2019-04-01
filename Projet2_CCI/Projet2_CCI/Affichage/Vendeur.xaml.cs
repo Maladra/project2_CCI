@@ -57,7 +57,7 @@ namespace Projet2_CCI
             AjoutSnowboard ajoutSnowboard = new AjoutSnowboard();
             ajoutSnowboard.ShowDialog();
         }
-
+        // INUTILE ???
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
         { // TODO: VERIFIER UTILITE DE CETTE FONCTION (BIND)
             MessageBox.Show("Erreur pendant la création de la location");

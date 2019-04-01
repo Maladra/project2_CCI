@@ -27,5 +27,29 @@ namespace Projet2_CCI.DAL
                 SQLiteInsert.ExecuteNonQuery();
             }
         }
+        public static List<string> SqlReadMarque()
+        {
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection sqliteConn = new SQLiteConnection(connString))
+            {
+                string querySelect = "SELECT Marque FROM Marque_snowboard ";
+                sqliteConn.Open();
+                SQLiteCommand sqliteSelect = new SQLiteCommand(querySelect, sqliteConn);
+                SQLiteDataReader sqliteReader = sqliteSelect.ExecuteReader();
+                List<string> listeMarque = new List<string>();
+                while (sqliteReader.Read())
+                {
+                    string marque = sqliteReader["Marque"].ToString();
+                    listeMarque.Add(marque);
+                }
+                return listeMarque;
+
+            }
+
+        }
+
+
+
     }
+
 }

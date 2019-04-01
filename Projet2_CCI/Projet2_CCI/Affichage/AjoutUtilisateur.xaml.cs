@@ -22,29 +22,20 @@ namespace Projet2_CCI
     /// </summary>
     public partial class AjoutUtilisateur : Window
     {
-        public AjoutUtilisateur()
-        {
-            InitializeComponent();
-            this.listeGroupe.Items.Add("Vendeur");
-            this.listeGroupe.Items.Add("Administrateur");
-        }
-
-        private void ButtonRetour_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         /// <summary>
-        ///  VERIFIE LES CHAMPS ET INSERT USER DANS LA BD SI all champ sont valides
+        /// Ajoute un Utilisateur dans la base de donnee
         /// </summary>
-        private void ButtonValider_Click(object sender, RoutedEventArgs e)
+        private void addUser()
         {
 
-            string nomEmploye = nom.Text;          
+            string nomEmploye = nom.Text;
             string prenomEmploye = prenom.Text;
             string loginEmploye = login.Text;
             string passwordEmploye = password.Text;
             string groupeEmploye = listeGroupe.Text;
+            /// <summary>
+            ///  VERIFIE LES CHAMPS ET INSERT USER DANS LA BD SI all champ sont valides
+            /// </summary>
             if (UtilsClass.VerifString(nomEmploye, prenomEmploye, loginEmploye, passwordEmploye, groupeEmploye))
             {
 
@@ -64,6 +55,24 @@ namespace Projet2_CCI
             {
                 MessageBox.Show("Merci de renseigner tous les champs");
             }
+        }
+
+        public AjoutUtilisateur()
+        {
+            InitializeComponent();
+            this.listeGroupe.Items.Add("Vendeur");
+            this.listeGroupe.Items.Add("Administrateur");
+        }
+
+        private void ButtonRetour_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+
+        private void ButtonValider_Click(object sender, RoutedEventArgs e)
+        {
+            addUser();
         }
 
     }

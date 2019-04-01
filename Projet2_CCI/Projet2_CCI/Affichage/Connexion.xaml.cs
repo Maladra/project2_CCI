@@ -20,16 +20,11 @@ namespace Projet2_CCI
     /// </summary>
     public partial class Connexion : Window
     {
-        public Connexion()
-        {
-            InitializeComponent();
-        }
-        
         /// <summary>
-        /// Réalise la connexion de l'utilisateur a l'application
+        /// Realise la connexion a l'application
         /// </summary>
-        private void Button_Connexion_Click(object sender, RoutedEventArgs e)
-        {            
+        private void procConnexion()
+        {
             Vendeur Vendeur = new Vendeur();
             Administrateur Administrateur = new Administrateur();
             UtilisateurConnexion utilisateur = RequeteSqlConnexion.SQLiteConnexionHash(this.UsernameText.Text, this.PasswordText.Password.ToString());
@@ -37,8 +32,8 @@ namespace Projet2_CCI
             if (utilisateur != null)
             {
                 this.Close();
-                MessageBox.Show("Bienvenue " + utilisateur.Prenom+" "+utilisateur.Nom);
-                if (utilisateur.Groupe =="Administrateur" )
+                MessageBox.Show("Bienvenue " + utilisateur.Prenom + " " + utilisateur.Nom);
+                if (utilisateur.Groupe == "Administrateur")
                 {
                     Administrateur.Show();
                 }
@@ -51,6 +46,20 @@ namespace Projet2_CCI
             {
                 MessageBox.Show("Erreur pendant la connexion");
             }
+        }
+
+        public Connexion()
+        {
+            InitializeComponent();
+        }
+        
+        /// <summary>
+        /// Réalise la connexion de l'utilisateur a l'application
+        /// </summary>
+        private void Button_Connexion_Click(object sender, RoutedEventArgs e)
+        {
+            procConnexion();
+
         }
     }
 }

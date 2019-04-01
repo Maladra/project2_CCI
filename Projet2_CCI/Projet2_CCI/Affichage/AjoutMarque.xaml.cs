@@ -20,6 +20,13 @@ namespace Projet2_CCI
     /// </summary>
     public partial class AjoutMarque : Window
     {
+        private void addMarque()
+        {
+            RequeteSqlMarque.SQLiteAddMarque(this.NomMarque.Text);
+            this.Hide();
+            MessageBox.Show("Ajout de la marque avec succés");
+        }
+
         public AjoutMarque()
         {
             InitializeComponent();
@@ -32,9 +39,7 @@ namespace Projet2_CCI
         private void Button_Valider_Click(object sender, RoutedEventArgs e)
         {
             // TODO: VERIFICATION CHAMP NON VIDE et verif que marque n'existe pas deja
-            RequeteSqlMarque.SQLiteAddMarque(this.NomMarque.Text);
-            this.Hide();
-            MessageBox.Show("Ajout de la marque avec succés");
+            addMarque();
             
         }
 

@@ -23,22 +23,22 @@ namespace Projet2_CCI.DAL
             }
         }
 
-        public static List<string> sqlReadStyle()
+        public static List<string> SqlReadStyle()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection sqliteConn = new SQLiteConnection(connString))
             {
-                string querySelect = "SELECT Style FROm Style_snowboard ";
+                string querySelect = "SELECT Style FROM Style_snowboard ";
                 sqliteConn.Open();
                 SQLiteCommand sqliteSelect = new SQLiteCommand(querySelect, sqliteConn);
                 SQLiteDataReader sqliteReader = sqliteSelect.ExecuteReader();
-                List<string> listeMarque = new List<string>();
+                List<string> listeStyle = new List<string>();
                 while (sqliteReader.Read())
                 {
-                    string Style = sqliteReader["Style"].ToString();
-                    listeMarque.Add(Style);
+                    string style = sqliteReader["Style"].ToString();
+                    listeStyle.Add(style);
                 }
-                return listeMarque;
+                return listeStyle;
                 
             }
                 

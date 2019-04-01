@@ -95,7 +95,9 @@
     </Compile>
     <Compile Include="DAL\HashingPassword.cs" />
     <Compile Include="DAL\RequeteSqlConnexion.cs" />
+    <Compile Include="DAL\RequeteSqlGenre.cs" />
     <Compile Include="DAL\RequeteSqlMarque.cs" />
+    <Compile Include="DAL\RequeteSqlNiveau.cs" />
     <Compile Include="DAL\RequeteSqlSelectMarqueStyleNiveauGenre.cs" />
     <Compile Include="DAL\RequeteSqlSnowboard.cs" />
     <Compile Include="DAL\RequeteSqlStyle.cs" />
