@@ -8,10 +8,10 @@ namespace Projet2_CCI.Donnee
 {
     class Style
     {
-        public int idStyle { get; set; }
+        public string idStyle { get; set; }
         public string nomStyle { get; set; }
 
-        public Style(int idStyle, string nomStyle)
+        public Style(string idStyle, string nomStyle)
         {
             this.idStyle = idStyle;
             this.nomStyle = nomStyle;

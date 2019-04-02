@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Projet2_CCI.Donnee;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
 
@@ -41,19 +42,21 @@ namespace Projet2_CCI.DAL
             }
         }
 
-        public static List<string> SqlReadStyle()
+        public static List<Style> SqlReadStyle()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection sqliteConn = new SQLiteConnection(connString))
             {
-                string querySelect = "SELECT Style FROM Style_snowboard ";
+                string querySelect = "SELECT Id_style, Style FROM Style_snowboard ORDER BY Style;";
                 sqliteConn.Open();
                 SQLiteCommand sqliteSelect = new SQLiteCommand(querySelect, sqliteConn);
                 SQLiteDataReader sqliteReader = sqliteSelect.ExecuteReader();
-                List<string> listeStyle = new List<string>();
+                List<Style> listeStyle = new List<Style>();
                 while (sqliteReader.Read())
                 {
-                    string style = sqliteReader["Style"].ToString();
+                    string idStyle = sqliteReader["Id_style"].ToString();
+                    string styleNom = (string)sqliteReader["Style"];
+                    Style style = new Style(idStyle, styleNom);
                     listeStyle.Add(style);
                 }
                 return listeStyle;
