@@ -19,12 +19,7 @@ namespace Projet2_CCI
     /// </summary>
     public partial class AjoutStyle : Window
     {
-        public AjoutStyle()
-        {
-            InitializeComponent();
-        }
-
-        private void Button_Valider_Click(object sender, RoutedEventArgs e)
+        public void ajouterStyle()
         {
 
             if (DAL.RequeteSqlStyle.SQLiteAddStyle(this.nomStyle.Text) == true)
@@ -36,6 +31,16 @@ namespace Projet2_CCI
             {
                 MessageBox.Show("Style déja present dans BD");
             }
+        }
+
+        public AjoutStyle()
+        {
+            InitializeComponent();
+        }
+
+        private void Button_Valider_Click(object sender, RoutedEventArgs e)
+        {
+            ajouterStyle();
         }
 
         /// <summary>

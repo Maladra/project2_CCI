@@ -51,6 +51,7 @@ namespace Projet2_CCI.DAL
 
                 // VERIFICATION USERS
                 string queryVerifUser = "SELECT Login FROM Employe WHERE Login = @login";
+                // TODO: using sur la commande
                 SQLiteCommand SQLiteVerificationUser = new SQLiteCommand(queryVerifUser, SQLiteConn);
                 SQLiteVerificationUser.Parameters.AddWithValue("@login", employe.Login);
 
@@ -67,6 +68,7 @@ namespace Projet2_CCI.DAL
                         employePasswordByte = HashingPassword.HashPasswordSalt(employe.Password, salt);
                         // SQL INSERT
                         string queryInsert = "INSERT INTO Employe (Nom,Prenom,Login,Password,Groupe,Salt) VALUES (?,?,?,?,?,?)";
+                        // TODO: using sur la commande
                         SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
                         SQLiteInsert.Parameters.AddWithValue("@Nom", employe.Nom);
                         SQLiteInsert.Parameters.AddWithValue("@Prenom", employe.Prenom);
