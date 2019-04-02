@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet2_CCI.Donnee;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
@@ -14,7 +15,7 @@ namespace Projet2_CCI.DAL
         /// <summary>
         /// Requete SQL qui retourne une liste de planche de snowboard
         /// </summary>
-        public static ObservableCollection<DAL.SnowboardRequete> SQLitePlancheRead()
+        public static ObservableCollection<Donnee.SnowboardRequete> SQLitePlancheRead()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"]; // CONNECTION STRING
             ObservableCollection<SnowboardRequete> snowboardListe = new ObservableCollection<SnowboardRequete>(); // RETURNED VALUE

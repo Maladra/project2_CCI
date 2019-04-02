@@ -1,21 +1,7 @@
 ﻿using Projet2_CCI.Affichage;
 using Projet2_CCI.DAL;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 namespace Projet2_CCI
 {
     /// <summary>
@@ -27,7 +13,7 @@ namespace Projet2_CCI
         public Vendeur()
         {
             InitializeComponent();
-            ObservableCollection<SnowboardRequete> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
+            ObservableCollection<Donnee.SnowboardRequete> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
             this.stockAffichage.ItemsSource = snowboardListe;
         }
 

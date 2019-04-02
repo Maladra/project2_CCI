@@ -27,6 +27,15 @@ namespace Projet2_CCI
         private void Button_Valider_Click(object sender, RoutedEventArgs e)
         {
             // TODO: VALIDATION CHAMP (NON VIDE) + AJOUT BD Style Snowboard + verif que ce style n'existe pas
+            if (DAL.RequeteSqlStyle.SQLiteAddStyle(this.nomStyle.Text) == true)
+            {
+                MessageBox.Show("Style bien ajouté dans BD");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Style déja present dans BD");
+            }
         }
 
         /// <summary>
