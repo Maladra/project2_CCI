@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet2_CCI.Donnee;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
@@ -10,19 +11,21 @@ namespace Projet2_CCI.DAL
 {
     class RequeteSqlGenre
     {
-        public static List<string> SqlReadGenre()
+        public static List<Genre> SqlReadGenre()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection sqliteConn = new SQLiteConnection(connString))
             {
-                string querySelect = "SELECT Genre FROM Genre_snowboard ";
+                string querySelect = "SELECT Id_genre,Genre FROM Genre_snowboard ";
                 sqliteConn.Open();
                 SQLiteCommand sqliteSelect = new SQLiteCommand(querySelect, sqliteConn);
                 SQLiteDataReader sqliteReader = sqliteSelect.ExecuteReader();
-                List<string> listeGenre = new List<string>();
+                List<Genre> listeGenre = new List<Genre>();
                 while (sqliteReader.Read())
                 {
-                    string genre = sqliteReader["Genre"].ToString();
+                    string idGenre = sqliteReader["Id_genre"].ToString();
+                    string nomGenre = sqliteReader["Genre"].ToString();
+                    Genre genre = new Genre(idGenre, nomGenre);
                     listeGenre.Add(genre);
                 }
                 return listeGenre;

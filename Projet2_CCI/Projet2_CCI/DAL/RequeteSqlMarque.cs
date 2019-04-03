@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet2_CCI.Donnee;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
@@ -28,19 +29,21 @@ namespace Projet2_CCI.DAL
             }
         }
 
-        public static List<string> SqlReadMarque()
+        public static List<Marque> SqlReadMarque()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection sqliteConn = new SQLiteConnection(connString))
             {
-                string querySelect = "SELECT Marque FROM Marque_snowboard ";
+                string querySelect = "SELECT Id_marque ,Marque FROM Marque_snowboard ORDER BY Marque;";
                 sqliteConn.Open();
                 SQLiteCommand sqliteSelect = new SQLiteCommand(querySelect, sqliteConn);
                 SQLiteDataReader sqliteReader = sqliteSelect.ExecuteReader();
-                List<string> listeMarque = new List<string>();
+                List<Marque> listeMarque = new List<Marque>();
                 while (sqliteReader.Read())
                 {
-                    string marque = sqliteReader["Marque"].ToString();
+                    string idMarque = sqliteReader["id_marque"].ToString();
+                    string nomMarque = sqliteReader["Marque"].ToString();
+                    Marque marque = new Marque(idMarque, nomMarque);
                     listeMarque.Add(marque);
                 }
                 return listeMarque;

@@ -16,5 +16,9 @@ namespace Projet2_CCI.Donnee
             this.idStyle = idStyle;
             this.nomStyle = nomStyle;
         }
+        public override string ToString()
+        {
+            return nomStyle;
+        }
     }
 }

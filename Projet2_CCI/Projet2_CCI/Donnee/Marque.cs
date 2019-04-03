@@ -8,13 +8,18 @@ namespace Projet2_CCI.Donnee
 {
     class Marque
     {
-        public int idMarque { get; set; }
+        public string idMarque { get; set; }
         public string nomMarque { get; set; }
 
-        public Marque(int idMarque, string nomMarque)
+        public Marque(string idMarque, string nomMarque)
         {
             this.idMarque = idMarque;
             this.nomMarque = nomMarque;
+        }
+
+        public override string ToString()
+        {
+            return nomMarque;
         }
     }
 }

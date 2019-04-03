@@ -1,7 +1,9 @@
 ﻿using Projet2_CCI.DAL;
+using Projet2_CCI.Donnee;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows;
 namespace Projet2_CCI.Affichage
 {
@@ -16,51 +18,123 @@ namespace Projet2_CCI.Affichage
         // TODO : REFAIRE AVEC UN SEUL POP-UP EN FONCTION DES CAS 
         // TODO : egalement try (2 chiffres apres la virgule pour prix € et $ ainsi que stock en int dans DB) 
         // TODO : FAIRE LA MEME POUR L'AFFICHAGE DU PRIX
+
+
         private void addSnowboard()
         {
             string nomSnowboard = this.nomSnowboard.Text;
-            string marqueSnowboard = this.cbMarque.SelectedValue.ToString();
-            string genreSnowboard = this.cbGenre.SelectedValue.ToString();
-            string niveauSnowboard = this.cbNiveau.SelectedValue.ToString();
-            string styleSnowboard = this.cbStyle.SelectedValue.ToString();
+            Marque marqueSnowboard = (Marque)this.cbMarque.SelectedValue;
+            Genre genreSnowboard = (Genre)this.cbGenre.SelectedValue;
+            Niveau niveauSnowboard = (Niveau)this.cbNiveau.SelectedValue;
+            Donnee.Style styleSnowboard = (Donnee.Style)this.cbStyle.SelectedValue;
+            bool verificationForm = true;
+            StringBuilder erreurFormulaire = new StringBuilder();
+
+            string txtPrixEuroSnowboard = this.prixEuroSnowboard.Text;
+            string txtPrixDollarSnowoard = this.prixDollarSnowboard.Text;
+            string txtStockSnowboard = this.stockSnowboard.Text;
+
+            decimal prixEuroSnowboard = default(decimal);
+            decimal prixDollarSnowboard = default(decimal);
+            int stockSnowboard = default(int);
 
 
-            try
+            // Test le nom 
+            if (string.IsNullOrWhiteSpace(nomSnowboard))
             {
-                decimal prixEuroSnowboard = decimal.Parse(this.prixEuroSnowboard.Text);
+                verificationForm = false;
+                erreurFormulaire.Append(" Merci de renseigner une valeur dans le Nom\n");
             }
-            catch (FormatException)
-            {
-                MessageBox.Show("Merci de renseigner un prix en chiffre dans le prix en Euro");
-            }
-            catch (ArgumentNullException)
-            {
-                MessageBox.Show("Merci de renseigner une valeur dans le prix en Euro");
-            }
-            try
-            {
-                decimal prixDollarSnowboard = decimal.Parse(this.prixDollarSnowboard.Text);
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Merci de renseigner un prix en chiffre dans le prix en Dollar");
-            }
-            catch (ArgumentNullException)
-            {
-                MessageBox.Show("Merci de renseigner une valeur dans le prix en Dollar");
 
-            }
-            try
+            // Test la Marque
+            if (marqueSnowboard == null)
             {
-                int stockSnowboard = int.Parse(this.stockSnowboard.Text);
+                verificationForm = false;
+                erreurFormulaire.Append("- Merci de selectionner une valeur dans la Marque\n");
             }
-            catch (ArgumentNullException)
+
+            // Test le Genre
+            if (genreSnowboard == null)
             {
-                MessageBox.Show("merci de renseigner une valeur dans stock");
+                verificationForm = false;
+                erreurFormulaire.Append("- Merci de selectionner une valeur dans le Genre\n");
             }
-            catch (FormatException)
+
+            // Test le Niveau
+            if (niveauSnowboard == null)
             {
-                MessageBox.Show("merci de renseigner une valeur correcte dans Stock");
+                verificationForm = false;
+                erreurFormulaire.Append("- Merci de selectionner une valeur dans le Niveau\n");
+            }
+            if (styleSnowboard == null)
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Merci de selectionner une valeur dans le Style\n");
+            }
+
+            // Test le prix en euro du Snowboard
+            if (string.IsNullOrWhiteSpace(txtPrixEuroSnowboard))
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Merci de renseigner une valeur dans le prix en Euro\n");                
+            }
+            else if (!decimal.TryParse(txtPrixEuroSnowboard, out prixEuroSnowboard)) {
+
+                verificationForm = false;
+                erreurFormulaire.Append("- Merci de renseigner un prix en chiffre dans le prix en Euro\n");
+                
+            }
+            else
+            {
+                decimal prixEuroSnowboardRounded = decimal.Round(prixEuroSnowboard, 2);
+                if (prixEuroSnowboard != prixEuroSnowboardRounded)
+                {
+                    verificationForm = false;
+                    erreurFormulaire.Append("- Merci de renseigner un prix en Euro avec 2 chiffres après la virgule\n");
+                }
+            }
+            
+
+            
+
+
+            // Test le prix en dollar du Snowboard
+            if (string.IsNullOrWhiteSpace(txtPrixDollarSnowoard))
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Merci de renseigner une valeur dans le prix en Dollar\n");
+            }
+            else if (!decimal.TryParse(txtPrixDollarSnowoard, out prixDollarSnowboard))
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Merci de renseigner un prix en chiffre dans le prix en Dollar\n");
+            }
+
+            // Test le Stock du Snowboard
+            if (string.IsNullOrWhiteSpace(txtStockSnowboard))
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Merci de renseigner une valeur dans stock\n");
+            }
+            else if (!int.TryParse(txtStockSnowboard, out stockSnowboard))
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Merci de renseigner une valeur correcte dans Stock\n");
+                
+            }
+
+
+            if (verificationForm)
+            {
+                
+                MessageBox.Show(prixEuroSnowboard.ToString());
+                // TODO : INSERT
+            }
+            else
+            {
+                MessageBox.Show(erreurFormulaire.ToString());
+                // ERREUR
+                
             }
 
         }
@@ -69,17 +143,14 @@ namespace Projet2_CCI.Affichage
         {
             
             List<Donnee.Style> listStyle = new List<Donnee.Style>();
-            List<string> listMarque = new List<string>();
-            List<string> listGenre = new List<string>();
-            List<string> listNiveau = new List<string>();
+            List<Marque> listMarque = new List<Marque>();
+            List<Genre> listGenre = new List<Genre>();
+            List<Niveau> listNiveau = new List<Niveau>();
             
             listStyle = RequeteSqlStyle.SqlReadStyle();
             listMarque = RequeteSqlMarque.SqlReadMarque();
             listGenre = RequeteSqlGenre.SqlReadGenre();
             listNiveau = RequeteSqlNiveau.SqlReadNiveau();
-
-            listMarque.Sort();
-            listGenre.Sort();
 
             InitializeComponent();
             this.cbStyle.ItemsSource = listStyle;           

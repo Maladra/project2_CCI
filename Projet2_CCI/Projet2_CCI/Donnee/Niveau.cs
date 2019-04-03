@@ -8,13 +8,18 @@ namespace Projet2_CCI.Donnee
 {
     class Niveau
     {
-        public int idNiveau { get; set; }
+        public string idNiveau { get; set; }
         public string nomNiveau { get; set; }
 
-        public Niveau (int idNiveau, string nomNiveau)
+        public Niveau (string idNiveau, string nomNiveau)
         {
             this.idNiveau = idNiveau;
             this.nomNiveau = nomNiveau;
+        }
+
+        public override string ToString()
+        {
+            return nomNiveau;
         }
     }
 }
