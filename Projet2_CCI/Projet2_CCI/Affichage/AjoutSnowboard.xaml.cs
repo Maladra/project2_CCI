@@ -132,10 +132,14 @@ namespace Projet2_CCI.Affichage
 
             if (verificationForm)
             {
+                int prixEuroFinal = Convert.ToInt32(prixEuroSnowboardRounded * 100);
+                int prixDollarFinal = Convert.ToInt32(prixDollarSnowboardRounded * 100);
+                SnowboardRequete snowboard = new SnowboardRequete(nomSnowboard, marqueSnowboard.idMarque, genreSnowboard.idGenre,
+                    niveauSnowboard.idNiveau, styleSnowboard.idStyle, prixEuroFinal, prixDollarFinal, stockSnowboard);
                 RequeteSqlSnowboard.SQLAddSnowboard(snowboard);
                 MessageBox.Show(prixEuroSnowboard.ToString());
 
-                RequeteSqlSnowboard.SQLAddSnowboard(snowboard);
+                
                 // TODO : INSERT
             }
             else

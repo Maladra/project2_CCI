@@ -22,9 +22,17 @@ namespace Projet2_CCI
     {
         private void addMarque()
         {
-            RequeteSqlMarque.SQLiteAddMarque(this.NomMarque.Text);
-            this.Hide();
-            MessageBox.Show("Ajout de la marque avec succés");
+            if (string.IsNullOrWhiteSpace(this.NomMarque.Text))
+            {
+                MessageBox.Show("Merci de renseigner une marque");
+            }
+            else
+            {
+                // TODO : VERIFIER QUE LA MARQUE N'EST PAS DEJA PRESENT
+                RequeteSqlMarque.SQLiteAddMarque(this.NomMarque.Text);
+                this.Hide();
+                MessageBox.Show("Ajout de la marque avec succés");
+            }
         }
 
         public AjoutMarque()

@@ -19,6 +19,7 @@ namespace Projet2_CCI.Affichage
     /// </summary>
     public partial class EditUtilisateur : Window
     {
+        // TODO : EDITION UTILISATEUR
         public EditUtilisateur(Employe user)
         {
             InitializeComponent();

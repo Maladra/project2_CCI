@@ -21,15 +21,20 @@ namespace Projet2_CCI
     {
         public void ajouterStyle()
         {
-
-            if (DAL.RequeteSqlStyle.SQLiteAddStyle(this.nomStyle.Text) == true)
+            if (string.IsNullOrWhiteSpace(this.nomStyle.Text))
             {
-                MessageBox.Show("Style bien ajouté dans BD");
-                this.Close();
+                MessageBox.Show("Merci de renseigner un style");
             }
-            else
-            {
-                MessageBox.Show("Style déja present dans BD");
+            else { 
+                if (DAL.RequeteSqlStyle.SQLiteAddStyle(this.nomStyle.Text) == true)
+                {
+                    MessageBox.Show("Style bien ajouté dans BD");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Style déja present dans BD");
+                }
             }
         }
 

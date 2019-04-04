@@ -10,28 +10,14 @@ namespace Projet2_CCI.Donnee
     /// <summary>
     /// Class retournée par requete SQL Snowboard <see cref="SQLHelper.SQLitePlancheRead"/>
     /// </summary>
-    class SnowboardAddRequete
+    class SnowboardRequete : Snowboard
     {
-        public string Nom { get; set;}
-        public int Marque { get; set; }
-        public int Genre { get; set; }
-        public int Niveau { get; set; }
-        public int Style { get; set; }
-        public int PrixEuro { get; set; }
-        public int PrixDollar { get; set; }
-        public int Stock { get; set; }
+            public int Stock { get; set; }
 
             // CONSTRUCTEUR
-            public SnowboardAddRequete(string nom, int marque, int genre, int niveau, int style, int prixEuro, int prixDollar, int stock)
+            public SnowboardRequete(string nom, string marque, string genre, string niveau, string style, int prixEuro, int prixDollar, int stock) : base(nom, marque, genre, niveau, style, prixEuro, prixDollar)
             {
-            this.Nom = nom;
-            this.Marque = marque;
-            this.Genre = genre;
-            this.Niveau = niveau;
-            this.Style = style;
-            this.PrixEuro = prixEuro;
-            this.PrixDollar = prixDollar;
-            this.Stock = stock;
+                this.Stock = stock;
             }   
     }
 }
