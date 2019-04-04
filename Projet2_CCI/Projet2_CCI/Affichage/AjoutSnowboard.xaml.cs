@@ -36,8 +36,9 @@ namespace Projet2_CCI.Affichage
 
             decimal prixEuroSnowboard = default(decimal);
             decimal prixDollarSnowboard = default(decimal);
+            decimal prixEuroSnowboardRounded = default(decimal);
+            decimal prixDollarSnowboardRounded = default(decimal);
             int stockSnowboard = default(int);
-
 
             // Test le nom 
             if (string.IsNullOrWhiteSpace(nomSnowboard))
@@ -66,6 +67,8 @@ namespace Projet2_CCI.Affichage
                 verificationForm = false;
                 erreurFormulaire.Append("- Merci de selectionner une valeur dans le Niveau\n");
             }
+
+            // Test le Style
             if (styleSnowboard == null)
             {
                 verificationForm = false;
@@ -86,18 +89,14 @@ namespace Projet2_CCI.Affichage
             }
             else
             {
-                decimal prixEuroSnowboardRounded = decimal.Round(prixEuroSnowboard, 2);
+                prixEuroSnowboardRounded = decimal.Round(prixEuroSnowboard, 2);
                 if (prixEuroSnowboard != prixEuroSnowboardRounded)
                 {
                     verificationForm = false;
                     erreurFormulaire.Append("- Merci de renseigner un prix en Euro avec 2 chiffres après la virgule\n");
                 }
             }
-            
-
-            
-
-
+   
             // Test le prix en dollar du Snowboard
             if (string.IsNullOrWhiteSpace(txtPrixDollarSnowoard))
             {
@@ -108,6 +107,15 @@ namespace Projet2_CCI.Affichage
             {
                 verificationForm = false;
                 erreurFormulaire.Append("- Merci de renseigner un prix en chiffre dans le prix en Dollar\n");
+            }
+            else
+            {
+                prixDollarSnowboardRounded = decimal.Round(prixDollarSnowboard, 2);
+                if (prixDollarSnowboardRounded != prixDollarSnowboard )
+                {
+                    verificationForm = false;
+                    erreurFormulaire.Append("- Merci de renseigner un prix en Dollar avec 2 chiffres après la virgule\n");
+                }
             }
 
             // Test le Stock du Snowboard
@@ -120,14 +128,14 @@ namespace Projet2_CCI.Affichage
             {
                 verificationForm = false;
                 erreurFormulaire.Append("- Merci de renseigner une valeur correcte dans Stock\n");
-                
             }
-
 
             if (verificationForm)
             {
-                
+                RequeteSqlSnowboard.SQLAddSnowboard(snowboard);
                 MessageBox.Show(prixEuroSnowboard.ToString());
+
+                RequeteSqlSnowboard.SQLAddSnowboard(snowboard);
                 // TODO : INSERT
             }
             else

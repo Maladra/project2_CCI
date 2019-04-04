@@ -13,8 +13,8 @@ namespace Projet2_CCI
         public Vendeur()
         {
             InitializeComponent();
-            ObservableCollection<Donnee.SnowboardRequete> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
-            this.stockAffichage.ItemsSource = snowboardListe;
+            //ObservableCollection<Donnee.SnowboardRequete> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
+            //this.stockAffichage.ItemsSource = snowboardListe;
         }
 
         /// <summary>
