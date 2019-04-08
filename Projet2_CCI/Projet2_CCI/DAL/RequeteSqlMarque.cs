@@ -17,7 +17,6 @@ namespace Projet2_CCI.DAL
         public static bool SQLiteAddMarque(string marque)
         {
 
-            // TODO : VERIFIER QUE LA MARQUE N'EST PAS DEJA PRESENT
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
