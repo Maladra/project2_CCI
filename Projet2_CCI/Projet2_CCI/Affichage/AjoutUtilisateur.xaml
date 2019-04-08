@@ -5,20 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet2_CCI"
         mc:Ignorable="d"
-        Title="AjoutUtilisateur" Height="450" Width="800">
+        Title="Ajouter un utilisateur" Height="230" Width="542">
     <Grid>
-        <Button Content="Valider" HorizontalAlignment="Left" Margin="222,343,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
-        <Button Content="Retour" HorizontalAlignment="Left" Margin="574,343,0,0" VerticalAlignment="Top" Width="75" Click="ButtonRetour_Click"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="222,64,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="nom"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="511,124,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="password"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="222,124,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" x:Name="prenom"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="511,64,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.669,0.252" x:Name="login"/>
-        <Label Content="Nom :" HorizontalAlignment="Left" Margin="180,60,0,0" VerticalAlignment="Top"/>
-        <Label Content="Prenom :" HorizontalAlignment="Left" Margin="165,120,0,0" VerticalAlignment="Top"/>
-        <Label Content="Password :" HorizontalAlignment="Left" Margin="446,120,0,0" VerticalAlignment="Top"/>
-        <Label Content="Login :" HorizontalAlignment="Left" Margin="467,60,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="361,253,0,0" VerticalAlignment="Top" Width="120" x:Name="listeGroupe"/>
-        <Label Content="Groupe :" HorizontalAlignment="Left" Margin="306,253,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="120,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="nom" RenderTransformOrigin="0.007,0.664"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="120,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="prenom"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Margin="120,164,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="379,164,0,0" VerticalAlignment="Top" Width="75" Click="ButtonRetour_Click"/>
+        
+        
+        
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="334,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.669,0.252" x:Name="login"/>
+        <Label Content="Nom :" HorizontalAlignment="Left" Margin="40,46,0,0" VerticalAlignment="Top"/>
+        <Label Content="Prenom :" HorizontalAlignment="Left" Margin="40,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.053,0.462"/>
+        <Label Content="Password :" HorizontalAlignment="Left" Margin="264,77,0,0" VerticalAlignment="Top"/>
+        <Label Content="Login :" HorizontalAlignment="Left" Margin="284,46,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="334,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="password" RenderTransformOrigin="0.167,0.565"/>
+        <ComboBox HorizontalAlignment="Left" Margin="245,127,0,0" VerticalAlignment="Top" Width="120" x:Name="listeGroupe"/>
+        <Label Content="Groupe :" HorizontalAlignment="Left" Margin="185,123,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

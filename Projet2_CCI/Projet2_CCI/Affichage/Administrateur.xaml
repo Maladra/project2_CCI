@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet2_CCI"
         mc:Ignorable="d"
-        Title="Administrateur" Height="450" Width="800">
+        Title="Panneau d'administration" Height="450" Width="800">
     <Grid>
-        <ListBox HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="151" x:Name="listeUtilisateurs" >
+        <ListBox HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="185" x:Name="listeUtilisateurs" >
         </ListBox>
 
-        <Button Content="Editer utilisateur" HorizontalAlignment="Left" Margin="254,389,0,0" VerticalAlignment="Top" Width="97" Click="Button_EditerUtilisateur_Click"/>
-        <Button Content="Ajouter utilisateur" HorizontalAlignment="Left" Margin="560,389,0,0" VerticalAlignment="Top" Width="109" Click="Button_AjouterUtilisateur_Click"/>
-        <Button Content="Supprimer utilisateur" HorizontalAlignment="Left" Margin="393,389,0,0" VerticalAlignment="Top" Width="125" Click="Button_SupprimerUser_Click"/>
+        <Button Content="Editer utilisateur" HorizontalAlignment="Left" Margin="381,146,0,0" VerticalAlignment="Top" Width="97" Click="Button_EditerUtilisateur_Click"/>
+        <Button Content="Ajouter utilisateur" HorizontalAlignment="Left" Margin="381,108,0,0" VerticalAlignment="Top" Width="109" Click="Button_AjouterUtilisateur_Click"/>
+        <Button Content="Supprimer utilisateur" HorizontalAlignment="Left" Margin="381,184,0,0" VerticalAlignment="Top" Width="125" Click="Button_SupprimerUser_Click"/>
+        <Label Content="SNOW'SHOP&#xD;&#xA;PANNEAU D'ADMINISTRATION" HorizontalAlignment="Left" Margin="302,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="248"/>
 
 
     </Grid>
