@@ -101,11 +101,12 @@
     <Compile Include="DAL\RequeteSqlSnowboard.cs" />
     <Compile Include="DAL\RequeteSqlStyle.cs" />
     <Compile Include="DAL\RequeteSqlUser.cs" />
-    <Compile Include="DAL\UtilisateurRequete.cs" />
+    <Compile Include="Donnee\UtilisateurRequete.cs" />
     <Compile Include="Donnee\Genre.cs" />
     <Compile Include="Donnee\Location.cs" />
     <Compile Include="Donnee\Marque.cs" />
     <Compile Include="Donnee\Niveau.cs" />
+    <Compile Include="Donnee\Personne.cs" />
     <Compile Include="Donnee\Snowboard.cs" />
     <Compile Include="Donnee\SnowboardRequete.cs" />
     <Compile Include="Donnee\Style.cs" />
@@ -155,7 +156,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Donnee\Personne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

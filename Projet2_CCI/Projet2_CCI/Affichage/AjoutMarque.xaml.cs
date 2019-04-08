@@ -29,9 +29,15 @@ namespace Projet2_CCI
             else
             {
                 // TODO : VERIFIER QUE LA MARQUE N'EST PAS DEJA PRESENT
-                RequeteSqlMarque.SQLiteAddMarque(this.NomMarque.Text);
-                this.Hide();
-                MessageBox.Show("Ajout de la marque avec succés");
+                if (RequeteSqlMarque.SQLiteAddMarque(this.NomMarque.Text))
+                {
+                    MessageBox.Show("Ajout de la marque avec succès");
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Cette marque est déja présente");
+                }
             }
         }
 

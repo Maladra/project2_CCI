@@ -14,18 +14,35 @@ namespace Projet2_CCI.DAL
         /// <summary>
         /// Prend un string et fait une requete SQL pour inserer une marque de snowboard dans la BD
         /// </summary>
-        public static void SQLiteAddMarque(string marque)
+        public static bool SQLiteAddMarque(string marque)
         {
 
             // TODO : VERIFIER QUE LA MARQUE N'EST PAS DEJA PRESENT
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
+                string querySelect = "SELECT Marque FROM Marque_snowboard WHERE Marque = @marque";
                 string queryInsert = "INSERT INTO Marque_snowboard (Marque) VALUES (?)";
                 SQLiteConn.Open();
-                SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
-                SQLiteInsert.Parameters.AddWithValue("@Marque", marque);
-                SQLiteInsert.ExecuteNonQuery();
+                using (SQLiteCommand sqliteSelect = new SQLiteCommand(querySelect, SQLiteConn)) 
+                {
+                    sqliteSelect.Parameters.AddWithValue("@marque", marque);
+                    using (SQLiteDataReader sqliteSelectMarque = sqliteSelect.ExecuteReader())
+                    {
+                        if (sqliteSelectMarque.Read())
+                        {
+                            return false;
+                        }
+                    }
+
+                }
+    
+                using (SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn))
+                {
+                    SQLiteInsert.Parameters.AddWithValue("@Marque", marque);
+                    SQLiteInsert.ExecuteNonQuery();
+                    return true;
+                }
             }
         }
 
