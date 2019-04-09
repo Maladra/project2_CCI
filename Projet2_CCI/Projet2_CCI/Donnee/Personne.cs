@@ -24,6 +24,7 @@ namespace Projet2_CCI
     {
         public string Login { get; set; }
         public string Password { get; set; }
+        public byte[] PasswordByte { get; set; }
         public string Groupe { get; set; }
 
         public Employe(string nom, string prenom, string login, string password, string groupe) : base(nom, prenom)
@@ -33,6 +34,15 @@ namespace Projet2_CCI
             this.Groupe = groupe;
 
         }
+        public Employe(string nom, string prenom, string login, byte[] passwordByte, string groupe) : base(nom, prenom)
+        {
+            this.Login = login;
+            this.PasswordByte = passwordByte;
+            this.Groupe = groupe;
+        }
+
+
+
         public override string ToString()
         {
             return Nom+" "+Prenom;

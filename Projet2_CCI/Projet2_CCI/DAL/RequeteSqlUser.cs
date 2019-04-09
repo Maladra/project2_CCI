@@ -25,11 +25,11 @@ namespace Projet2_CCI.DAL
                 SQLiteDataReader SQLiteReader = SQLiteCommand.ExecuteReader();
                 while (SQLiteReader.Read())
                 {
-                    string nomEmploye = SQLiteReader["Nom"].ToString();
-                    string prenomEmploye = SQLiteReader["Prenom"].ToString();
-                    string loginEmploye = SQLiteReader["Login"].ToString();
-                    string passwordEmploye = SQLiteReader["Password"].ToString();
-                    string groupeEmploye = SQLiteReader["Groupe"].ToString();
+                    string nomEmploye = (string)SQLiteReader["Nom"];
+                    string prenomEmploye = (string)SQLiteReader["Prenom"];
+                    string loginEmploye = (string)SQLiteReader["Login"];
+                    byte[] passwordEmploye = (byte[])SQLiteReader["Password"];
+                    string groupeEmploye = (string)SQLiteReader["Groupe"];
                     usersList.Add(new Employe(nomEmploye, prenomEmploye, loginEmploye, passwordEmploye, groupeEmploye));
                 }
                 SQLiteReader.Close();
@@ -108,7 +108,7 @@ namespace Projet2_CCI.DAL
                 using (SQLiteDataReader SQLiteReadUser = SQLiteVerificationUser.ExecuteReader())
                 {
                     if (!SQLiteReadUser.Read())
-                    {
+                    {                      
                         // Generation Salt
                         byte[] salt = HashingPassword.SaltGeneration();
                         // Convert en byte array le password

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet2_CCI.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,20 +20,22 @@ namespace Projet2_CCI.Affichage
     /// </summary>
     public partial class EditUtilisateur : Window
     {
+        Employe userBefore;
         // TODO : EDITION UTILISATEUR
         public EditUtilisateur(Employe user)
         {
+            this.userBefore = user;
             InitializeComponent();
             this.loginUtilisateur.Text = user.Login;
             this.nomUtilisateur.Text = user.Nom;
             this.prenomUtilisateur.Text = user.Prenom;
             this.groupeUtilisateur.Text = user.Groupe;
-            this.passwordUtilisateur.Text = user.Password;
         }
 
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
         {
-
+            Employe userAfter = new Employe(this.nomUtilisateur.Text, this.nomUtilisateur.Text, this.loginUtilisateur.Text, this.passwordUtilisateur.Text, this.groupeUtilisateur.Text);
+            RequeteSqlUser.SQLiteEditUser(this.userBefore, userAfter);
         }
 
         private void ButtonRetour_Click(object sender, RoutedEventArgs e)
