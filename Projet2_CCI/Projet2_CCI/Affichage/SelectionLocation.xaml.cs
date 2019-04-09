@@ -1,0 +1,60 @@
+﻿using Projet2_CCI.Donnee;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Projet2_CCI.Affichage
+{
+
+    public class SelectionLocationViewModel : ViewModelBase
+    {
+        public ObservableCollection<Donnee.SnowboardRequete> StockTempSnowboard { get; }
+        public ObservableCollection<Donnee.SnowboardRequete> LocationListe { get; }
+
+        public SelectionLocationViewModel(IEnumerable<SnowboardRequete> snowboards)
+        {
+            this.StockTempSnowboard = new ObservableCollection<SnowboardRequete>(
+                snowboards.Select(snowboard => snowboard.Clone()));
+            this.LocationListe = new ObservableCollection<SnowboardRequete>();
+        }
+
+
+        public void Valider()
+        {
+            this.StockTempSnowboard.RemoveAt(this.StockTempSnowboard.Count - 1);
+        }
+    }
+    /// <summary>
+    /// Logique d'interaction pour SelectionLocation.xaml
+    /// </summary>
+    public partial class SelectionLocation : UserControl
+    {
+        SelectionLocationViewModel ViewModel => (SelectionLocationViewModel)this.DataContext;
+        public SelectionLocation()
+        {
+            InitializeComponent();
+        }
+
+        private void ButtonValider_Click(object sender, RoutedEventArgs e)
+            => this.ViewModel.Valider();
+
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+
+    }
+}

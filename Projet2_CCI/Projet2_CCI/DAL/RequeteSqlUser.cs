@@ -108,7 +108,9 @@ namespace Projet2_CCI.DAL
                 using (SQLiteDataReader SQLiteReadUser = SQLiteVerificationUser.ExecuteReader())
                 {
                     if (!SQLiteReadUser.Read())
-                    {                      
+                    {
+                        // a finir
+                        if (string.IsNullOrEmpty(employeAfter.Password)) { }
                         // Generation Salt
                         byte[] salt = HashingPassword.SaltGeneration();
                         // Convert en byte array le password

@@ -93,6 +93,9 @@
     <Compile Include="Affichage\EditUtilisateur.xaml.cs">
       <DependentUpon>EditUtilisateur.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Affichage\SelectionLocation.xaml.cs">
+      <DependentUpon>SelectionLocation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DAL\HashingPassword.cs" />
     <Compile Include="DAL\RequeteSqlConnexion.cs" />
     <Compile Include="DAL\RequeteSqlGenre.cs" />
@@ -137,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Affichage\EditUtilisateur.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Affichage\SelectionLocation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
