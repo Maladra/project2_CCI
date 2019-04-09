@@ -29,12 +29,20 @@
                   MouseDoubleClick="DataGrid_MouseDoubleClick"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding StockTempSnowboard}">
+                  ItemsSource="{Binding StockTempSnowboard}"
+                  x:Name="stockSnowboard">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                 <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Grid.Column="1" HorizontalAlignment="Left" Height="430" Margin="635,10,0,0" VerticalAlignment="Top" Width="100"/>
+        <DataGrid Grid.Column="1"
+                  HorizontalAlignment="Left"
+                  Height="430"
+                  Margin="635,10,0,0"
+                  VerticalAlignment="Top"
+                  Width="100">
+        </DataGrid>
+
     </Grid>
 </UserControl>

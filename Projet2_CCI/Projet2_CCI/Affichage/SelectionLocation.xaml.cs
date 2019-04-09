@@ -29,11 +29,12 @@ namespace Projet2_CCI.Affichage
                 snowboards.Select(snowboard => snowboard.Clone()));
             this.LocationListe = new ObservableCollection<SnowboardRequete>();
         }
-
-
+        public void AjouterSnowboard(SnowboardRequete snowboard)
+        {
+            this.LocationListe.Add(snowboard);
+        }
         public void Valider()
         {
-            this.StockTempSnowboard.RemoveAt(this.StockTempSnowboard.Count - 1);
         }
     }
     /// <summary>
@@ -52,7 +53,7 @@ namespace Projet2_CCI.Affichage
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            this.ViewModel.AjouterSnowboard((SnowboardRequete)this.stockSnowboard.SelectedItem);
         }
 
 
