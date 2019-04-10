@@ -25,13 +25,14 @@ namespace Projet2_CCI.Affichage
     /// </summary>
     public partial class Vendeur : Window
     {
-        
-        public Vendeur()
+        string _login = string.Empty;
+        public Vendeur(string login)
         {
             InitializeComponent();
             ObservableCollection<Donnee.SnowboardRequete> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
             this.selectionLocation.DataContext = new SelectionLocationViewModel(snowboardListe);
             this.stockAffichage.ItemsSource = snowboardListe;
+            _login = login;
         }
 
         /// <summary>
@@ -60,10 +61,19 @@ namespace Projet2_CCI.Affichage
             AjoutSnowboard ajoutSnowboard = new AjoutSnowboard();
             ajoutSnowboard.ShowDialog();
         }
+
+
         // INUTILE ???
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
         { // TODO: VERIFIER UTILITE DE CETTE FONCTION (BIND)
             MessageBox.Show("Erreur pendant la création de la location");
+        }
+
+        private void ButtonPassword_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePassword changePassword = new ChangePassword(_login);
+            changePassword.ShowDialog();
+
         }
     }
 }

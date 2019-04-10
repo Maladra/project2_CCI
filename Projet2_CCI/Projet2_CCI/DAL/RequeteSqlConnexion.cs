@@ -16,7 +16,7 @@ namespace Projet2_CCI.DAL
         public static UtilisateurConnexion SQLiteConnexionHash(string username, string password)
         {
             // DEF VARIABLE
-            UtilisateurConnexion utilisateurConnexion = new UtilisateurConnexion(string.Empty, string.Empty, string.Empty);
+            UtilisateurConnexion utilisateurConnexion = new UtilisateurConnexion(string.Empty, string.Empty, string.Empty, string.Empty);
 
             // DEF SQL
             string connString = ConfigurationManager.AppSettings["connectionString"];
@@ -41,6 +41,7 @@ namespace Projet2_CCI.DAL
                             utilisateurConnexion.Nom = (string)SQLiteReaderUser["Nom"];
                             utilisateurConnexion.Prenom = (string)SQLiteReaderUser["Prenom"];
                             utilisateurConnexion.Groupe = (string)SQLiteReaderUser["Groupe"];
+                            utilisateurConnexion.Login = (string)SQLiteReaderUser["Login"];
                         }
                         else return null;
 

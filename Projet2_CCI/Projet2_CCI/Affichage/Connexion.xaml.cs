@@ -30,7 +30,7 @@ namespace Projet2_CCI.Affichage
                 this.UsernameText.Text, this.PasswordText.Password.ToString());
 
             if (utilisateur == null && Debugger.IsAttached)
-                utilisateur = new UtilisateurConnexion("bypass", "bypass", "Vendeur");
+                utilisateur = new UtilisateurConnexion("bypass", "bypass", "Vendeur", "bypass");
 
             if (utilisateur == null)
             {
@@ -41,7 +41,7 @@ namespace Projet2_CCI.Affichage
             MessageBox.Show("Bienvenue " + utilisateur.Prenom + " " + utilisateur.Nom);
             var win = utilisateur.Groupe == "Administrateur"
                 ? (Window)new Administrateur()
-                : new Vendeur();
+                : new Vendeur(utilisateur.Login);
 
             win.Show();
             Application.Current.MainWindow = win;

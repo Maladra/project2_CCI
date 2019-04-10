@@ -30,10 +30,34 @@
 
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Ajouter un snowboard" Grid.Column="2" HorizontalAlignment="Left" Margin="238,255,0,0" VerticalAlignment="Top" Width="177" Click="Button_ajoutSnowboard_Click"/>
-                    <Button Content="Ajouter une marque de snowboard" Grid.Column="2" HorizontalAlignment="Left" Margin="238,305,0,0" VerticalAlignment="Top" Width="196" Click="Button_ajoutMarque_Click"/>
-                    <Button Content="Ajouter un style de snowboard" Grid.Column="2" HorizontalAlignment="Left" Margin="238,280,0,0" VerticalAlignment="Top" Width="177" Click="Button_ajoutStyle_Click"/>
-                    <Button Content="Changer mon password" Grid.Column="2" HorizontalAlignment="Left" Margin="338,25,0,0" VerticalAlignment="Top" Width="138"/>
+                    <Button Content="Ajouter un snowboard"
+                            Grid.Column="2"
+                            HorizontalAlignment="Left" 
+                            Margin="238,255,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="177" 
+                            Click="Button_ajoutSnowboard_Click"/>
+                    <Button Content="Ajouter une marque de snowboard" 
+                            Grid.Column="2" 
+                            HorizontalAlignment="Left" 
+                            Margin="238,305,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="196" 
+                            Click="Button_ajoutMarque_Click"/>
+                    <Button Content="Ajouter un style de snowboard" 
+                            Grid.Column="2" 
+                            HorizontalAlignment="Left" 
+                            Margin="238,280,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="177" 
+                            Click="Button_ajoutStyle_Click"/>
+                    <Button Content="Changer mon password"
+                            Grid.Column="2"
+                            HorizontalAlignment="Left" 
+                            Margin="338,25,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="138" 
+                            Click="ButtonPassword_Click"/>
                 </Grid>
             </TabItem>
 

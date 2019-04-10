@@ -8,5 +8,12 @@ namespace Projet2_CCI.DAL
 {
     class RequeteSqlLocation
     {
+
+//        public List<Location> SqlListLocation()
+//        {
+//            return aaa;
+//        }
     }
+
+
 } 
