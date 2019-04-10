@@ -18,6 +18,18 @@ using System.Windows.Shapes;
 namespace Projet2_CCI.Affichage
 {
 
+    public class DynamicStcokSnowboard : ViewModelBase
+    {
+
+        private int stock;
+
+        public int Stock
+        {
+            get { return this.stock; }
+            set { this.stock = value; this.OnPropertyChange(); }
+        }
+    }
+
     public class SelectionLocationViewModel : ViewModelBase
     {
         public ObservableCollection<Donnee.SnowboardRequete> StockTempSnowboard { get; }
@@ -31,6 +43,7 @@ namespace Projet2_CCI.Affichage
         }
         public void AjouterSnowboard(SnowboardRequete snowboard)
         {
+
             this.LocationListe.Add(snowboard);
         }
         public void Valider()

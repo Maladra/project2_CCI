@@ -41,7 +41,16 @@
                   Height="430"
                   Margin="635,10,0,0"
                   VerticalAlignment="Top"
-                  Width="100">
+                  Width="100"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding LocationListe}"
+                  x:Name="listeLocation">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
+            </DataGrid.Columns>
+            
+            
+             
         </DataGrid>
 
     </Grid>
