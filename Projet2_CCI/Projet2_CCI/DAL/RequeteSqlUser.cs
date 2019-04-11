@@ -212,6 +212,13 @@ namespace Projet2_CCI.DAL
 
         }
 
+        /// <summary>
+        /// Prend un login utilisateur en parametre et change le password associe au login
+        /// </summary>
+        public static bool SQLiteChangePassword(string login)
+        {
+            return true;
+        }
         // FONCTION probablement inutile
         //public static Employe SQLiteSelectUser(string login)
         //{

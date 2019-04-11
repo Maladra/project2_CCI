@@ -48,6 +48,7 @@ namespace Projet2_CCI.Affichage
         }
         public void Valider()
         {
+
         }
     }
     /// <summary>
@@ -60,15 +61,14 @@ namespace Projet2_CCI.Affichage
         {
             InitializeComponent();
         }
-
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
             => this.ViewModel.Valider();
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this.ViewModel.AjouterSnowboard((SnowboardRequete)this.stockSnowboard.SelectedItem);
+            var row = (DataGridRow)sender;          
+            this.ViewModel.AjouterSnowboard((SnowboardRequete)row.DataContext);
         }
-
 
     }
 }

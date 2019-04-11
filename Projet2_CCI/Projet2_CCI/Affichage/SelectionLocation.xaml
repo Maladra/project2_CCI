@@ -25,8 +25,7 @@
                   Height="430"
                   Margin="10,10,0,0"
                   VerticalAlignment="Top"
-                  Width="152"
-                  MouseDoubleClick="DataGrid_MouseDoubleClick"
+                  Width="152"               
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding StockTempSnowboard}"
@@ -34,7 +33,15 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                 <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
+                <DataGridTextColumn Header="Marque" Binding="{Binding Marque}"/>
+                <DataGridTextColumn Header="Style" Binding="{Binding Style}"/>
+
             </DataGrid.Columns>
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="PreviewMouseDoubleClick" Handler="DataGrid_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.RowStyle>
         </DataGrid>
         <DataGrid Grid.Column="1"
                   HorizontalAlignment="Left"
