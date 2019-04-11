@@ -34,6 +34,7 @@ namespace Projet2_CCI.DAL
                 SQLiteDataReader SQLiteReader = SQLiteCommand.ExecuteReader();
                 while (SQLiteReader.Read())
                 {
+                    long idSnowboard = (long)SQLiteReader["Id_planche"];
                     string nomSnowboard = SQLiteReader["Nom_modele"].ToString();
                     string marqueSnowboard = SQLiteReader["Marque"].ToString();
                     string genreSnowboard = SQLiteReader["Genre"].ToString();
@@ -43,8 +44,10 @@ namespace Projet2_CCI.DAL
                     string prixSnowboarDollar = SQLiteReader["Prix_euro"].ToString();
                     int prixSnowboardEuroDecimal = int.Parse(prixSnowboarEuro);
                     int prixSnowboardDollarDecimal = int.Parse(prixSnowboarDollar);
-                    string stockSnowboard = SQLiteReader["Stock"].ToString();
-                    snowboardListe.Add(new SnowboardRequete(nomSnowboard, marqueSnowboard, genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardEuroDecimal, prixSnowboardDollarDecimal, Convert.ToInt32(stockSnowboard))); // ADD Snowboard to LIST
+                    int stockSnowboard = (int)SQLiteReader["Stock"];
+                    snowboardListe.Add(new SnowboardRequete(idSnowboard,nomSnowboard, marqueSnowboard, 
+                        genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardEuroDecimal, 
+                        prixSnowboardDollarDecimal, Convert.ToInt32(stockSnowboard))); // ADD Snowboard to LIST
                 }
                 SQLiteReader.Close(); // FERMETURE READER
             }
