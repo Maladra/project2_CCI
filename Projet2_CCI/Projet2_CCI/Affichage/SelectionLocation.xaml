@@ -40,10 +40,11 @@
             </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
-                    <EventSetter Event="PreviewMouseDoubleClick" Handler="DataGrid_MouseDoubleClick"/>
+                    <EventSetter Event="PreviewMouseDoubleClick" Handler="DataGridStock_MouseDoubleClick"/>
                 </Style>
             </DataGrid.RowStyle>
         </DataGrid>
+        
         <DataGrid Grid.Column="1"
                   HorizontalAlignment="Left"
                   Height="430"
@@ -57,11 +58,12 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                 <DataGridTextColumn Header="Reservé" Binding="{Binding Stock}"/>
-                
             </DataGrid.Columns>
-            
-            
-             
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="PreviewMouseDoubleClick" Handler="DataGridLocation_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.RowStyle>
         </DataGrid>
         <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="250,253,0,0" VerticalAlignment="Top"/>
         <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="308,313,0,0" VerticalAlignment="Top"/>

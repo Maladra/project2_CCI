@@ -31,14 +31,14 @@ namespace Projet2_CCI.Affichage
             this.Id = snowboard.Id;
             this.Nom = snowboard.Nom;
             this.Stock = 0;
-            
+
         }
         public DynamicStockSnowboard(SnowboardRequeteId snowboard)
         {
             this.Id = snowboard.IdSnowboard;
             this.Nom = snowboard.Nom;
             this.Stock = snowboard.Stock;
-            
+
         }
         public int Stock
         {
@@ -58,13 +58,21 @@ namespace Projet2_CCI.Affichage
                 snowboards.Select(snowboard => new DynamicStockSnowboard(snowboard)));
             this.LocationListe = new ObservableCollection<DynamicStockSnowboard>();
         }
-        public void AjouterSnowboard(DynamicStockSnowboard snowboard)
+        /// <summary>
+        /// Si true => ajout de la planche a a la location
+        /// SI false => fais rien et retourne un message
+        /// </summary>
+        public bool AjouterSnowboard(DynamicStockSnowboard snowboard)
         {
+            if (snowboard.Stock == 0)
+            {
+                return false;
+            }
 
             snowboard.Stock--;
-            
 
-            if (!this.LocationListe.Any(s =>s.Id == snowboard.Id))
+
+            if (!this.LocationListe.Any(s => s.Id == snowboard.Id))
             {
                 DynamicStockSnowboard snowboardLocation = new DynamicStockSnowboard(snowboard);
                 snowboardLocation.Stock++;
@@ -77,6 +85,7 @@ namespace Projet2_CCI.Affichage
                     .Single();
                 snowboardLocation.Stock++;
             }
+            return true;
         }
 
         public void Valider()
@@ -97,10 +106,19 @@ namespace Projet2_CCI.Affichage
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
             => this.ViewModel.Valider();
 
-        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void DataGridStock_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var row = (DataGridRow)sender;
-            this.ViewModel.AjouterSnowboard((DynamicStockSnowboard)row.DataContext);
+            if (!this.ViewModel.AjouterSnowboard((DynamicStockSnowboard)row.DataContext))
+            {
+                MessageBox.Show("Stock vide");
+            }
+        }
+
+        private void DataGridLocation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var row = (DataGridRow)sender;
+            
         }
 
     }
