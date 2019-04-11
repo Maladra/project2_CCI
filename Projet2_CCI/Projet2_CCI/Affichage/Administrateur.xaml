@@ -10,8 +10,8 @@
         <ListBox HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="185" x:Name="listeUtilisateurs" >
         </ListBox>
 
-        <Button Content="Editer utilisateur" HorizontalAlignment="Left" Margin="381,146,0,0" VerticalAlignment="Top" Width="97" Click="Button_EditerUtilisateur_Click"/>
-        <Button Content="Ajouter utilisateur" HorizontalAlignment="Left" Margin="381,108,0,0" VerticalAlignment="Top" Width="109" Click="Button_AjouterUtilisateur_Click"/>
+        <Button Content="Editer utilisateur" HorizontalAlignment="Left" Margin="381,106,0,0" VerticalAlignment="Top" Width="97" Click="Button_EditerUtilisateur_Click"/>
+        <Button Content="Ajouter utilisateur" HorizontalAlignment="Left" Margin="381,146,0,0" VerticalAlignment="Top" Width="109" Click="Button_AjouterUtilisateur_Click"/>
         <Button Content="Supprimer utilisateur" HorizontalAlignment="Left" Margin="381,184,0,0" VerticalAlignment="Top" Width="125" Click="Button_SupprimerUser_Click"/>
         <Label Content="SNOW'SHOP&#xD;&#xA;PANNEAU D'ADMINISTRATION" HorizontalAlignment="Left" Margin="302,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="248"/>
 

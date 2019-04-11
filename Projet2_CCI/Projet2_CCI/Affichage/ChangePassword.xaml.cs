@@ -26,11 +26,11 @@ namespace Projet2_CCI.Affichage
 
         private void ButtonRetour_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
     }

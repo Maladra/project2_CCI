@@ -52,14 +52,16 @@ namespace Projet2_CCI.Affichage
         }
         public void AjouterSnowboard(DynamicStockSnowboard snowboard)
         {
-            snowboard.Stock--;
-
+            DynamicStockSnowboard test = new DynamicStockSnowboard(snowboard);
             DynamicStockSnowboard snowboardPresentLocation = LocationListe.Where(s => ReferenceEquals(s, snowboard)).SingleOrDefault();
+            snowboard.Stock--;
 
             if (snowboardPresentLocation == null)
             {
                 var selectedSnowboar = new DynamicStockSnowboard(snowboard);
-                this.LocationListe.Add(selectedSnowboar);
+                test.Stock = 0;
+                test.Stock++;
+                this.LocationListe.Add(test);
             }
             else
             {
