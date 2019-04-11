@@ -16,14 +16,14 @@ namespace Projet2_CCI.DAL
         /// Requete SQL qui retourne une liste de planche de snowboard
         /// </summary>
 
-        public static ObservableCollection<Donnee.SnowboardRequete> SQLitePlancheRead()
+        public static ObservableCollection<Donnee.SnowboardRequeteId> SQLitePlancheRead()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"]; // CONNECTION STRING
-            ObservableCollection<SnowboardRequete> snowboardListe = new ObservableCollection<SnowboardRequete>(); // RETURNED VALUE
+            ObservableCollection<SnowboardRequeteId> snowboardListe = new ObservableCollection<SnowboardRequeteId>(); // RETURNED VALUE
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 // REQUEST STRING
-                SQLiteCommand SQLiteCommand = new SQLiteCommand("SELECT Nom_modele,Stock,Prix_euro,Prix_dollar,Niveau,Marque,Genre,Style FROM Planche_snowboard " +
+                SQLiteCommand SQLiteCommand = new SQLiteCommand("SELECT Id_planche,Nom_modele,Stock,Prix_euro,Prix_dollar,Niveau,Marque,Genre,Style FROM Planche_snowboard " +
                     "INNER JOIN Niveau_snowboard ON Niveau_snowboard.Id_niveau = Planche_snowboard.Fk_niveau " +
                     "INNER JOIN Marque_snowboard ON Marque_snowboard.Id_marque = Planche_snowboard.Fk_marque " +
                     "INNER JOIN Genre_snowboard ON Genre_snowboard.Id_genre = Planche_snowboard.Fk_genre " +
@@ -44,8 +44,8 @@ namespace Projet2_CCI.DAL
                     string prixSnowboarDollar = SQLiteReader["Prix_euro"].ToString();
                     int prixSnowboardEuroDecimal = int.Parse(prixSnowboarEuro);
                     int prixSnowboardDollarDecimal = int.Parse(prixSnowboarDollar);
-                    int stockSnowboard = (int)SQLiteReader["Stock"];
-                    snowboardListe.Add(new SnowboardRequete(idSnowboard,nomSnowboard, marqueSnowboard, 
+                    long stockSnowboard = (long)SQLiteReader["Stock"];
+                    snowboardListe.Add(new SnowboardRequeteId(idSnowboard,nomSnowboard, marqueSnowboard, 
                         genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardEuroDecimal, 
                         prixSnowboardDollarDecimal, Convert.ToInt32(stockSnowboard))); // ADD Snowboard to LIST
                 }

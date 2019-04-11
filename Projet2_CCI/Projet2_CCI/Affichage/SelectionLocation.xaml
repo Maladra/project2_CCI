@@ -31,6 +31,7 @@
                   ItemsSource="{Binding StockTempSnowboard}"
                   x:Name="stockSnowboard">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                 <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
                 <DataGridTextColumn Header="Marque" Binding="{Binding Marque}"/>
@@ -53,8 +54,10 @@
                   ItemsSource="{Binding LocationListe}"
                   x:Name="listeLocation">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
-                <DataGridTextColumn Header="Nom" Binding="{Binding Stock}"/>
+                <DataGridTextColumn Header="Reservé" Binding="{Binding Stock}"/>
+                
             </DataGrid.Columns>
             
             

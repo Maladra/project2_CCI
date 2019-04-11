@@ -21,16 +21,24 @@ namespace Projet2_CCI.Affichage
     public class DynamicStockSnowboard : ViewModelBase
     {
         private int stock;
+        public long Id { get; }
         public string Nom { get; }
+        /// <summary>
+        /// Construit un object dynamicSnowboard et l'initialise a 0 pour la colone location
+        /// </summary>
         public DynamicStockSnowboard(DynamicStockSnowboard snowboard)
         {
+            this.Id = snowboard.Id;
             this.Nom = snowboard.Nom;
-            this.Stock = snowboard.Stock;
+            this.Stock = 0;
+            
         }
-        public DynamicStockSnowboard(SnowboardRequete snowboard)
+        public DynamicStockSnowboard(SnowboardRequeteId snowboard)
         {
+            this.Id = snowboard.IdSnowboard;
             this.Nom = snowboard.Nom;
             this.Stock = snowboard.Stock;
+            
         }
         public int Stock
         {
@@ -44,7 +52,7 @@ namespace Projet2_CCI.Affichage
         public ObservableCollection<DynamicStockSnowboard> StockTempSnowboard { get; }
         public ObservableCollection<DynamicStockSnowboard> LocationListe { get; }
 
-        public SelectionLocationViewModel(IEnumerable<SnowboardRequete> snowboards)
+        public SelectionLocationViewModel(IEnumerable<SnowboardRequeteId> snowboards)
         {
             this.StockTempSnowboard = new ObservableCollection<DynamicStockSnowboard>(
                 snowboards.Select(snowboard => new DynamicStockSnowboard(snowboard)));
@@ -52,22 +60,22 @@ namespace Projet2_CCI.Affichage
         }
         public void AjouterSnowboard(DynamicStockSnowboard snowboard)
         {
-            DynamicStockSnowboard test = new DynamicStockSnowboard(snowboard);
-            DynamicStockSnowboard snowboardPresentLocation = LocationListe.Where(s => ReferenceEquals(s, snowboard)).SingleOrDefault();
-            snowboard.Stock--;
 
-            if (snowboardPresentLocation == null)
+            snowboard.Stock--;
+            
+
+            if (!this.LocationListe.Any(s =>s.Id == snowboard.Id))
             {
-                var selectedSnowboar = new DynamicStockSnowboard(snowboard);
-                test.Stock = 0;
-                test.Stock++;
-                this.LocationListe.Add(test);
+                DynamicStockSnowboard snowboardLocation = new DynamicStockSnowboard(snowboard);
+                snowboardLocation.Stock++;
+                this.LocationListe.Add(snowboardLocation);
             }
             else
             {
-                var selectedSnowboar = new DynamicStockSnowboard(snowboardPresentLocation);
-                
-                selectedSnowboar.Stock++;
+                var snowboardLocation = this.LocationListe
+                    .Where(s => s.Id == snowboard.Id)
+                    .Single();
+                snowboardLocation.Stock++;
             }
         }
 

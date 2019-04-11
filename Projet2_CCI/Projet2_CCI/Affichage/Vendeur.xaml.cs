@@ -27,7 +27,7 @@ namespace Projet2_CCI.Affichage
         public Vendeur(string login)
         {
             InitializeComponent();
-            ObservableCollection<Donnee.SnowboardRequete> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
+            ObservableCollection<Donnee.SnowboardRequeteId> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
             this.selectionLocation.DataContext = new SelectionLocationViewModel(snowboardListe);
             this.stockAffichage.ItemsSource = snowboardListe;
             _login = login;
