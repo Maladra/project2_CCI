@@ -18,11 +18,20 @@ using System.Windows.Shapes;
 namespace Projet2_CCI.Affichage
 {
 
-    public class DynamicStcokSnowboard : ViewModelBase
+    public class DynamicStockSnowboard : ViewModelBase
     {
-
         private int stock;
-
+        public string Nom { get; }
+        public DynamicStockSnowboard(DynamicStockSnowboard snowboard)
+        {
+            this.Nom = snowboard.Nom;
+            this.Stock = snowboard.Stock;
+        }
+        public DynamicStockSnowboard(SnowboardRequete snowboard)
+        {
+            this.Nom = snowboard.Nom;
+            this.Stock = snowboard.Stock;
+        }
         public int Stock
         {
             get { return this.stock; }
@@ -32,20 +41,34 @@ namespace Projet2_CCI.Affichage
 
     public class SelectionLocationViewModel : ViewModelBase
     {
-        public ObservableCollection<Donnee.SnowboardRequete> StockTempSnowboard { get; }
-        public ObservableCollection<Donnee.SnowboardRequete> LocationListe { get; }
+        public ObservableCollection<DynamicStockSnowboard> StockTempSnowboard { get; }
+        public ObservableCollection<DynamicStockSnowboard> LocationListe { get; }
 
         public SelectionLocationViewModel(IEnumerable<SnowboardRequete> snowboards)
         {
-            this.StockTempSnowboard = new ObservableCollection<SnowboardRequete>(
-                snowboards.Select(snowboard => snowboard.Clone()));
-            this.LocationListe = new ObservableCollection<SnowboardRequete>();
+            this.StockTempSnowboard = new ObservableCollection<DynamicStockSnowboard>(
+                snowboards.Select(snowboard => new DynamicStockSnowboard(snowboard)));
+            this.LocationListe = new ObservableCollection<DynamicStockSnowboard>();
         }
-        public void AjouterSnowboard(SnowboardRequete snowboard)
+        public void AjouterSnowboard(DynamicStockSnowboard snowboard)
         {
+            snowboard.Stock--;
 
-            this.LocationListe.Add(snowboard);
+            DynamicStockSnowboard snowboardPresentLocation = LocationListe.Where(s => ReferenceEquals(s, snowboard)).SingleOrDefault();
+
+            if (snowboardPresentLocation == null)
+            {
+                var selectedSnowboar = new DynamicStockSnowboard(snowboard);
+                this.LocationListe.Add(selectedSnowboar);
+            }
+            else
+            {
+                var selectedSnowboar = new DynamicStockSnowboard(snowboardPresentLocation);
+                
+                selectedSnowboar.Stock++;
+            }
         }
+
         public void Valider()
         {
 
@@ -66,8 +89,8 @@ namespace Projet2_CCI.Affichage
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var row = (DataGridRow)sender;          
-            this.ViewModel.AjouterSnowboard((SnowboardRequete)row.DataContext);
+            var row = (DataGridRow)sender;
+            this.ViewModel.AjouterSnowboard((DynamicStockSnowboard)row.DataContext);
         }
 
     }

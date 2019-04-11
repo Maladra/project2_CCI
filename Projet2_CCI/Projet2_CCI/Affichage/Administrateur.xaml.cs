@@ -20,9 +20,6 @@ namespace Projet2_CCI
         private void loadUserList()
         {
             usersList = RequeteSqlUser.SQLiteListUsers();
-
-
-            // COMMUNICATION AVEC INTERFACE
             this.listeUtilisateurs.ItemsSource = usersList;
         }
 
@@ -34,19 +31,15 @@ namespace Projet2_CCI
 
             if (user != null)
             {
-                // Message Box de suppression de l'utilisateur selectionné
                 var res = MessageBox.Show(this, "Confirmation suppression utilisateur", "Confirmation suppression", MessageBoxButton.OKCancel,
                 MessageBoxImage.Question);
-
                 if (res == MessageBoxResult.OK)
                 {
                     MessageBox.Show(RequeteSqlUser.SQLiteDeleteUser(user));
                     loadUserList();
-
                 }
                 else
                 {
-
                 }
             }
             else
@@ -80,7 +73,6 @@ namespace Projet2_CCI
         {
             var user = (Employe)this.listeUtilisateurs.SelectedItem;
             deleteUser(user);
-
         }
 
         /// <summary>

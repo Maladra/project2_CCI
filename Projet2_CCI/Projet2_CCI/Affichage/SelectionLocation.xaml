@@ -54,11 +54,14 @@
                   x:Name="listeLocation">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Stock}"/>
             </DataGrid.Columns>
             
             
              
         </DataGrid>
+        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="250,253,0,0" VerticalAlignment="Top"/>
+        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="308,313,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

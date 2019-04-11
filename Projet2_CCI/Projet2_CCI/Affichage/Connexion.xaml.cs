@@ -22,7 +22,8 @@ namespace Projet2_CCI.Affichage
     public partial class Connexion : Window
     {
         /// <summary>
-        /// Realise la connexion a l'application
+        /// Prend deux strings (Login user et Password user) test la presence et la concordance des champs
+        /// avec un utilisateur dans la DB et gere la connexion
         /// </summary>
         private void procConnexion()
         {
@@ -54,9 +55,6 @@ namespace Projet2_CCI.Affichage
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Réalise la connexion de l'utilisateur a l'application
-        /// </summary>
         private void Button_Connexion_Click(object sender, RoutedEventArgs e)
         {
             procConnexion();

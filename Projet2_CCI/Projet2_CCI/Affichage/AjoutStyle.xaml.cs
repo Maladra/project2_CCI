@@ -47,10 +47,6 @@ namespace Projet2_CCI
         {
             ajouterStyle();
         }
-
-        /// <summary>
-        /// ANNULE ET FERME LA FENETRE
-        /// </summary>
         private void Button_Retour_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

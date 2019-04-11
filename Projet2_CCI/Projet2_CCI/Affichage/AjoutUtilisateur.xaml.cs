@@ -23,7 +23,8 @@ namespace Projet2_CCI
     public partial class AjoutUtilisateur : Window
     {
         /// <summary>
-        /// Ajoute un Utilisateur dans la base de donnee
+        /// Ajoute un Utilisateur dans la base de donnee verifie les champs et 
+        /// insert dans la BD si tous les champs sont valides
         /// </summary>
         private void addUser()
         {
@@ -33,9 +34,6 @@ namespace Projet2_CCI
             string loginEmploye = login.Text;
             string passwordEmploye = password.Text;
             string groupeEmploye = listeGroupe.Text;
-            /// <summary>
-            ///  VERIFIE LES CHAMPS ET INSERT USER DANS LA BD SI all champ sont valides
-            /// </summary>
             if (UtilsClass.VerifString(nomEmploye, prenomEmploye, loginEmploye, passwordEmploye, groupeEmploye))
             {
 

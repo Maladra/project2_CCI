@@ -12,16 +12,13 @@ namespace Projet2_CCI.Donnee
     /// </summary>
     public class SnowboardRequete : Snowboard
     {
-            public int Stock { get; set; }
+        public int Stock { get; set; }
 
-            // CONSTRUCTEUR
-            public SnowboardRequete(string nom, string marque, string genre, string niveau, string style, int prixEuro, int prixDollar, int stock) : base(nom, marque, genre, niveau, style, prixEuro, prixDollar)
-            {
-                this.Stock = stock;
-            }
-
-        public SnowboardRequete Clone()
-        => new SnowboardRequete(this.Nom, this.Marque, this.Genre, this.Niveau, this.Style, this.PrixEuro, this.PrixDollar, this.Stock);
+        // CONSTRUCTEUR
+        public SnowboardRequete(string nom, string marque, string genre, string niveau, string style, int prixEuro, int prixDollar, int stock) : base(nom, marque, genre, niveau, style, prixEuro, prixDollar)
+        {
+            this.Stock = stock;
+        }
     }
 }
 

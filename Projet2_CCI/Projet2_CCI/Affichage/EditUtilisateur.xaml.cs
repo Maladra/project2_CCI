@@ -21,7 +21,7 @@ namespace Projet2_CCI.Affichage
     public partial class EditUtilisateur : Window
     {
         Employe userBefore;
-        // TODO : EDITION UTILISATEUR
+        // TODO : EDITION UTILISATEUR ET VERIFICATION DES CHAMPS
         public EditUtilisateur(Employe user)
         {
             this.userBefore = user;
