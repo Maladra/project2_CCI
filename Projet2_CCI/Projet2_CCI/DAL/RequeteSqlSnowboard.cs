@@ -40,10 +40,10 @@ namespace Projet2_CCI.DAL
                     string genreSnowboard = SQLiteReader["Genre"].ToString();
                     string niveauSnowboard = SQLiteReader["Niveau"].ToString();
                     string styleSnowboard = SQLiteReader["Style"].ToString();
-                    string prixSnowboarEuro = SQLiteReader["Prix_euro"].ToString();
-                    string prixSnowboarDollar = SQLiteReader["Prix_euro"].ToString();
-                    int prixSnowboardEuroDecimal = int.Parse(prixSnowboarEuro);
-                    int prixSnowboardDollarDecimal = int.Parse(prixSnowboarDollar);
+                    decimal prixSnowboarEuro = (decimal)SQLiteReader["Prix_euro"];
+                    decimal prixSnowboarDollar = (decimal)SQLiteReader["Prix_dollar"];
+                    decimal prixSnowboardEuroDecimal = prixSnowboarEuro/100;
+                    decimal prixSnowboardDollarDecimal = prixSnowboarDollar/100;
                     long stockSnowboard = (long)SQLiteReader["Stock"];
                     snowboardListe.Add(new SnowboardRequeteId(idSnowboard,nomSnowboard, marqueSnowboard, 
                         genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardEuroDecimal, 

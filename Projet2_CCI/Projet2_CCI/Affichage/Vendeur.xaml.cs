@@ -25,6 +25,15 @@ namespace Projet2_CCI.Affichage
     /// </summary>
     public partial class Vendeur : Window
     {
+
+        ObservableCollection<Donnee.SnowboardRequeteId> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
+        private void loadSnowboardList()
+        {
+            this.snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
+            this.stockAffichage.ItemsSource = snowboardListe;
+        }
+
+
         string _login = string.Empty;
         public Vendeur(string login)
         {
@@ -36,10 +45,6 @@ namespace Projet2_CCI.Affichage
             this.selectionLocation.dateFin.DisplayDateStart = DateTime.UtcNow.AddDays(1);
 
 
-
-
-            //this.selectionLocation.hourPicker
-            ObservableCollection<Donnee.SnowboardRequeteId> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
             this.selectionLocation.DataContext = new SelectionLocationViewModel(snowboardListe);
             this.stockAffichage.ItemsSource = snowboardListe;
             _login = login;
@@ -60,8 +65,10 @@ namespace Projet2_CCI.Affichage
 
         private void Button_ajoutSnowboard_Click(object sender, RoutedEventArgs e)
         {
+            // TODO: SI deja presente ajoute au Stock plutôt que nouvelle planche
             AjoutSnowboard ajoutSnowboard = new AjoutSnowboard();
             ajoutSnowboard.ShowDialog();
+            loadSnowboardList();
         }
 
         private void ButtonPassword_Click(object sender, RoutedEventArgs e)

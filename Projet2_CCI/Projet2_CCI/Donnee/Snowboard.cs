@@ -13,11 +13,11 @@ namespace Projet2_CCI
         public string Genre { get; set; } // sexe homme femme enfant
         public string Niveau { get; set; } // debutant intermediaire expert
         public string Style { get; set; } // Freestyle Park, freeride, carving, polyvalent
-        public int PrixEuro { get; set; }
-        public int PrixDollar { get; set; }
+        public decimal PrixEuro { get; set; }
+        public decimal PrixDollar { get; set; }
 
         // CONSTRUCTEUR
-        public Snowboard(string nom, string marque, string genre, string niveau, string style, int prixEuro, int prixDollar)
+        public Snowboard(string nom, string marque, string genre, string niveau, string style, decimal prixEuro, decimal prixDollar)
         {
             this.Nom = nom;
             this.Marque = marque;

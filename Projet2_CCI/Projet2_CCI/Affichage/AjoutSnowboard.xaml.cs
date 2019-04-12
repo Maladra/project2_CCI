@@ -16,7 +16,6 @@ namespace Projet2_CCI.Affichage
         /// <summary>
         /// Ajoute un snowboard dans la base de donnee
         /// </summary>
-        // TODO : FAIRE LA MEME POUR L'AFFICHAGE DU PRIX
         private void addSnowboard()
         {
             string nomSnowboard = this.nomSnowboard.Text;
@@ -133,9 +132,10 @@ namespace Projet2_CCI.Affichage
                 int prixDollarFinal = Convert.ToInt32(prixDollarSnowboardRounded * 100);
                 SnowboardRequete snowboard = new SnowboardRequete(nomSnowboard, marqueSnowboard.idMarque, genreSnowboard.idGenre,
                     niveauSnowboard.idNiveau, styleSnowboard.idStyle, prixEuroFinal, prixDollarFinal, stockSnowboard);
+                // TODO : INSERT PROPRE SI Planche est deja presente augmenter le stock
                 RequeteSqlSnowboard.SQLAddSnowboard(snowboard);
-                MessageBox.Show(prixEuroSnowboard.ToString());              
-                // TODO : INSERT
+                MessageBox.Show("Le snowboard a été rajouté");
+                
             }
             else
             {

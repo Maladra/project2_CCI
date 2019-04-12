@@ -20,7 +20,6 @@ namespace Projet2_CCI.Affichage
 
     public class DynamicStockSnowboard : ViewModelBase
     {
-        
         private int stock;
         public long Id { get; }
         public string Nom { get; }
@@ -32,7 +31,7 @@ namespace Projet2_CCI.Affichage
             this.Id = snowboard.Id;
             this.Nom = snowboard.Nom;
             this.Stock = 0;
-            
+
 
         }
         public DynamicStockSnowboard(SnowboardRequeteId snowboard)
@@ -90,22 +89,24 @@ namespace Projet2_CCI.Affichage
         public void RemoveSnowboard(DynamicStockSnowboard snowboard)
         {
             snowboard.Stock--;
-            
+
             if (snowboard.Stock == 0)
             {
                 this.LocationListe.Remove(snowboard);
             }
-            
+
             var snowboardStock = this.StockTempSnowboard
                 .Where(s => s.Id == snowboard.Id)
                 .Single();
             snowboardStock.Stock++;
         }
 
-        public void Valider(string nomClient, string prenomClient, DateTime dateDebut, DateTime dateFin  )
+        public void Valider()
         {
-            MessageBox.Show(dateDebut.ToLongDateString());
+
+
         }
+
     }
     /// <summary>
     /// Logique d'interaction pour SelectionLocation.xaml
@@ -118,8 +119,87 @@ namespace Projet2_CCI.Affichage
             InitializeComponent();
         }
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
-            => this.ViewModel.Valider(this.nomClient.Text, this.prenomClient.Text, this.dateDebut.DisplayDate, this.dateFin.DisplayDate);
+        {
+            string txtTva = this.tva.Text;
+            decimal tva = default(decimal);
+            decimal tvaRounded = default(decimal);
 
+            bool verificationForm = true;
+            StringBuilder erreurFormulaire = new StringBuilder();
+            erreurFormulaire.Append("Merci de renseigner :\n");
+
+            // Test la valeur du nom du client
+            if (string.IsNullOrWhiteSpace(this.nomClient.Text))
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Un nom de client\n");
+            }
+
+            if (string.IsNullOrWhiteSpace(this.prenomClient.Text))
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Un prénom de client\n ");
+            }
+            if (string.IsNullOrWhiteSpace(this.moyenPaiement.Text))
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Un moyen de paiement\n");
+            }
+            if (this.dateDebut.SelectedDate == null)
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Une date de debut\n");
+            }
+            if (this.dateFin.SelectedDate == null)
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Une date de fin\n");
+            }
+            if (this.hourPicker.SelectedItem == null || this.minutePicker.SelectedItem == null)
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Une horraire de début\n");
+            }
+
+            // Test la TVA
+            if (string.IsNullOrWhiteSpace(txtTva))
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Une valeur dans la TVA\n");
+            }
+            else if (!decimal.TryParse(txtTva, out tva))
+            {
+
+                verificationForm = false;
+                erreurFormulaire.Append("- Une valeur numérique\n");
+
+            }
+            else
+            {
+                tvaRounded = decimal.Round(tva, 2);
+                if (tva != tvaRounded)
+                {
+                    verificationForm = false;
+                    erreurFormulaire.Append("- Une TVA avec 2 chiffres après la virgule\n");
+                }
+            }
+
+
+
+
+            if (verificationForm)
+            {
+
+                // TODO VALIDATION (SQL)
+                MessageBox.Show(tvaRounded.ToString());
+                //this.ViewModel.Valider();
+            }
+            else
+            {
+                MessageBox.Show(erreurFormulaire.ToString());
+            }
+
+        }
         private void DataGridStock_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var row = (DataGridRow)sender;
@@ -140,7 +220,7 @@ namespace Projet2_CCI.Affichage
         }
 
     }
-  
+
 }
 
 

@@ -13,7 +13,8 @@
             <TabItem Header="Stock matériel">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160*"/>
+                        <ColumnDefinition Width="29*"/>
+                        <ColumnDefinition Width="131*"/>
                         <ColumnDefinition Width="73*"/>
                         <ColumnDefinition Width="20*"/>
                         <ColumnDefinition Width="533*"/>
@@ -23,37 +24,40 @@
                               Margin="10,10,0,0"
                               VerticalAlignment="Top"
                               Width="332"
-                              Grid.ColumnSpan="4"
+                              Grid.ColumnSpan="5"
                               x:Name="stockAffichage"
                               AutoGenerateColumns="False">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                             <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
+                            <DataGridTextColumn Header="Prix en euro" Binding="{Binding PrixEuro}"/>
+                            <DataGridTextColumn Header="Prix en dollar" Binding="{Binding PrixDollar}"/>
 
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button Content="Ajouter un snowboard"
-                            Grid.Column="3"
+                            Grid.Column="4"
                             HorizontalAlignment="Left" 
                             Margin="238,255,0,0" 
                             VerticalAlignment="Top" 
                             Width="177" 
                             Click="Button_ajoutSnowboard_Click"/>
                     <Button Content="Ajouter une marque de snowboard" 
-                            Grid.Column="3" 
+                            Grid.Column="4" 
                             HorizontalAlignment="Left" 
                             Margin="238,305,0,0" 
                             VerticalAlignment="Top" 
                             Width="196" 
                             Click="Button_ajoutMarque_Click"/>
                     <Button Content="Ajouter un style de snowboard" 
-                            Grid.Column="3" 
+                            Grid.Column="4" 
                             HorizontalAlignment="Left" 
                             Margin="238,280,0,0" 
                             VerticalAlignment="Top" 
                             Width="177" 
                             Click="Button_ajoutStyle_Click"/>
                     <Button Content="Changer mon password"
-                            Grid.Column="3"
+                            Grid.Column="4"
                             HorizontalAlignment="Left" 
                             Margin="338,25,0,0" 
                             VerticalAlignment="Top" 
