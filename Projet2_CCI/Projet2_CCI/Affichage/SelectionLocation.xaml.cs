@@ -20,6 +20,7 @@ namespace Projet2_CCI.Affichage
 
     public class DynamicStockSnowboard : ViewModelBase
     {
+        
         private int stock;
         public long Id { get; }
         public string Nom { get; }
@@ -46,7 +47,6 @@ namespace Projet2_CCI.Affichage
             set { this.stock = value; this.OnPropertyChange(); }
         }
     }
-
     public class SelectionLocationViewModel : ViewModelBase
     {
         public ObservableCollection<DynamicStockSnowboard> StockTempSnowboard { get; }
@@ -71,7 +71,6 @@ namespace Projet2_CCI.Affichage
 
             snowboard.Stock--;
 
-
             if (!this.LocationListe.Any(s => s.Id == snowboard.Id))
             {
                 DynamicStockSnowboard snowboardLocation = new DynamicStockSnowboard(snowboard);
@@ -86,6 +85,20 @@ namespace Projet2_CCI.Affichage
                 snowboardLocation.Stock++;
             }
             return true;
+        }
+        public void RemoveSnowboard(DynamicStockSnowboard snowboard)
+        {
+            snowboard.Stock--;
+            
+            if (snowboard.Stock == 0)
+            {
+                this.LocationListe.Remove(snowboard);
+            }
+            
+            var snowboardStock = this.StockTempSnowboard
+                .Where(s => s.Id == snowboard.Id)
+                .Single();
+            snowboardStock.Stock++;
         }
 
         public void Valider()
@@ -118,8 +131,16 @@ namespace Projet2_CCI.Affichage
         private void DataGridLocation_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var row = (DataGridRow)sender;
-            
+            this.ViewModel.RemoveSnowboard((DynamicStockSnowboard)row.DataContext);
+
+
+
+
         }
 
     }
+  
 }
+
+
+// TODO : Pouvoir rentrer une value plutôt que Double Click

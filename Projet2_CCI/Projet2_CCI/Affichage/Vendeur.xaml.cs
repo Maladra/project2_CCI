@@ -4,6 +4,7 @@ using Projet2_CCI.Donnee;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 namespace Projet2_CCI.Affichage
@@ -27,10 +28,19 @@ namespace Projet2_CCI.Affichage
         public Vendeur(string login)
         {
             InitializeComponent();
+            this.selectionLocation.hourPicker.ItemsSource = Enumerable.Range(0, 24);
+            this.selectionLocation.minutePicker.ItemsSource = Enumerable.Range(0, 60);
+            this.selectionLocation.moyenPaiement.ItemsSource = new string[] { "Carte Bleue", "Espèce", "Chèque" };
+
+
+
+
+            //this.selectionLocation.hourPicker
             ObservableCollection<Donnee.SnowboardRequeteId> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
             this.selectionLocation.DataContext = new SelectionLocationViewModel(snowboardListe);
             this.stockAffichage.ItemsSource = snowboardListe;
             _login = login;
+            
         }
 
         private void Button_ajoutMarque_Click(object sender, RoutedEventArgs e)
@@ -55,7 +65,6 @@ namespace Projet2_CCI.Affichage
         {
             ChangePassword changePassword = new ChangePassword(_login);
             changePassword.ShowDialog();
-
         }
     }
 }
