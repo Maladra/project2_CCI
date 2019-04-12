@@ -41,7 +41,8 @@ namespace Projet2_CCI.DAL
                             utilisateurConnexion.Nom = (string)SQLiteReaderUser["Nom"];
                             utilisateurConnexion.Prenom = (string)SQLiteReaderUser["Prenom"];
                             utilisateurConnexion.Groupe = (string)SQLiteReaderUser["Groupe"];
-                            utilisateurConnexion.Login = (string)SQLiteReaderUser["Login"];
+                            utilisateurConnexion.Login = username;
+
                         }
                         else return null;
 

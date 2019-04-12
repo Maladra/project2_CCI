@@ -32,6 +32,7 @@ namespace Projet2_CCI.Affichage
             this.Id = snowboard.Id;
             this.Nom = snowboard.Nom;
             this.Stock = 0;
+            
 
         }
         public DynamicStockSnowboard(SnowboardRequeteId snowboard)
@@ -101,9 +102,9 @@ namespace Projet2_CCI.Affichage
             snowboardStock.Stock++;
         }
 
-        public void Valider()
+        public void Valider(string nomClient, string prenomClient, DateTime dateDebut, DateTime dateFin  )
         {
-
+            MessageBox.Show(dateDebut.ToLongDateString());
         }
     }
     /// <summary>
@@ -117,7 +118,7 @@ namespace Projet2_CCI.Affichage
             InitializeComponent();
         }
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
-            => this.ViewModel.Valider();
+            => this.ViewModel.Valider(this.nomClient.Text, this.prenomClient.Text, this.dateDebut.DisplayDate, this.dateFin.DisplayDate);
 
         private void DataGridStock_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

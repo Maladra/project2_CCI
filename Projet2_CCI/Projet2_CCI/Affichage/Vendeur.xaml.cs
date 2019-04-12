@@ -1,6 +1,7 @@
 ﻿using Projet2_CCI.Affichage;
 using Projet2_CCI.DAL;
 using Projet2_CCI.Donnee;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -31,6 +32,8 @@ namespace Projet2_CCI.Affichage
             this.selectionLocation.hourPicker.ItemsSource = Enumerable.Range(0, 24);
             this.selectionLocation.minutePicker.ItemsSource = Enumerable.Range(0, 60);
             this.selectionLocation.moyenPaiement.ItemsSource = new string[] { "Carte Bleue", "Espèce", "Chèque" };
+            this.selectionLocation.dateDebut.DisplayDateStart = DateTime.UtcNow;
+            this.selectionLocation.dateFin.DisplayDateStart = DateTime.UtcNow.AddDays(1);
 
 
 

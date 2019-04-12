@@ -17,9 +17,28 @@
         <Label Content="Date début :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,222,0,0"/>
         <Label Content="Date fin :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,267,0,0"/>
         <Button Content="Valider" Grid.Column="1" HorizontalAlignment="Left" Margin="250,343,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="233,102,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="233,143,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="233,202,0,0" VerticalAlignment="Top" Width="120" x:Name="moyenPaiement"/>
+        <TextBox x:Name="nomClient"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="233,102,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="120"/>
+        <TextBox x:Name="prenomClient"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="233,143,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="120"/>
+        <ComboBox Grid.Column="1"
+                  HorizontalAlignment="Left"
+                  Margin="233,202,0,0"
+                  VerticalAlignment="Top" 
+                  Width="120" 
+                  x:Name="moyenPaiement"/>
         <DataGrid Grid.Column="1"
                   HorizontalAlignment="Left"
                   Height="430"
@@ -31,11 +50,12 @@
                   ItemsSource="{Binding StockTempSnowboard}"
                   x:Name="stockSnowboard">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                 <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
                 <DataGridTextColumn Header="Marque" Binding="{Binding Marque}"/>
                 <DataGridTextColumn Header="Style" Binding="{Binding Style}"/>
+                <DataGridTextColumn Header="Genre" Binding="{Binding Genre}"/>
+                
 
             </DataGrid.Columns>
             <DataGrid.RowStyle>
@@ -44,7 +64,7 @@
                 </Style>
             </DataGrid.RowStyle>
         </DataGrid>
-        
+
         <DataGrid Grid.Column="1"
                   HorizontalAlignment="Left"
                   Height="430"
@@ -56,9 +76,9 @@
                   ItemsSource="{Binding LocationListe}"
                   x:Name="listeLocation">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                 <DataGridTextColumn Header="Reservé" Binding="{Binding Stock}"/>
+                <DataGridTextColumn Header="Marque" Binding="{Binding Marque}"/>
             </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
@@ -66,10 +86,22 @@
                 </Style>
             </DataGrid.RowStyle>
         </DataGrid>
-        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="233,248,0,0" VerticalAlignment="Top"/>
-        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="233,293,0,0" VerticalAlignment="Top"/>
-        <ComboBox ScrollViewer.CanContentScroll="False" Grid.Column="1" HorizontalAlignment="Left" Margin="409,202,0,0" VerticalAlignment="Top" Width="120" x:Name="hourPicker"/>
-        <ComboBox ScrollViewer.CanContentScroll="False" Grid.Column="1" HorizontalAlignment="Left" Margin="409,260,0,0" VerticalAlignment="Top" Width="120" x:Name="minutePicker"/>
+        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="233,248,0,0" VerticalAlignment="Top" x:Name="dateDebut"/>
+        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="233,293,0,0" VerticalAlignment="Top" x:Name="dateFin"/>
+        <ComboBox ScrollViewer.CanContentScroll="False"
+                  Grid.Column="1" 
+                  HorizontalAlignment="Left" 
+                  Margin="409,202,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="120" 
+                  x:Name="hourPicker"/>
+        <ComboBox ScrollViewer.CanContentScroll="False" 
+                  Grid.Column="1" 
+                  HorizontalAlignment="Left" 
+                  Margin="409,260,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="120" 
+                  x:Name="minutePicker"/>
         <Label Content="Heure Debut :" Grid.Column="1" HorizontalAlignment="Left" Margin="409,171,0,0" VerticalAlignment="Top"/>
         <Label Content="Minute Debut :" Grid.Column="1" HorizontalAlignment="Left" Margin="409,229,0,0" VerticalAlignment="Top"/>
 
