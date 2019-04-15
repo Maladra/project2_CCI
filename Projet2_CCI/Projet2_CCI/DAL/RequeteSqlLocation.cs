@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,7 +18,12 @@ namespace Projet2_CCI.DAL
 
         public bool LocationSnowboard(Location location)
         {
-            return true;
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
+            {
+                //string creatiionSnowboard = 
+            }
+                return true;
         }
     }
 

@@ -9,9 +9,6 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.DAL
 {
-
-
-
     [Serializable]
     public class LoginExistentException : Exception
     {
@@ -22,8 +19,6 @@ namespace Projet2_CCI.DAL
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
-
-
 
     class RequeteSqlUser
     {

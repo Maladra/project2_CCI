@@ -31,8 +31,6 @@ namespace Projet2_CCI.Affichage
             this.Id = snowboard.Id;
             this.Nom = snowboard.Nom;
             this.Stock = 0;
-
-
         }
         public DynamicStockSnowboard(SnowboardRequeteId snowboard)
         {
@@ -59,7 +57,7 @@ namespace Projet2_CCI.Affichage
             this.LocationListe = new ObservableCollection<DynamicStockSnowboard>();
         }
         /// <summary>
-        /// Si true => ajout de la planche a a la location
+        /// Si true => ajout de la planche a la location
         /// SI false => fais rien et retourne un message
         /// </summary>
         public bool AjouterSnowboard(DynamicStockSnowboard snowboard)
