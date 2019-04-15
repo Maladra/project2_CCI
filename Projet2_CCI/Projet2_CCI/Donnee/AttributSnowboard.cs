@@ -2,9 +2,9 @@
 {
     class AttributSnowboard
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Nom { get; set; }
-        public AttributSnowboard(string id, string nom)
+        public AttributSnowboard(int id, string nom)
         {
             this.Id = id;
             this.Nom = nom;

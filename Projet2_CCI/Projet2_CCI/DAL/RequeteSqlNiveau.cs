@@ -23,7 +23,7 @@ namespace Projet2_CCI.DAL
                 List<Niveau> listeNiveau = new List<Niveau>();
                 while (sqliteReader.Read())
                 {
-                    string Id = sqliteReader["Id_niveau"].ToString();
+                    int Id = (int)(long)sqliteReader["Id_niveau"];
                     string nomNiveau = sqliteReader["Niveau"].ToString();
                     Niveau niveau = new Niveau(Id, nomNiveau);
                     listeNiveau.Add(niveau);

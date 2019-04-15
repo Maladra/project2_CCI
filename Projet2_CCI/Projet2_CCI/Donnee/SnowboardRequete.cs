@@ -20,7 +20,6 @@ namespace Projet2_CCI.Donnee
             decimal prixEuro, decimal prixDollar, int stock) :
             base(nom, marque, genre, niveau, style, prixEuro, prixDollar)
         {
-
             this.Stock = stock;
         }
     }

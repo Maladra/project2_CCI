@@ -8,7 +8,7 @@ namespace Projet2_CCI.Donnee
 {
     class Niveau : AttributSnowboard
     {
-        public Niveau (string Id, string nomNiveau)
+        public Niveau (int Id, string nomNiveau)
             :base (Id, nomNiveau)
         {
 

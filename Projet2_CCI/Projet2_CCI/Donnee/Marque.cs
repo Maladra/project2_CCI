@@ -2,7 +2,7 @@
 {
     class Marque : AttributSnowboard
     {
-        public Marque(string idMarque, string nomMarque)
+        public Marque(int idMarque, string nomMarque)
         : base(idMarque, nomMarque) { }
     }
 }

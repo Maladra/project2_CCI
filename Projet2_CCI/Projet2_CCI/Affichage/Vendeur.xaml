@@ -32,6 +32,9 @@
                             <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
                             <DataGridTextColumn Header="Prix en euro" Binding="{Binding PrixEuro}"/>
                             <DataGridTextColumn Header="Prix en dollar" Binding="{Binding PrixDollar}"/>
+                            <DataGridTextColumn Header="Marque" Binding="{Binding Marque}"/>
+                            <DataGridTextColumn Header="Style" Binding="{Binding Style}"/>
+                            <DataGridTextColumn Header="Genre" Binding="{Binding Genre}"/>
 
                         </DataGrid.Columns>
                     </DataGrid>

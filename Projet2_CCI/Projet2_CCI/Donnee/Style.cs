@@ -8,7 +8,7 @@ namespace Projet2_CCI.Donnee
 {
     class Style : AttributSnowboard
     {
-        public Style(string Id, string nomStyle)
+        public Style(int Id, string nomStyle)
             :base(Id, nomStyle)
         {
 

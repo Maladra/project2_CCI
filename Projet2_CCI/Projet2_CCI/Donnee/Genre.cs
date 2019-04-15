@@ -9,7 +9,7 @@ namespace Projet2_CCI.Donnee
     class Genre : AttributSnowboard
     {
 
-        public Genre(string Id, string nomGenre)
+        public Genre(int Id, string nomGenre)
             : base(Id, nomGenre)
         {
         }

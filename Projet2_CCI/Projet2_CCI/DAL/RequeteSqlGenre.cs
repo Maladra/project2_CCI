@@ -23,9 +23,9 @@ namespace Projet2_CCI.DAL
                 List<Genre> listeGenre = new List<Genre>();
                 while (sqliteReader.Read())
                 {
-                    string Id = sqliteReader["Id_genre"].ToString();
+                    var id = (int)(long)sqliteReader["Id_genre"];
                     string nomGenre = sqliteReader["Genre"].ToString();
-                    Genre genre = new Genre(Id, nomGenre);
+                    Genre genre = new Genre(id, nomGenre);
                     listeGenre.Add(genre);
                 }
                 return listeGenre;

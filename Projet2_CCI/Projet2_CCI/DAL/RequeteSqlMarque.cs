@@ -57,7 +57,7 @@ namespace Projet2_CCI.DAL
                 List<Marque> listeMarque = new List<Marque>();
                 while (sqliteReader.Read())
                 {
-                    string idMarque = sqliteReader["id_marque"].ToString();
+                    int idMarque = (int)(long)sqliteReader["id_marque"];
                     string nomMarque = sqliteReader["Marque"].ToString();
                     Marque marque = new Marque(idMarque, nomMarque);
                     listeMarque.Add(marque);
