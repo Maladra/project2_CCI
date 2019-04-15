@@ -5,19 +5,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Projet2_CCI.Affichage"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1000">
     <Grid Background="#FFE5E5E5">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="122*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Nom Client :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,71,0,0"/>
-        <Label Content="Prénom Client :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,121,0,0"/>
-        <Label Content="Moyen paiement :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,171,0,0"/>
-        <Label Content="Date début :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,222,0,0"/>
-        <Label Content="Date fin :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,267,0,0"/>
-        <Button Content="Valider" Grid.Column="1" HorizontalAlignment="Left" Margin="250,343,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
-        <TextBox x:Name="nomClient"
+
+
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="122*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Nom Client :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,71,0,0"/>
+            <Label Content="Prénom Client :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,121,0,0"/>
+            <Label Content="Moyen paiement :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,171,0,0"/>
+            <Label Content="Date début :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,222,0,0"/>
+            <Label Content="Date fin :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,267,0,0"/>
+            <TextBox x:Name="nomClient"
                  Grid.Column="1"
                  HorizontalAlignment="Left"
                  Height="23"
@@ -25,7 +33,7 @@
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
                  Width="120"/>
-        <TextBox x:Name="prenomClient"
+            <TextBox x:Name="prenomClient"
                  Grid.Column="1"
                  HorizontalAlignment="Left" 
                  Height="23" 
@@ -33,18 +41,46 @@
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="120"/>
-        <ComboBox Grid.Column="1"
+            <ComboBox Grid.Column="1"
                   HorizontalAlignment="Left"
                   Margin="233,202,0,0"
                   VerticalAlignment="Top" 
                   Width="120" 
-                  x:Name="moyenPaiement"/>
-        <DataGrid Grid.Column="1"
-                  HorizontalAlignment="Left"
-                  Height="430"
-                  Margin="10,10,0,0"
-                  VerticalAlignment="Top"
-                  Width="152"               
+                x:Name="moyenPaiement"/>
+            <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="233,248,0,0" VerticalAlignment="Top" x:Name="dateDebut"/>
+            <Button Content="Valider" Grid.Column="1" HorizontalAlignment="Left" Margin="250,343,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
+            <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="233,293,0,0" VerticalAlignment="Top" x:Name="dateFin"/>
+            <ComboBox ScrollViewer.CanContentScroll="False"
+                  Grid.Column="1" 
+                  HorizontalAlignment="Left" 
+                  Margin="409,202,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="120" 
+                  x:Name="hourPicker"/>
+            <ComboBox ScrollViewer.CanContentScroll="False" 
+                  Grid.Column="1" 
+                  HorizontalAlignment="Left" 
+                  Margin="409,260,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="120" 
+                  x:Name="minutePicker"/>
+            <Label Content="Heure Debut :" Grid.Column="1" HorizontalAlignment="Left" Margin="409,171,0,0" VerticalAlignment="Top"/>
+            <Label Content="Minute Debut :" Grid.Column="1" HorizontalAlignment="Left" Margin="409,229,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="tva"
+                 Text="19,6"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="444,317,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="120"/>
+            <Label Content="TVA :" Grid.Column="1" HorizontalAlignment="Left" Margin="401,314,0,0" VerticalAlignment="Top"/>
+        </Grid >
+        
+        
+        
+        <DataGrid Grid.Column="0"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding StockTempSnowboard}"
@@ -65,12 +101,8 @@
             </DataGrid.RowStyle>
         </DataGrid>
 
-        <DataGrid Grid.Column="1"
-                  HorizontalAlignment="Left"
-                  Height="430"
-                  Margin="635,10,0,0"
-                  VerticalAlignment="Top"
-                  Width="100"
+        <DataGrid Grid.Column="2"
+                  MinWidth="200"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding LocationListe}"
@@ -79,6 +111,7 @@
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                 <DataGridTextColumn Header="Reservé" Binding="{Binding Stock}"/>
                 <DataGridTextColumn Header="Marque" Binding="{Binding Marque}"/>
+                <DataGridTextColumn Header="Style" Binding="{Binding Style}"/>
             </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
@@ -86,34 +119,7 @@
                 </Style>
             </DataGrid.RowStyle>
         </DataGrid>
-        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="233,248,0,0" VerticalAlignment="Top" x:Name="dateDebut"/>
-        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="233,293,0,0" VerticalAlignment="Top" x:Name="dateFin"/>
-        <ComboBox ScrollViewer.CanContentScroll="False"
-                  Grid.Column="1" 
-                  HorizontalAlignment="Left" 
-                  Margin="409,202,0,0" 
-                  VerticalAlignment="Top" 
-                  Width="120" 
-                  x:Name="hourPicker"/>
-        <ComboBox ScrollViewer.CanContentScroll="False" 
-                  Grid.Column="1" 
-                  HorizontalAlignment="Left" 
-                  Margin="409,260,0,0" 
-                  VerticalAlignment="Top" 
-                  Width="120" 
-                  x:Name="minutePicker"/>
-        <Label Content="Heure Debut :" Grid.Column="1" HorizontalAlignment="Left" Margin="409,171,0,0" VerticalAlignment="Top"/>
-        <Label Content="Minute Debut :" Grid.Column="1" HorizontalAlignment="Left" Margin="409,229,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tva"
-                 Text="19,6"
-                 Grid.Column="1"
-                 HorizontalAlignment="Left"
-                 Height="23"
-                 Margin="444,317,0,0"
-                 TextWrapping="Wrap"
-                 VerticalAlignment="Top"
-                 Width="120"/>
-        <Label Content="TVA :" Grid.Column="1" HorizontalAlignment="Left" Margin="401,314,0,0" VerticalAlignment="Top"/>
+       
 
     </Grid>
 </UserControl>

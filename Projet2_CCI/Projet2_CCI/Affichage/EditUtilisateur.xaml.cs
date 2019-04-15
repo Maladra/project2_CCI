@@ -20,8 +20,54 @@ namespace Projet2_CCI.Affichage
     /// </summary>
     public partial class EditUtilisateur : Window
     {
+
+        public void editUser()
+        {
+            bool verificationForm = true;
+            StringBuilder erreurFormulaire = new StringBuilder();
+            erreurFormulaire.AppendLine("Le(s) champs suivants sont vide :");
+            if (string.IsNullOrWhiteSpace(this.nomUtilisateur.Text))
+            {
+                verificationForm = false;
+                erreurFormulaire.AppendLine("- Nom d'utilisateur");
+            }
+            if (string.IsNullOrWhiteSpace(this.prenomUtilisateur.Text))
+            {
+                verificationForm = false;
+                erreurFormulaire.AppendLine("- Prénom d'utilisateur");
+            }
+            if (string.IsNullOrWhiteSpace(this.loginUtilisateur.Text))
+            {
+                verificationForm = false;
+                erreurFormulaire.AppendLine("- Login de l'utilisateur");
+            }
+            if (string.IsNullOrWhiteSpace(this.groupeUtilisateur.Text))
+            {
+                verificationForm = false;
+                erreurFormulaire.AppendLine("- Groupe de l'utilisateur");
+            }
+
+            if (!verificationForm)
+            {
+                MessageBox.Show(erreurFormulaire.ToString());
+            }
+            else
+            {
+                Employe userAfter = new Employe(this.nomUtilisateur.Text, this.prenomUtilisateur.Text, this.loginUtilisateur.Text, this.passwordUtilisateur.Text, this.groupeUtilisateur.Text);
+                try
+                {
+                    RequeteSqlUser.SQLiteEditUser(this.userBefore, userAfter);
+                    MessageBox.Show("Utilisateur édité.");
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur pendant l'édition de l'utilisateur : " + ex.Message);
+                }
+            }
+        }
         Employe userBefore;
-        // TODO : EDITION UTILISATEUR ET VERIFICATION DES CHAMPS
+        // TODO : VERIFICATION DES CHAMPS
         public EditUtilisateur(Employe user)
         {
             this.userBefore = user;
@@ -34,18 +80,7 @@ namespace Projet2_CCI.Affichage
 
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
         {
-            Employe userAfter = new Employe(this.nomUtilisateur.Text, this.nomUtilisateur.Text, this.loginUtilisateur.Text, this.passwordUtilisateur.Text, this.groupeUtilisateur.Text);
-            try
-            {
-                RequeteSqlUser.SQLiteEditUser(this.userBefore, userAfter);
-                MessageBox.Show("Utilisateur édité.");
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur pendant l'édition de l'utilisateur : " + ex.Message);
-            }
-
+            editUser();
         }
 
         private void ButtonRetour_Click(object sender, RoutedEventArgs e)
