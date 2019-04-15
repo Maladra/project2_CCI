@@ -6,20 +6,12 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.Donnee
 {
-    class Niveau
+    class Niveau : AttributSnowboard
     {
-        public string idNiveau { get; set; }
-        public string nomNiveau { get; set; }
-
-        public Niveau (string idNiveau, string nomNiveau)
+        public Niveau (string Id, string nomNiveau)
+            :base (Id, nomNiveau)
         {
-            this.idNiveau = idNiveau;
-            this.nomNiveau = nomNiveau;
-        }
 
-        public override string ToString()
-        {
-            return nomNiveau;
         }
     }
 }

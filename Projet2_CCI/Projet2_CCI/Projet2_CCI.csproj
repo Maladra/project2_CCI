@@ -108,6 +108,7 @@
     <Compile Include="DAL\RequeteSqlSnowboard.cs" />
     <Compile Include="DAL\RequeteSqlStyle.cs" />
     <Compile Include="DAL\RequeteSqlUser.cs" />
+    <Compile Include="Donnee\AttributSnowboard.cs" />
     <Compile Include="Donnee\UtilisateurRequete.cs" />
     <Compile Include="Donnee\Genre.cs" />
     <Compile Include="Donnee\Location.cs" />

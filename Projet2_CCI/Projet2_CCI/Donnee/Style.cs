@@ -6,19 +6,13 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.Donnee
 {
-    class Style
+    class Style : AttributSnowboard
     {
-        public string idStyle { get; set; }
-        public string nomStyle { get; set; }
+        public Style(string Id, string nomStyle)
+            :base(Id, nomStyle)
+        {
 
-        public Style(string idStyle, string nomStyle)
-        {
-            this.idStyle = idStyle;
-            this.nomStyle = nomStyle;
         }
-        public override string ToString()
-        {
-            return nomStyle;
-        }
+            
     }
 }

@@ -54,9 +54,9 @@ namespace Projet2_CCI.DAL
                 List<Style> listeStyle = new List<Style>();
                 while (sqliteReader.Read())
                 {
-                    string idStyle = sqliteReader["Id_style"].ToString();
+                    string Id = sqliteReader["Id_style"].ToString();
                     string styleNom = sqliteReader["Style"].ToString();
-                    Style style = new Style(idStyle, styleNom);
+                    Style style = new Style(Id, styleNom);
                     listeStyle.Add(style);
                 }
                 return listeStyle;

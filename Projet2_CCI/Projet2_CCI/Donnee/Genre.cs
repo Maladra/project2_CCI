@@ -6,19 +6,12 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.Donnee
 {
-    class Genre
+    class Genre : AttributSnowboard
     {
-        public string idGenre { get; set; }
-        public string nomGenre { get; set; }
 
-        public Genre (string idGenre, string nomGenre)
+        public Genre(string Id, string nomGenre)
+            : base(Id, nomGenre)
         {
-            this.idGenre = idGenre;
-            this.nomGenre = nomGenre;
-        }
-        public override string ToString()
-        {
-            return nomGenre;
         }
     }
 }
