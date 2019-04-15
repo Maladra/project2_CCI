@@ -21,6 +21,8 @@ namespace Projet2_CCI.Affichage
     public class DynamicStockSnowboard : ViewModelBase
     {
         private int stock;
+        public decimal PrixSnowboardEuro;
+        public decimal PrixSnowboardDollar;
         public long Id { get; }
         public string Nom { get; }
         /// <summary>
@@ -30,12 +32,16 @@ namespace Projet2_CCI.Affichage
         {
             this.Id = snowboard.Id;
             this.Nom = snowboard.Nom;
+            this.PrixSnowboardEuro = snowboard.PrixSnowboardEuro;
+            this.PrixSnowboardDollar = snowboard.PrixSnowboardDollar;
             this.Stock = 0;
         }
         public DynamicStockSnowboard(SnowboardRequeteId snowboard)
         {
             this.Id = snowboard.IdSnowboard;
             this.Nom = snowboard.Nom;
+            this.PrixSnowboardEuro = snowboard.PrixEuro;
+            this.PrixSnowboardDollar = snowboard.PrixDollar;
             this.Stock = snowboard.Stock;
 
         }
@@ -101,8 +107,11 @@ namespace Projet2_CCI.Affichage
 
         public void Valider()
         {
-
-
+            decimal prixTotalEuroSnowboard = this.LocationListe.Select(prixEuroSnow =>
+            prixEuroSnow.PrixSnowboardEuro).Sum();
+            decimal prixTotalDollarSnowboard = this.LocationListe.Select(prixDollarSnow =>
+            prixDollarSnow.PrixSnowboardDollar).Sum();
+            MessageBox.Show(prixTotalEuroSnowboard.ToString());
         }
 
     }
@@ -158,7 +167,6 @@ namespace Projet2_CCI.Affichage
                 verificationForm = false;
                 erreurFormulaire.Append("- Une horraire de début\n");
             }
-
             // Test la TVA
             if (string.IsNullOrWhiteSpace(txtTva))
             {
@@ -182,18 +190,16 @@ namespace Projet2_CCI.Affichage
                 }
             }
 
-
-
-
             if (verificationForm)
             {
-
                 // TODO VALIDATION (SQL)
-                MessageBox.Show(tvaRounded.ToString());
-                //this.ViewModel.Valider();
+                Location location = new Location(this.nomClient.Text, this.prenomClient.Text, this.moyenPaiement.Text,  
+                //MessageBox.Show(this.ViewModel.);
+                this.ViewModel.Valider();
             }
             else
             {
+                
                 MessageBox.Show(erreurFormulaire.ToString());
             }
 

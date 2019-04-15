@@ -16,7 +16,7 @@ namespace Projet2_CCI.Donnee
         public int Stock { get; set; }
 
         // CONSTRUCTEUR
-        public SnowboardRequete(string nom, string marque, string genre, string niveau, string style,
+        public SnowboardRequete(string nom, Marque marque, Genre genre, Niveau niveau, Style style,
             decimal prixEuro, decimal prixDollar, int stock) :
             base(nom, marque, genre, niveau, style, prixEuro, prixDollar)
         {
@@ -28,8 +28,8 @@ namespace Projet2_CCI.Donnee
     {
         public long IdSnowboard { get; set; }
 
-        public SnowboardRequeteId(long idSnowboard, string nom, string marque, string genre,
-            string niveau, string style, decimal prixEuro, decimal prixDollar, int stock) :
+        public SnowboardRequeteId(long idSnowboard, string nom, Marque marque, Genre genre,
+            Niveau niveau, Style style, decimal prixEuro, decimal prixDollar, int stock) :
             base(nom, marque, genre, niveau, style, prixEuro, prixDollar, stock)
         {
             this.IdSnowboard = idSnowboard;

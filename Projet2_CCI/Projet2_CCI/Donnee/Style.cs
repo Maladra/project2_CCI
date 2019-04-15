@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.Donnee
 {
-    class Style : AttributSnowboard
+    public class Style : AttributSnowboard
     {
         public Style(int Id, string nomStyle)
             :base(Id, nomStyle)

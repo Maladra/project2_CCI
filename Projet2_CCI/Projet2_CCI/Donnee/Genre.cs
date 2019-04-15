@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.Donnee
 {
-    class Genre : AttributSnowboard
+    public class Genre : AttributSnowboard
     {
 
         public Genre(int Id, string nomGenre)

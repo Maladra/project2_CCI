@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet2_CCI.Donnee;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,15 @@ namespace Projet2_CCI
     public class Snowboard
     {
         public string Nom { get; set; } // nom du modele
-        public string Marque { get; set; } // marque du snow
-        public string Genre { get; set; } // sexe homme femme enfant
-        public string Niveau { get; set; } // debutant intermediaire expert
-        public string Style { get; set; } // Freestyle Park, freeride, carving, polyvalent
+        public Marque Marque { get; set; } // marque du snow
+        public Genre Genre { get; set; } // sexe homme femme enfant
+        public Niveau Niveau { get; set; } // debutant intermediaire expert
+        public Style Style { get; set; } // Freestyle Park, freeride, carving, polyvalent
         public decimal PrixEuro { get; set; }
         public decimal PrixDollar { get; set; }
 
         // CONSTRUCTEUR
-        public Snowboard(string nom, string marque, string genre, string niveau, string style, decimal prixEuro, decimal prixDollar)
+        public Snowboard(string nom, Marque marque, Genre genre, Niveau niveau, Style style, decimal prixEuro, decimal prixDollar)
         {
             this.Nom = nom;
             this.Marque = marque;

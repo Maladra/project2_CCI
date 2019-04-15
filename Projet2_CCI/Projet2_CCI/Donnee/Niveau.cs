@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.Donnee
 {
-    class Niveau : AttributSnowboard
+    public class Niveau : AttributSnowboard
     {
         public Niveau (int Id, string nomNiveau)
             :base (Id, nomNiveau)

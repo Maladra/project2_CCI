@@ -1,6 +1,6 @@
 ﻿namespace Projet2_CCI.Donnee
 {
-    class AttributSnowboard
+    public class AttributSnowboard
     {
         public int Id { get; set; }
         public string Nom { get; set; }
