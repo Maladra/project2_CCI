@@ -105,8 +105,10 @@ namespace Projet2_CCI.Affichage
             snowboardStock.Stock++;
         }
 
-        public void Valider()
+        public void ValiderLocation(string nomClient, string prenomClient, string moyenPaiement, decimal tva, DateTime debutLocation, DateTime finLocation)
         {
+
+            // Revoir pour prendre en compte le nombre de planche de chaque
             decimal prixTotalEuroSnowboard = this.LocationListe.Select(prixEuroSnow =>
             prixEuroSnow.PrixSnowboardEuro).Sum();
             decimal prixTotalDollarSnowboard = this.LocationListe.Select(prixDollarSnow =>
@@ -125,43 +127,52 @@ namespace Projet2_CCI.Affichage
         {
             InitializeComponent();
         }
-        private void ButtonValider_Click(object sender, RoutedEventArgs e)
+
+        StringBuilder erreurFormulaire = new StringBuilder();
+        private bool ValidationForm()
         {
             string txtTva = this.tva.Text;
             decimal tva = default(decimal);
             decimal tvaRounded = default(decimal);
 
             bool verificationForm = true;
-            StringBuilder erreurFormulaire = new StringBuilder();
+            //StringBuilder erreurFormulaire = new StringBuilder();
             erreurFormulaire.Append("Merci de renseigner :\n");
 
-            // Test la valeur du nom du client
+            // Test le nom du client
             if (string.IsNullOrWhiteSpace(this.nomClient.Text))
             {
                 verificationForm = false;
                 erreurFormulaire.Append("- Un nom de client\n");
             }
 
+            // Test le prenom du client
             if (string.IsNullOrWhiteSpace(this.prenomClient.Text))
             {
                 verificationForm = false;
                 erreurFormulaire.Append("- Un prénom de client\n ");
             }
+
+            // Test le moyen de paiement
             if (string.IsNullOrWhiteSpace(this.moyenPaiement.Text))
             {
                 verificationForm = false;
                 erreurFormulaire.Append("- Un moyen de paiement\n");
             }
+            // Test la date de début
             if (this.dateDebut.SelectedDate == null)
             {
                 verificationForm = false;
                 erreurFormulaire.Append("- Une date de debut\n");
             }
-            if (this.dateFin.SelectedDate == null)
+
+            // Test la date de fin
+            if (this.dateFin.SelectedDate == null || this.dateFin.SelectedDate < this.dateDebut.SelectedDate)
             {
                 verificationForm = false;
-                erreurFormulaire.Append("- Une date de fin\n");
+                erreurFormulaire.Append("- Une date de fin correcte\n");
             }
+            // Test l'heure de debut
             if (this.hourPicker.SelectedItem == null || this.minutePicker.SelectedItem == null)
             {
                 verificationForm = false;
@@ -189,21 +200,32 @@ namespace Projet2_CCI.Affichage
                     erreurFormulaire.Append("- Une TVA avec 2 chiffres après la virgule\n");
                 }
             }
+            return verificationForm;
 
-            if (verificationForm)
+        }
+
+        private void ButtonValider_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+            if (ValidationForm())
             {
                 // TODO VALIDATION (SQL)
-                Location location = new Location(this.nomClient.Text, this.prenomClient.Text, this.moyenPaiement.Text,  
-                //MessageBox.Show(this.ViewModel.);
-                this.ViewModel.Valider();
+                //Location location = new Location(this.nomClient.Text, this.prenomClient.Text, this.moyenPaiement.Text,  
+
+                this.ViewModel.ValiderLocation(this.nomClient.Text, this.nomClient.Text, this.moyenPaiement.Text, Convert.ToDecimal(this.tva.Text),
+                   (DateTime)this.dateDebut.SelectedDate, (DateTime)this.dateFin.SelectedDate);
+
             }
             else
             {
                 
                 MessageBox.Show(erreurFormulaire.ToString());
+                erreurFormulaire.Clear();
             }
 
         }
+
         private void DataGridStock_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var row = (DataGridRow)sender;
