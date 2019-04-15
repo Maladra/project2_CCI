@@ -9,10 +9,15 @@ namespace Projet2_CCI.DAL
     class RequeteSqlLocation
     {
 
-//        public List<Location> SqlListLocation()
-//        {
-//            return aaa;
-//        }
+        public bool SqlListLocation()
+        {
+            return true;
+        }
+
+        public bool LocationSnowboard(Location location)
+        {
+            return true;
+        }
     }
 
 

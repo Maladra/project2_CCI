@@ -35,7 +35,17 @@ namespace Projet2_CCI.Affichage
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
         {
             Employe userAfter = new Employe(this.nomUtilisateur.Text, this.nomUtilisateur.Text, this.loginUtilisateur.Text, this.passwordUtilisateur.Text, this.groupeUtilisateur.Text);
-            RequeteSqlUser.SQLiteEditUser(this.userBefore, userAfter);
+            try
+            {
+                RequeteSqlUser.SQLiteEditUser(this.userBefore, userAfter);
+                MessageBox.Show("Utilisateur édité.");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur pendant l'édition de l'utilisateur : " + ex.Message);
+            }
+
         }
 
         private void ButtonRetour_Click(object sender, RoutedEventArgs e)

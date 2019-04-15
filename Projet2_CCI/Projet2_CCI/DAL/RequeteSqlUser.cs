@@ -9,6 +9,22 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.DAL
 {
+
+
+
+    [Serializable]
+    public class LoginExistentException : Exception
+    {
+        public LoginExistentException() : this("Le login est déja présent") { }
+        public LoginExistentException(string message) : base(message) { }
+        public LoginExistentException(string message, Exception inner) : base(message, inner) { }
+        protected LoginExistentException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+    }
+
+
+
     class RequeteSqlUser
     {
         /// <summary>
@@ -16,7 +32,7 @@ namespace Projet2_CCI.DAL
         /// </summary>
         public static ObservableCollection<Employe> SQLiteListUsers()
         {
-            string connString = ConfigurationManager.AppSettings["connectionString"]; // CONNECTION STRING
+            string connString = ConfigurationManager.AppSettings["connectionString"];
             ObservableCollection<Employe> usersList = new ObservableCollection<Employe>();
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
@@ -37,7 +53,7 @@ namespace Projet2_CCI.DAL
             }
             return usersList;
         }
-        
+
         /// <summary>
         /// Prend un objet employe et l'ajoute dans la BD
         /// </summary>
@@ -92,7 +108,7 @@ namespace Projet2_CCI.DAL
         /// <summary>
         /// Prend 2 classes Employe en parametre et update dans la BD, verifie que le login est toujours unique
         /// </summary>
-        public static bool SQLiteEditUser(Employe employeBefore, Employe employeAfter)
+        public static void SQLiteEditUser(Employe employeBefore, Employe employeAfter)
         {
             // CONNEXION BDD
             string connString = ConfigurationManager.AppSettings["connectionString"];
@@ -105,55 +121,87 @@ namespace Projet2_CCI.DAL
                 SQLiteCommand SQLiteVerificationUser = new SQLiteCommand(queryVerifUser, SQLiteConn);
                 SQLiteVerificationUser.Parameters.AddWithValue("@loginAfter", employeAfter.Login);
 
+                bool existe;
                 using (SQLiteDataReader SQLiteReadUser = SQLiteVerificationUser.ExecuteReader())
+                    existe = SQLiteReadUser.Read();
+
+                // Avec modification de password
+                if (!string.IsNullOrEmpty(employeAfter.Password))
                 {
-                    if (!SQLiteReadUser.Read())
+                    // Generation Salt
+                    byte[] salt = HashingPassword.SaltGeneration();
+                    // Convert en byte array le password
+                    byte[] employePasswordByte = Encoding.UTF8.GetBytes(employeAfter.Password);
+                    // Creation Hash a partir du password et du salt
+                    employePasswordByte = HashingPassword.HashPasswordSalt(employeAfter.Password, salt);
+
+                    // SQL INSERT
+                    if (!existe)
                     {
                         // a finir
-                        if (string.IsNullOrEmpty(employeAfter.Password)) { }
-                        // Generation Salt
-                        byte[] salt = HashingPassword.SaltGeneration();
-                        // Convert en byte array le password
-                        byte[] employePasswordByte = Encoding.UTF8.GetBytes(employeAfter.Password);
-                        // Creation Hash a partir du password et du salt
-                        employePasswordByte = HashingPassword.HashPasswordSalt(employeAfter.Password, salt);
-                        // SQL INSERT
                         string queryInsert = "UPDATE Employe SET Nom=@Nom, Prenom=@Prenom, Login=@loginAfter, Password=@Password, Groupe=@Groupe ,Salt=@Salt WHERE Login=@LoginBefore;";
                         SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
                         SQLiteInsert.Parameters.AddWithValue("@Nom", employeAfter.Nom);
                         SQLiteInsert.Parameters.AddWithValue("@Prenom", employeAfter.Prenom);
+                        SQLiteInsert.Parameters.AddWithValue("@Password", employePasswordByte);
+                        SQLiteInsert.Parameters.AddWithValue("@Groupe", employeAfter.Groupe);
+                        SQLiteInsert.Parameters.AddWithValue("@Salt", salt);
+                        SQLiteInsert.Parameters.AddWithValue("@LoginBefore", employeBefore.Login);
                         SQLiteInsert.Parameters.AddWithValue("@LoginAfter", employeAfter.Login);
-                        SQLiteInsert.Parameters.AddWithValue("@Password", employePasswordByte);
-                        SQLiteInsert.Parameters.AddWithValue("@Groupe", employeAfter.Groupe);
-                        SQLiteInsert.Parameters.AddWithValue("@Salt", salt);
-                        SQLiteInsert.Parameters.AddWithValue("@LoginBefore", employeBefore.Login);
                         SQLiteInsert.ExecuteNonQuery();
-                        return true;
-
-                    }
-                    else if (employeBefore.Login == employeAfter.Login)
-                    {
-                        // Generation Salt
-                        byte[] salt = HashingPassword.SaltGeneration();
-                        // Convert en byte array le password
-                        byte[] employePasswordByte = Encoding.UTF8.GetBytes(employeAfter.Password);
-                        // Creation Hash a partir du password et du salt
-                        employePasswordByte = HashingPassword.HashPasswordSalt(employeAfter.Password, salt);
-                        // SQL INSERT
-                        string queryInsert = "UPDATE Employe SET Nom=@Nom, Prenom=@Prenom, Password=@Password, Groupe=@Groupe ,Salt=@Salt WHERE Login=@LoginBefore;";
-                        SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
-                        SQLiteInsert.Parameters.AddWithValue("@Nom", employeAfter.Nom);
-                        SQLiteInsert.Parameters.AddWithValue("@Prenom", employeAfter.Prenom);
-                        SQLiteInsert.Parameters.AddWithValue("@Password", employePasswordByte);
-                        SQLiteInsert.Parameters.AddWithValue("@Groupe", employeAfter.Groupe);
-                        SQLiteInsert.Parameters.AddWithValue("@Salt", salt);
-                        SQLiteInsert.Parameters.AddWithValue("@LoginBefore", employeBefore.Login);
-                        SQLiteInsert.ExecuteNonQuery();
-                        return true;
                     }
                     else
                     {
-                        return false;
+                        if (employeBefore.Login == employeAfter.Login)
+                        {
+                            string queryInsert = "UPDATE Employe SET Nom=@Nom, Prenom=@Prenom, Password=@Password, Groupe=@Groupe ,Salt=@Salt WHERE Login=@LoginBefore;";
+                            SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
+                            SQLiteInsert.Parameters.AddWithValue("@Nom", employeAfter.Nom);
+                            SQLiteInsert.Parameters.AddWithValue("@Prenom", employeAfter.Prenom);
+                            SQLiteInsert.Parameters.AddWithValue("@Password", employePasswordByte);
+                            SQLiteInsert.Parameters.AddWithValue("@Groupe", employeAfter.Groupe);
+                            SQLiteInsert.Parameters.AddWithValue("@Salt", salt);
+                            SQLiteInsert.Parameters.AddWithValue("@LoginBefore", employeBefore.Login);
+                            SQLiteInsert.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            throw new LoginExistentException();
+                        }
+                    }
+                }
+
+                // Sans modification de password
+                else
+                {
+                    if (!existe)
+                    {
+                        string queryInsert = "UPDATE Employe SET Nom=@Nom, Prenom=@Prenom, Login=@loginAfter, Groupe=@Groupe WHERE Login=@LoginBefore;";
+                        SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
+                        SQLiteInsert.Parameters.AddWithValue("@Nom", employeAfter.Nom);
+                        SQLiteInsert.Parameters.AddWithValue("@Prenom", employeAfter.Prenom);
+                        SQLiteInsert.Parameters.AddWithValue("@Groupe", employeAfter.Groupe);
+                        SQLiteInsert.Parameters.AddWithValue("@LoginBefore", employeBefore.Login);
+                        SQLiteInsert.Parameters.AddWithValue("@LoginAfter", employeAfter.Login);
+                        SQLiteInsert.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        if (employeBefore.Login == employeAfter.Login)
+                        {
+                            string queryInsert = "UPDATE Employe SET Nom=@Nom, Prenom=@Prenom, Groupe=@Groupe WHERE Login=@LoginBefore;";
+                            SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
+                            SQLiteInsert.Parameters.AddWithValue("@Nom", employeAfter.Nom);
+                            SQLiteInsert.Parameters.AddWithValue("@Prenom", employeAfter.Prenom);
+                            SQLiteInsert.Parameters.AddWithValue("@Groupe", employeAfter.Groupe);
+                            SQLiteInsert.Parameters.AddWithValue("@LoginBefore", employeBefore.Login);
+                            SQLiteInsert.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            throw new LoginExistentException();
+
+                        }
                     }
                 }
             }
@@ -217,6 +265,12 @@ namespace Projet2_CCI.DAL
         /// </summary>
         public static bool SQLiteChangePassword(string login)
         {
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection sqlConn = new SQLiteConnection(connString))
+            {
+                string requeteChangePassword = "UPDATE Employe" +
+                    "set Password = @password WHERE Login = @login";
+            }
             return true;
         }
         // FONCTION probablement inutile

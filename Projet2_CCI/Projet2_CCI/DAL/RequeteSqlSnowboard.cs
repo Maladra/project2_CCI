@@ -46,10 +46,10 @@ namespace Projet2_CCI.DAL
                     decimal prixSnowboardDollarDecimal = prixSnowboarDollar/100;
                     long stockSnowboard = (long)SQLiteReader["Stock"];
                     snowboardListe.Add(new SnowboardRequeteId(idSnowboard,nomSnowboard, marqueSnowboard, 
-                        genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardEuroDecimal, 
-                        prixSnowboardDollarDecimal, Convert.ToInt32(stockSnowboard))); // ADD Snowboard to LIST
+                    genreSnowboard, niveauSnowboard, styleSnowboard, prixSnowboardEuroDecimal, 
+                    prixSnowboardDollarDecimal, Convert.ToInt32(stockSnowboard)));
                 }
-                SQLiteReader.Close(); // FERMETURE READER
+                SQLiteReader.Close();
             }
             return snowboardListe;
         } 
