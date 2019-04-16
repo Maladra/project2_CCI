@@ -6,7 +6,11 @@
              xmlns:local="clr-namespace:Projet2_CCI.Affichage"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="#FFE5E5E5">
+        
+        <ListBox HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="32,177,0,0"/>
+        <ListBox HorizontalAlignment="Left" Height="100" Margin="270,223,0,0" VerticalAlignment="Top" Width="100"/>
+        <ComboBox HorizontalAlignment="Left" Margin="581,332,0,0" VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </UserControl>

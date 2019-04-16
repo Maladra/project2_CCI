@@ -13,7 +13,9 @@ namespace Projet2_CCI.DAL
 
         public bool SqlListLocation()
         {
-            return true;
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
+                return true;
         }
 
         public bool LocationSnowboard(Location location)
