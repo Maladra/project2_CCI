@@ -59,6 +59,9 @@
     <Compile Include="Affichage\Administrateur.xaml.cs">
       <DependentUpon>Administrateur.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Affichage\AffichageLocation.xaml.cs">
+      <DependentUpon>AffichageLocation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Affichage\AjoutMarque.xaml.cs">
       <DependentUpon>AjoutMarque.xaml</DependentUpon>
     </Compile>
@@ -82,6 +85,10 @@
     </Compile>
     <Compile Include="Utils\UtilsClass.cs" />
     <Page Include="Affichage\Administrateur.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Affichage\AffichageLocation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

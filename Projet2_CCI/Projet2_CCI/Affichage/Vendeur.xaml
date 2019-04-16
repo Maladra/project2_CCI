@@ -75,7 +75,7 @@
             </TabItem>
 
             <TabItem Header="Location en cours">
-                <Grid Background="#FFE5E5E5"/>
+                <local:AffichageLocation x:Name="affichageLocation"/>
             </TabItem>
         </TabControl>
 

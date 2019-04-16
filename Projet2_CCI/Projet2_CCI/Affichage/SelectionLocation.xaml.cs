@@ -27,8 +27,10 @@ namespace Projet2_CCI.Affichage
         public Genre Genre { get; }
         public Marque Marque { get; }
         public Niveau Niveau { get; }
-        public Donnee.Style style { get; }
-        public int stock { get; }
+        public Donnee.Style style { get; }      
+        public string Etat { get; set; }
+        private int stock;
+
         /// <summary>
         /// Construit un object dynamicSnowboard et l'initialise a 0 pour la colone location
         /// </summary>
@@ -50,9 +52,9 @@ namespace Projet2_CCI.Affichage
             this.Nom = snowboard.Nom;
             this.PrixSnowboardEuro = snowboard.PrixEuro;
             this.PrixSnowboardDollar = snowboard.PrixDollar;
-            this.genre = new Genre(snowboard.Genre.Id, snowboard.Genre.Nom);
-            this.marque = new Marque(snowboard.Marque.Id, snowboard.Marque.Nom);
-            this.niveau = new Niveau(snowboard.Niveau.Id, snowboard.Niveau.Nom);
+            this.Genre = new Genre(snowboard.Genre.Id, snowboard.Genre.Nom);
+            this.Marque = new Marque(snowboard.Marque.Id, snowboard.Marque.Nom);
+            this.Niveau = new Niveau(snowboard.Niveau.Id, snowboard.Niveau.Nom);
             this.style = new Donnee.Style(snowboard.Style.Id, snowboard.Style.Nom);
             this.Stock = snowboard.Stock;
 
@@ -120,7 +122,6 @@ namespace Projet2_CCI.Affichage
         public void ValiderLocation(string nomClient, string prenomClient, string moyenPaiement, decimal tva,
             DateTime debutLocation, DateTime finLocation)
         {
-
             // utilité ? 
             decimal prixTotalEuroSnowboard = this.LocationListe.Select(prixEuroSnow =>
             prixEuroSnow.PrixSnowboardEuro * prixEuroSnow.Stock).Sum();
@@ -129,12 +130,12 @@ namespace Projet2_CCI.Affichage
 
             List<DynamicStockSnowboard> ConvertedList = this.LocationListe.ToList();
             var listeSnowboardLocation = ConvertedList.Select(snowboard =>
-            new SnowboardRequete(snowboard.Nom, snowboard.Marque, snowboard.Genre, snowboard.Niveau, snowboard.style,
-            snowboard.PrixSnowboardEuro, snowboard.PrixSnowboardDollar, snowboard.stock));
+            new SnowboardRequeteId(snowboard.Id,snowboard.Nom, snowboard.Marque, snowboard.Genre, snowboard.Niveau, snowboard.style,
+            snowboard.PrixSnowboardEuro, snowboard.PrixSnowboardDollar, snowboard.Stock));
 
 
             Location location = new Location(nomClient, prenomClient, moyenPaiement, debutLocation,
-                finLocation, listeSnowboardLocation.ToList(), tva);
+                finLocation, listeSnowboardLocation.ToList(), tva, "En cours");
         }
     }
     /// <summary>
@@ -233,6 +234,7 @@ namespace Projet2_CCI.Affichage
 
                 this.ViewModel.ValiderLocation(this.nomClient.Text, this.nomClient.Text, this.moyenPaiement.Text, Convert.ToDecimal(this.tva.Text),
                    (DateTime)this.dateDebut.SelectedDate, (DateTime)this.dateFin.SelectedDate);
+                
             }
             else
             {

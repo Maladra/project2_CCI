@@ -14,11 +14,12 @@ namespace Projet2_CCI
         public string PrenomClient { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
-        public List<SnowboardRequete> ListeSnowboard { get; set; }
-        public decimal TVA { get; set; }
+        public List<SnowboardRequeteId> ListeSnowboard { get; set; }
+        public decimal Tva { get; set; }
+        public string Etat { get; set; }
 
         public Location(string nomClient, string prenomClient, string moyenPaiement,
-            DateTime dateDebut, DateTime dateFin, List<SnowboardRequete> listeSnowboard ,decimal TVA)
+            DateTime dateDebut, DateTime dateFin, List<SnowboardRequeteId> listeSnowboard ,decimal tva, string etat)
         {
             this.MoyenPaiement = moyenPaiement;
             this.NomClient = nomClient;
@@ -26,7 +27,8 @@ namespace Projet2_CCI
             this.DateDebut = dateDebut;
             this.DateFin = dateFin;
             this.ListeSnowboard = listeSnowboard;
-            this.TVA = TVA;
+            this.Tva = tva;
+            this.Etat = etat;
         }
 
     }
