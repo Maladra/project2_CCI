@@ -120,6 +120,8 @@ namespace Projet2_CCI.Affichage
         public void ValiderLocation(string nomClient, string prenomClient, string moyenPaiement, decimal tva,
             DateTime debutLocation, DateTime finLocation)
         {
+
+            // utilité ? 
             decimal prixTotalEuroSnowboard = this.LocationListe.Select(prixEuroSnow =>
             prixEuroSnow.PrixSnowboardEuro * prixEuroSnow.Stock).Sum();
             decimal prixTotalDollarSnowboard = this.LocationListe.Select(prixDollarSnow =>
@@ -134,7 +136,6 @@ namespace Projet2_CCI.Affichage
             Location location = new Location(nomClient, prenomClient, moyenPaiement, debutLocation,
                 finLocation, listeSnowboardLocation.ToList(), tva);
         }
-
     }
     /// <summary>
     /// Logique d'interaction pour SelectionLocation.xaml
