@@ -88,8 +88,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                 <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
-                <DataGridTextColumn Header="Marque" Binding="{Binding Marque}"/>
-                <DataGridTextColumn Header="Style" Binding="{Binding Style}"/>
+                <DataGridTextColumn Header="Prix €" Binding="{Binding PrixSnowboardEuro}"/>
+                <DataGridTextColumn Header="Prix $" Binding="{Binding PrixSnowboardDollar}"/>
                 <DataGridTextColumn Header="Genre" Binding="{Binding Genre}"/>
                 
 

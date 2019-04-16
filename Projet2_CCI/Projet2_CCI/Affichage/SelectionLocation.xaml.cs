@@ -21,8 +21,8 @@ namespace Projet2_CCI.Affichage
     public class DynamicStockSnowboard : ViewModelBase
     {
         private int stock;
-        public decimal PrixSnowboardEuro;
-        public decimal PrixSnowboardDollar;
+        public decimal PrixSnowboardEuro { get; }
+        public decimal PrixSnowboardDollar { get; }
         public long Id { get; }
         public string Nom { get; }
         /// <summary>
@@ -110,9 +110,9 @@ namespace Projet2_CCI.Affichage
 
             // Revoir pour prendre en compte le nombre de planche de chaque
             decimal prixTotalEuroSnowboard = this.LocationListe.Select(prixEuroSnow =>
-            prixEuroSnow.PrixSnowboardEuro).Sum();
+            prixEuroSnow.PrixSnowboardEuro * prixEuroSnow.Stock).Sum();
             decimal prixTotalDollarSnowboard = this.LocationListe.Select(prixDollarSnow =>
-            prixDollarSnow.PrixSnowboardDollar).Sum();
+            prixDollarSnow.PrixSnowboardDollar * prixDollarSnow.Stock).Sum();
             MessageBox.Show(prixTotalEuroSnowboard.ToString());
         }
 
