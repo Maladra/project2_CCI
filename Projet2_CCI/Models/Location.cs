@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI
 {
-    class Location // client, type de paiement(cb cheque espece), prix,
+    public class Location // client, type de paiement(cb cheque espece), prix,
     {
         public string MoyenPaiement { get; set; }
         public string NomClient { get; set; }

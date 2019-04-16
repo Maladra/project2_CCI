@@ -9,7 +9,7 @@ namespace Projet2_CCI.DAL
     /// <summary>
     /// Représente un utilisateur retourné au moment de la connexion
     /// </summary>
-    class UtilisateurConnexion
+    public class UtilisateurConnexion
     {
         public string Nom { get; set; }
         public string Prenom { get; set; }  
