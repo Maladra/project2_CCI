@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet2_CCI.Donnee;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,31 +14,19 @@ namespace Projet2_CCI
         public string PrenomClient { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
-        public Snowboard ListeSnowboard { get; set; }
-        public decimal PrixTotalEuroHt { get; set; }
-        public decimal PrixTotalDollarHt { get; set; }
+        public List<SnowboardRequete> ListeSnowboard { get; set; }
         public decimal TVA { get; set; }
-        public decimal PrixTotalEuro { get; set; }
-        public decimal PrixTotalDollar { get; set; }
 
         public Location(string nomClient, string prenomClient, string moyenPaiement,
-            decimal prixTotalEuroHt, decimal prixTotalDollarHt,
-            DateTime dateDebut, DateTime dateFin, Snowboard listeSnowboard ,
-            decimal TVA, decimal prixTotalEuro, decimal prixTotalDollar)
+            DateTime dateDebut, DateTime dateFin, List<SnowboardRequete> listeSnowboard ,decimal TVA)
         {
             this.MoyenPaiement = moyenPaiement;
             this.NomClient = nomClient;
             this.PrenomClient = prenomClient;
             this.DateDebut = dateDebut;
             this.DateFin = dateFin;
-            this.PrixTotalEuroHt = prixTotalEuroHt;
-            this.PrixTotalDollarHt = prixTotalDollarHt;
             this.ListeSnowboard = listeSnowboard;
             this.TVA = TVA;
-            this.PrixTotalDollar = prixTotalDollar;
-            this.PrixTotalEuro = prixTotalEuro;
-
-
         }
 
     }

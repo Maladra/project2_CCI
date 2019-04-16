@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.DAL
 {
-    class RequeteSqlSnowboard
+    public class RequeteSqlSnowboard
     {
         /// <summary>
         /// Requete SQL qui retourne une liste de planche de snowboard

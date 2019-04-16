@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.DAL
 {
-    class RequeteSqlNiveau
+    public class RequeteSqlNiveau
     {
         public static List<Niveau> SqlReadNiveau()
         {

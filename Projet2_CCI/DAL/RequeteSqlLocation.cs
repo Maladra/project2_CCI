@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Projet2_CCI.DAL
 {
-    class RequeteSqlLocation
+    public class RequeteSqlLocation
     {
 
         public bool SqlListLocation()

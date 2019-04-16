@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.DAL
 {
-    class RequeteSqlMarque
+   public class RequeteSqlMarque
     {
         /// <summary>
         /// Prend un string et fait une requete SQL pour inserer une marque de snowboard dans la BD

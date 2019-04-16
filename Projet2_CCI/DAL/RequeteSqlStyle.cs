@@ -5,7 +5,7 @@ using System.Data.SQLite;
 
 namespace Projet2_CCI.DAL
 {
-    class RequeteSqlStyle
+    public class RequeteSqlStyle
     {
         /// <summary>
         /// Prend un string et fait une requete SQL pour inserer un style de snowboard dans la BD

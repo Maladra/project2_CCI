@@ -20,7 +20,7 @@ namespace Projet2_CCI.DAL
           System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
 
-    class RequeteSqlUser
+    public class RequeteSqlUser
     {
         /// <summary>
         /// Retourne une liste des utilisateurs

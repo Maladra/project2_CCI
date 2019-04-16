@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.DAL
 {
-    class RequeteSqlConnexion
+    public class RequeteSqlConnexion
     {
         /// <summary>
         /// Prend 2 string (username et password) et test la connexion de l'utilisateur a l'application

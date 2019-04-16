@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.DAL
 {
-    class RequeteSqlGenre
+    public class RequeteSqlGenre
     {
         public static List<Genre> SqlReadGenre()
         {

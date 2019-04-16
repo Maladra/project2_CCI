@@ -20,11 +20,15 @@ namespace Projet2_CCI.Affichage
 
     public class DynamicStockSnowboard : ViewModelBase
     {
-        private int stock;
-        public decimal PrixSnowboardEuro { get; }
-        public decimal PrixSnowboardDollar { get; }
         public long Id { get; }
         public string Nom { get; }
+        public decimal PrixSnowboardEuro { get; }
+        public decimal PrixSnowboardDollar { get; }
+        public Genre Genre { get; }
+        public Marque Marque { get; }
+        public Niveau Niveau { get; }
+        public Donnee.Style style { get; }
+        public int stock { get; }
         /// <summary>
         /// Construit un object dynamicSnowboard et l'initialise a 0 pour la colone location
         /// </summary>
@@ -34,6 +38,10 @@ namespace Projet2_CCI.Affichage
             this.Nom = snowboard.Nom;
             this.PrixSnowboardEuro = snowboard.PrixSnowboardEuro;
             this.PrixSnowboardDollar = snowboard.PrixSnowboardDollar;
+            this.Genre = new Genre(snowboard.Genre.Id, snowboard.Genre.Nom);
+            this.Marque = new Marque(snowboard.Marque.Id, snowboard.Marque.Nom);
+            this.Niveau = new Niveau(snowboard.Niveau.Id, snowboard.Niveau.Nom);
+            this.style = new Donnee.Style(snowboard.style.Id, snowboard.style.Nom);
             this.Stock = 0;
         }
         public DynamicStockSnowboard(SnowboardRequeteId snowboard)
@@ -42,6 +50,10 @@ namespace Projet2_CCI.Affichage
             this.Nom = snowboard.Nom;
             this.PrixSnowboardEuro = snowboard.PrixEuro;
             this.PrixSnowboardDollar = snowboard.PrixDollar;
+            this.genre = new Genre(snowboard.Genre.Id, snowboard.Genre.Nom);
+            this.marque = new Marque(snowboard.Marque.Id, snowboard.Marque.Nom);
+            this.niveau = new Niveau(snowboard.Niveau.Id, snowboard.Niveau.Nom);
+            this.style = new Donnee.Style(snowboard.Style.Id, snowboard.Style.Nom);
             this.Stock = snowboard.Stock;
 
         }
@@ -105,15 +117,22 @@ namespace Projet2_CCI.Affichage
             snowboardStock.Stock++;
         }
 
-        public void ValiderLocation(string nomClient, string prenomClient, string moyenPaiement, decimal tva, DateTime debutLocation, DateTime finLocation)
+        public void ValiderLocation(string nomClient, string prenomClient, string moyenPaiement, decimal tva,
+            DateTime debutLocation, DateTime finLocation)
         {
-
-            // Revoir pour prendre en compte le nombre de planche de chaque
             decimal prixTotalEuroSnowboard = this.LocationListe.Select(prixEuroSnow =>
             prixEuroSnow.PrixSnowboardEuro * prixEuroSnow.Stock).Sum();
             decimal prixTotalDollarSnowboard = this.LocationListe.Select(prixDollarSnow =>
             prixDollarSnow.PrixSnowboardDollar * prixDollarSnow.Stock).Sum();
-            MessageBox.Show(prixTotalEuroSnowboard.ToString());
+
+            List<DynamicStockSnowboard> ConvertedList = this.LocationListe.ToList();
+            var listeSnowboardLocation = ConvertedList.Select(snowboard =>
+            new SnowboardRequete(snowboard.Nom, snowboard.Marque, snowboard.Genre, snowboard.Niveau, snowboard.style,
+            snowboard.PrixSnowboardEuro, snowboard.PrixSnowboardDollar, snowboard.stock));
+
+
+            Location location = new Location(nomClient, prenomClient, moyenPaiement, debutLocation,
+                finLocation, listeSnowboardLocation.ToList(), tva);
         }
 
     }
@@ -206,8 +225,6 @@ namespace Projet2_CCI.Affichage
 
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
         {
-            
-
             if (ValidationForm())
             {
                 // TODO VALIDATION (SQL)
@@ -215,11 +232,9 @@ namespace Projet2_CCI.Affichage
 
                 this.ViewModel.ValiderLocation(this.nomClient.Text, this.nomClient.Text, this.moyenPaiement.Text, Convert.ToDecimal(this.tva.Text),
                    (DateTime)this.dateDebut.SelectedDate, (DateTime)this.dateFin.SelectedDate);
-
             }
             else
             {
-                
                 MessageBox.Show(erreurFormulaire.ToString());
                 erreurFormulaire.Clear();
             }
@@ -239,10 +254,6 @@ namespace Projet2_CCI.Affichage
         {
             var row = (DataGridRow)sender;
             this.ViewModel.RemoveSnowboard((DynamicStockSnowboard)row.DataContext);
-
-
-
-
         }
 
     }
