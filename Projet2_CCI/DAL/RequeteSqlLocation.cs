@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet2_CCI.Donnee;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
@@ -10,15 +11,7 @@ namespace Projet2_CCI.DAL
 {
     public class RequeteSqlLocation
     {
-
-        public bool SqlListLocation()
-        {
-            string connString = ConfigurationManager.AppSettings["connectionString"];
-            using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
-                return true;
-        }
-
-        public bool LocationSnowboard(Location location)
+        public bool insertLocationSnowboard(LocationAvecListeSnowboard location)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
@@ -51,10 +44,58 @@ namespace Projet2_CCI.DAL
                         SqlInsertPlancheLouee.Parameters.AddWithValue("@Prix_location_dollar", snowboard.PrixDollar);
                         SqlInsertPlancheLouee.Parameters.AddWithValue("@Fk_planche", snowboard.IdSnowboard);
                         SqlInsertPlancheLouee.Parameters.AddWithValue("@Fk_location", lastIdInsert);
-                    }  
+                    }
                 }
                 return true;
             }
         }
+    }
+
+    public List<LocationAvecListeSnowboard> listLocationSnowboard ()
+    {
+        string connString = ConfigurationManager.AppSettings["connectionString"];
+        List<Location> listeLocation = new List<Location>;
+                
+
+        using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
+        {
+            SqliteConnection.Open();
+
+            string SelectLocation ="SELECT Moyen_paiement, Date_debut, Date_fin, Tva, En_cours, Nom, Prenom, Numero_telephone" +
+                " FROM LOCATION WHERE Location.Fk_Client = @idClient";
+            using (SQLiteCommand SqlCommandSelect = new SQLiteCommand(SelectLocation, SqliteConnection))
+            {
+                using (SQLiteDataReader SqliteReader = SqlCommandSelect.ExecuteReader())
+                {
+                    while (SqliteReader.Read())
+                    {
+                        //TODO : A MODIFIER 
+                        string nomClientLocation = (string)SqliteReader["Nom"];
+                        string prenomEmploye = (string)SqliteReader["Prenom"];
+                        string loginEmploye = (string)SqliteReader["Login"];
+                        byte[] passwordEmploye = (byte[])SqliteReader["Password"];
+                        string groupeEmploye = (string)SqliteReader["Groupe"];
+                        listeLocation.Add(new Location(nomClientLocation, prenomClientLocation, moyenPaiementClient, dateDebutLocation, dateFinLocation));
+                    }
+                }
+            }
+
+            //using ()
+            //{
+            //
+            //}
+
+
+
+
+
+
+
+
+
+
+
+
+}
     }
 }

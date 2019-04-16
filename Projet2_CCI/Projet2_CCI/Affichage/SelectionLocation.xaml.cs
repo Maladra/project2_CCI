@@ -119,7 +119,7 @@ namespace Projet2_CCI.Affichage
             snowboardStock.Stock++;
         }
 
-        public void ValiderLocation(string nomClient, string prenomClient, string moyenPaiement, decimal tva,
+        public void ValiderLocation(string nomClient, string prenomClient, string NumeroTelephoneClient, string moyenPaiement, decimal tva,
             DateTime debutLocation, DateTime finLocation)
         {
             // utilité ? 
@@ -134,8 +134,8 @@ namespace Projet2_CCI.Affichage
             snowboard.PrixSnowboardEuro, snowboard.PrixSnowboardDollar, snowboard.Stock));
 
 
-            Location location = new Location(nomClient, prenomClient, moyenPaiement, debutLocation,
-                finLocation, listeSnowboardLocation.ToList(), tva, "En cours");
+            LocationAvecListeSnowboard location = new LocationAvecListeSnowboard(new Client(nomClient,prenomClient,NumeroTelephoneClient)
+                , moyenPaiement, debutLocation,finLocation, listeSnowboardLocation.ToList(), tva, "Non rendu");
         }
     }
     /// <summary>
@@ -165,6 +165,12 @@ namespace Projet2_CCI.Affichage
             {
                 verificationForm = false;
                 erreurFormulaire.Append("- Un nom de client\n");
+            }
+            // Test le numéro de téléphone du client
+            if (string.IsNullOrWhiteSpace(this.numeroTelephoneClient.Text))
+            {
+                verificationForm = false;
+                erreurFormulaire.Append("- Un numéro de téléphone\n");
             }
 
             // Test le prenom du client
@@ -232,7 +238,7 @@ namespace Projet2_CCI.Affichage
                 // TODO VALIDATION (SQL)
                 //Location location = new Location(this.nomClient.Text, this.prenomClient.Text, this.moyenPaiement.Text,  
 
-                this.ViewModel.ValiderLocation(this.nomClient.Text, this.nomClient.Text, this.moyenPaiement.Text, Convert.ToDecimal(this.tva.Text),
+                this.ViewModel.ValiderLocation(this.nomClient.Text, this.nomClient.Text, this.numeroTelephoneClient.Text, this.moyenPaiement.Text, Convert.ToDecimal(this.tva.Text),
                    (DateTime)this.dateDebut.SelectedDate, (DateTime)this.dateFin.SelectedDate);
                 
             }

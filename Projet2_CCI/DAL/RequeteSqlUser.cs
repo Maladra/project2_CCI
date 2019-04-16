@@ -237,10 +237,6 @@ namespace Projet2_CCI.DAL
                     {
                         return "Il doit y avoir au moins un administrateur.";
                     }
-
-
-
-
                 }
                 else
                 {
@@ -251,8 +247,6 @@ namespace Projet2_CCI.DAL
                     return "Le compte a bien été supprimé.";
                 }
             }
-            return "Erreur pendant la requête";
-
         }
 
         /// <summary>
@@ -263,7 +257,7 @@ namespace Projet2_CCI.DAL
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection sqlConn = new SQLiteConnection(connString))
             {
-                string requeteChangePassword = "UPDATE Employe" +
+                string  requeteChangePassword = "UPDATE Employe" +
                     "set Password = @password WHERE Login = @login";
             }
             return true;

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="HashingPassword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequeteSqlClient.cs" />
     <Compile Include="RequeteSqlConnexion.cs" />
     <Compile Include="RequeteSqlGenre.cs" />
     <Compile Include="RequeteSqlLocation.cs" />

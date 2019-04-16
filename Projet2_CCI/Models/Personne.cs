@@ -50,18 +50,23 @@ namespace Projet2_CCI
     }
 
   
-    class Client : Personne
+    public class Client : Personne
     {
         public string NumeroTelephone { get; set; }
-        public bool LocationEnCours { get; set; }
-        public int NbLocation { get; set; }
-        public Client (string nom, string prenom, bool locationEnCours, int nbLocation, string numeroTelephone) : base(nom, prenom) 
+        public Client (string nom, string prenom, string numeroTelephone) : base(nom, prenom) 
         {
-            this.LocationEnCours = locationEnCours;
-            this.NbLocation = NbLocation;
             this.NumeroTelephone = numeroTelephone;
-            
         }
 
     }
+    public class ClientRequete : Client
+    {
+        public long IdClient { get; set; }
+        public ClientRequete(long idClient,string nom, string prenom, string numeroTelephone) : base(nom,prenom,numeroTelephone)
+        {
+            this.IdClient = idClient;
+        }
+    }
+
+
 }

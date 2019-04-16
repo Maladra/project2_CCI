@@ -7,10 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#FFE5E5E5">
-        
-        <ListBox HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="32,177,0,0"/>
-        <ListBox HorizontalAlignment="Left" Height="100" Margin="270,223,0,0" VerticalAlignment="Top" Width="100"/>
-        <ComboBox HorizontalAlignment="Left" Margin="581,332,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <ListBox HorizontalAlignment="Left" Height="378" VerticalAlignment="Top" Width="100" Margin="10,62,0,0"/>
+        <ListBox HorizontalAlignment="Left" Height="378" Margin="167,62,0,0" VerticalAlignment="Top" Width="148"/>
+        <ComboBox HorizontalAlignment="Left" Margin="583,102,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Liste des clients :" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top"/>
+        <Label Content="Liste de ses commandes :" HorizontalAlignment="Left" Margin="167,39,0,0" VerticalAlignment="Top" Width="148"/>
 
     </Grid>
 </UserControl>
