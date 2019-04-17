@@ -19,6 +19,10 @@
         <Label x:Name="prixTotal" HorizontalAlignment="Left" Margin="230,124,0,0" VerticalAlignment="Top"/>
         <Label x:Name="tva" HorizontalAlignment="Left" Margin="230,150,0,0" VerticalAlignment="Top"/>
         <DataGrid HorizontalAlignment="Left" Height="100" Margin="591,62,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Date de début :" HorizontalAlignment="Left" Margin="99,176,0,0" VerticalAlignment="Top"/>
+        <Label Content="Date de fin :" HorizontalAlignment="Left" Margin="99,207,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="dateDebut" HorizontalAlignment="Left" Margin="230,176,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.463,-0.066"/>
+        <Label x:Name="dateFin" HorizontalAlignment="Left" Margin="230,207,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

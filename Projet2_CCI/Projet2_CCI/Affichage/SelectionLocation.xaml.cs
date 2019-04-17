@@ -77,41 +77,32 @@ namespace Projet2_CCI.Affichage
         public void ValiderLocation(string nomClient, string prenomClient, string NumeroTelephoneClient, string moyenPaiement, decimal tva,
             DateTime debutLocation, DateTime finLocation)
         {
-            // utilité ? 
-            //decimal prixTotalEuroSnowboard = this.LocationListe.Select(prixEuroSnow =>
-            //prixEuroSnow.PrixSnowboardEuro * prixEuroSnow.Stock).Sum();
-            //decimal prixTotalDollarSnowboard = this.LocationListe.Select(prixDollarSnow =>
-            //prixDollarSnow.PrixSnowboardDollar * prixDollarSnow.Stock).Sum();
-
             List<DynamicStockSnowboard> ConvertedListLocation = this.LocationListe.ToList();
             List<DynamicStockSnowboard> ConvertedListStock = this.StockTempSnowboard.ToList();
 
             var listeSnowboardLocation = ConvertedListLocation.Select(snowboard =>
-            new SnowboardRequeteId(snowboard.Id,snowboard.Nom, snowboard.Marque, snowboard.Genre, snowboard.Niveau, snowboard.style,
+            new SnowboardRequeteId(snowboard.Id, snowboard.Nom, snowboard.Marque, snowboard.Genre, snowboard.Niveau, snowboard.style,
             snowboard.PrixSnowboardEuro, snowboard.PrixSnowboardDollar, snowboard.Stock));
 
             var listeSnowboardStock = ConvertedListStock.Select(snowboard =>
             new SnowboardRequeteId(snowboard.Id, snowboard.Nom, snowboard.Marque, snowboard.Genre, snowboard.Niveau,
             snowboard.style, snowboard.PrixSnowboardEuro, snowboard.PrixSnowboardDollar, snowboard.Stock));
 
-            //var 
-
-            LocationAvecListeSnowboard location = new LocationAvecListeSnowboard(new Client(nomClient,prenomClient,NumeroTelephoneClient)
-                , moyenPaiement, debutLocation,finLocation, tva, "Non rendu", listeSnowboardLocation.ToList());
+            LocationAvecListeSnowboard location = new LocationAvecListeSnowboard(new Client(nomClient, prenomClient, NumeroTelephoneClient)
+                , moyenPaiement, debutLocation, finLocation, tva, "Non rendu", listeSnowboardLocation.ToList());
 
             bool InsertLocation = RequeteSqlLocation.insertLocationSnowboard(location);
 
             if (InsertLocation)
             {
                 var stockUpdated = from loc in listeSnowboardLocation
-                          join s in listeSnowboardStock on loc.IdSnowboard equals s.IdSnowboard
-                          select s;
+                                   join s in listeSnowboardStock on loc.IdSnowboard equals s.IdSnowboard
+                                   select s;
 
                 foreach (var snowboard in stockUpdated)
                 {
 
-                    RequeteSqlLocation.updateStockSnowboard(snowboard.Stock,snowboard.IdSnowboard);
-
+                    RequeteSqlLocation.updateStockSnowboard(snowboard.Stock, snowboard.IdSnowboard);
                 }
 
             }
@@ -217,9 +208,21 @@ namespace Projet2_CCI.Affichage
                 // TODO VALIDATION (SQL)
                 //Location location = new Location(this.nomClient.Text, this.prenomClient.Text, this.moyenPaiement.Text,  
 
+                var dureeLocation = (DateTime)this.dateFin.SelectedDate - (DateTime)this.dateDebut.SelectedDate;
+                //dureeLocation.Days
+
+
+
+                var recapitulatifLocation = new RecapitulatifLocation(this.nomClient.Text, this.prenomClient.Text,,,,
+                    this.dateDebut.SelectedDate, this.dateFin.SelectedDate,this.listeLocation);
+
                 this.ViewModel.ValiderLocation(this.nomClient.Text, this.prenomClient.Text, this.numeroTelephoneClient.Text, this.moyenPaiement.Text, Convert.ToDecimal(this.tva.Text),
-                   (DateTime)this.dateDebut.SelectedDate, (DateTime)this.dateFin.SelectedDate);
-                
+                                   (DateTime)this.dateDebut.SelectedDate, (DateTime)this.dateFin.SelectedDate);
+
+
+
+                recapitulatifLocation.ShowDialog();
+
             }
             else
             {

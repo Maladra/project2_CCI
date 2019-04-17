@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,8 @@ namespace Projet2_CCI.Affichage
     /// </summary>
     public partial class RecapitulatifLocation : Window
     {
-        public RecapitulatifLocation()
+        public RecapitulatifLocation(string nomClient, string prenomClient, decimal prixTotalHt, decimal prixTotal,
+            decimal tva, DateTime dateDebut, DateTime dateFin, DynamicStockSnowboard listLocation )
         {
             InitializeComponent();
         }

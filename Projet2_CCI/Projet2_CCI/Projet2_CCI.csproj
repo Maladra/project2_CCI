@@ -80,6 +80,9 @@
     <Compile Include="Affichage\EditUtilisateur.xaml.cs">
       <DependentUpon>EditUtilisateur.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Affichage\RecapitulatifLocation.xaml.cs">
+      <DependentUpon>RecapitulatifLocation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Affichage\SelectionLocation.xaml.cs">
       <DependentUpon>SelectionLocation.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Affichage\EditUtilisateur.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Affichage\RecapitulatifLocation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
