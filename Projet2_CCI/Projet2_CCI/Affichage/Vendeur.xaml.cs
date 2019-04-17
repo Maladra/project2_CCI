@@ -11,14 +11,7 @@ using System.Windows;
 namespace Projet2_CCI.Affichage
 {
 
-    public class ViewModelBase : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChange([CallerMemberName]string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
+
 
     /// <summary>
     /// Logique d'interaction pour Vendeur.xaml

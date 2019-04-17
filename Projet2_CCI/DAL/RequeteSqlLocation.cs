@@ -1,4 +1,5 @@
-﻿using Projet2_CCI.Donnee;
+﻿using Models;
+using Projet2_CCI.Donnee;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,56 +20,59 @@ namespace Projet2_CCI.DAL
                 SqliteConnection.Open();
 
 
+                long lastId = default(long);
                 // VERIFICATION PRESENCE CLIENT
-                string selectClient = "SELECT Id_client,Nom, Prenom" +
+                string selectClient = "SELECT *" +
                     "FROM Client " +
                     "WHERE Nom=@nom AND Prenom=@prenom LIMIT 1;";
 
-                //INSERT INTO Employe(Nom, Prenom, Login, Password, Groupe, Salt) VALUES(?,?,?,?,?,?)
-
-                SQLiteCommand SQLiteVerificationClient = new SQLiteCommand(selectClient, SqliteConnection);
-                bool verificationExist = true;
-                SQLiteVerificationClient.Parameters.AddWithValue("@nom", location.ClientLocation.Nom);
-                SQLiteVerificationClient.Parameters.AddWithValue("@prenom", location.ClientLocation.Prenom);
-                using (SQLiteDataReader SQLiteReadClient = SQLiteVerificationClient.ExecuteReader())
+                using (SQLiteCommand SQLiteVerificationClient = new SQLiteCommand(selectClient, SqliteConnection))
                 {
-                    if (!SQLiteReadClient.Read())
-                    {
-                        string insertClient = "INSERT INTO Client(Nom, Prenom, Numero_telephone) VALUES(?,?,?)";
+                    SQLiteVerificationClient.Parameters.AddWithValue("@Nom", location.ClientLocation.Nom);
+                    SQLiteVerificationClient.Parameters.AddWithValue("@Prenom", location.ClientLocation.Prenom);
 
-                        using (SQLiteCommand SQLiteInsert = new SQLiteCommand(insertClient, SqliteConnection))
+                    using (SQLiteDataReader SQLiteReadClient = SQLiteVerificationClient.ExecuteReader())
+                    {
+                        if (!SQLiteReadClient.Read())
                         {
-                            SQLiteInsert.Parameters.AddWithValue("@Nom", location.ClientLocation.Nom);
-                            SQLiteInsert.Parameters.AddWithValue("@Prenom", location.ClientLocation.Prenom);
-                            SQLiteInsert.Parameters.AddWithValue("@Numero_telephone", location.ClientLocation.NumeroTelephone);
-                            SQLiteInsert.ExecuteNonQuery();
-                            verificationExist = false;
+                            string insertClient = "INSERT INTO Client(Nom, Prenom, Numero_telephone) VALUES(?,?,?)";
+
+                            using (SQLiteCommand SQLiteInsert = new SQLiteCommand(insertClient, SqliteConnection))
+                            {
+                                SQLiteInsert.Parameters.AddWithValue("@Nom", location.ClientLocation.Nom);
+                                SQLiteInsert.Parameters.AddWithValue("@Prenom", location.ClientLocation.Prenom);
+                                SQLiteInsert.Parameters.AddWithValue("@Numero_telephone", location.ClientLocation.NumeroTelephone);
+                                SQLiteInsert.ExecuteNonQuery();
+                                lastId = SqliteConnection.LastInsertRowId;
+                            }
+                        }
+                        else
+                        {
+                            lastId = (long)SQLiteReadClient["Id_client"];
                         }
                     }
-                    else
-                    {
 
-                    }
                 }
-
-
 
                 string creationLocation = "INSERT INTO Location (Moyen_paiement, Date_debut," +
                     " Date_fin, Tva, En_cours, Fk_Client)" +
-                    "VALUES (?,?,?,?,?,?)";
-                using (SQLiteCommand SqlInsertPlancheLouee = new SQLiteCommand(creationLocation, SqliteConnection))
+                    "VALUES (?,?,?,?,?,?); SELECT last_insert_rowid()";
+                ;
+                using (SQLiteCommand SqlInsertLocation = new SQLiteCommand(creationLocation, SqliteConnection))
                 {
-                    SqlInsertPlancheLouee.Parameters.AddWithValue("@Moyen_paiement", location.MoyenPaiement);
-                    SqlInsertPlancheLouee.Parameters.AddWithValue("@Date_debut", location.DateDebut);
-                    SqlInsertPlancheLouee.Parameters.AddWithValue("@Date_fin", location.DateFin);
-                    SqlInsertPlancheLouee.Parameters.AddWithValue("@Tva", location.Tva);
-                    SqlInsertPlancheLouee.Parameters.AddWithValue("@En_cours", location.Etat);
-                    SqlInsertPlancheLouee.Parameters.AddWithValue("@Fk_Client", SqliteConnection.LastInsertRowId);
-                    SqlInsertPlancheLouee.ExecuteNonQuery();
+                    SqlInsertLocation.Parameters.AddWithValue("@Moyen_paiement", location.MoyenPaiement);
+                    SqlInsertLocation.Parameters.AddWithValue("@Date_debut", location.DateDebut);
+                    SqlInsertLocation.Parameters.AddWithValue("@Date_fin", location.DateFin);
+                    SqlInsertLocation.Parameters.AddWithValue("@Tva", location.Tva);
+                    SqlInsertLocation.Parameters.AddWithValue("@En_cours", location.Etat);
+                    SqlInsertLocation.Parameters.AddWithValue("@Fk_Client", lastId);
+                    lastId = (long)SqlInsertLocation.ExecuteScalar();
+
                 }
 
                 string creationSnowboardLocation = "INSERT INTO Planche_louee (Prix_location_euro," +
                     " Prix_location_dollar, Fk_planche, Fk_location) VALUES (?,?,?,?)";
+
                 using (SQLiteCommand SqlInsertPlancheLouee = new SQLiteCommand(creationSnowboardLocation,
                     SqliteConnection))
                 {
@@ -77,12 +81,35 @@ namespace Projet2_CCI.DAL
                         SqlInsertPlancheLouee.Parameters.AddWithValue("@Prix_location_euro", snowboard.PrixEuro);
                         SqlInsertPlancheLouee.Parameters.AddWithValue("@Prix_location_dollar", snowboard.PrixDollar);
                         SqlInsertPlancheLouee.Parameters.AddWithValue("@Fk_planche", snowboard.IdSnowboard);
-                        SqlInsertPlancheLouee.Parameters.AddWithValue("@Fk_location", lastIdInsert);
+                        SqlInsertPlancheLouee.Parameters.AddWithValue("@Fk_location", lastId);
+                        SqlInsertPlancheLouee.ExecuteNonQuery();
                     }
                 }
                 return true;
             }
         }
+
+        public static void updateStockSnowboard (int snowboardStock, long snowboardId)
+        {
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+
+            using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
+            {
+                SqliteConnection.Open();
+                string updateStock = @"UPDATE Planche_snowboard
+                SET Stock = @stock
+                WHERE Id_planche = @idPlanche";
+                using (SQLiteCommand SqliteUpdateSnowboardCommand = new SQLiteCommand(updateStock, SqliteConnection))
+                {
+                    SqliteUpdateSnowboardCommand.Parameters.AddWithValue("@stock", snowboardStock);
+                    SqliteUpdateSnowboardCommand.Parameters.AddWithValue("@idPlanche", snowboardId);
+                    SqliteUpdateSnowboardCommand.ExecuteNonQuery();
+                    
+                }
+            }
+       
+        }
+        
 
         public List<Location> listLocationSnowboard()
         {

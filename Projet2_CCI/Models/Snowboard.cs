@@ -28,8 +28,13 @@ namespace Projet2_CCI
             this.PrixEuro = prixEuro;
             this.PrixDollar = prixDollar;
         }
+
+
     }
 
-    
+
+
+
+
 
 }
