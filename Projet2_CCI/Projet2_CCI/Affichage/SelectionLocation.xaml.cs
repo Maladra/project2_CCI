@@ -1,4 +1,5 @@
-﻿using Projet2_CCI.Donnee;
+﻿using Projet2_CCI.DAL;
+using Projet2_CCI.Donnee;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -135,7 +136,9 @@ namespace Projet2_CCI.Affichage
 
 
             LocationAvecListeSnowboard location = new LocationAvecListeSnowboard(new Client(nomClient,prenomClient,NumeroTelephoneClient)
-                , moyenPaiement, debutLocation,finLocation, listeSnowboardLocation.ToList(), tva, "Non rendu");
+                , moyenPaiement, debutLocation,finLocation, tva, "Non rendu", listeSnowboardLocation.ToList());
+            bool mon_Test = RequeteSqlLocation.insertLocationSnowboard(location);
+            MessageBox.Show(mon_Test.ToString());
         }
     }
     /// <summary>
@@ -241,6 +244,9 @@ namespace Projet2_CCI.Affichage
                 this.ViewModel.ValiderLocation(this.nomClient.Text, this.nomClient.Text, this.numeroTelephoneClient.Text, this.moyenPaiement.Text, Convert.ToDecimal(this.tva.Text),
                    (DateTime)this.dateDebut.SelectedDate, (DateTime)this.dateFin.SelectedDate);
                 
+
+
+
             }
             else
             {

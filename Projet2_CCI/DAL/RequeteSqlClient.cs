@@ -11,7 +11,7 @@ namespace Projet2_CCI.DAL
 {
     class RequeteSqlClient
     {
-        public static List<ClientRequete> SQLiteListUsers()
+        public static List<ClientRequete> SQLiteListClient()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
             List<ClientRequete> clientList = new List<ClientRequete>();

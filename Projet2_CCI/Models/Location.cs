@@ -28,15 +28,27 @@ namespace Projet2_CCI
         }
     }
 
-    public class LocationAvecListeSnowboard : Location 
+    public class LocationAvecListeSnowboard : Location
     {
         public List<SnowboardRequeteId> ListeSnowboard { get; set; }
 
         public LocationAvecListeSnowboard(Client clientLocation, string moyenPaiement, DateTime dateDebut, DateTime dateFin,
              decimal tva, string etat, List<SnowboardRequeteId> listeSnowboard)
-            : base (clientLocation, moyenPaiement, dateDebut, dateFin, tva,etat)
+            : base(clientLocation, moyenPaiement, dateDebut, dateFin, tva, etat)
         {
             this.ListeSnowboard = listeSnowboard;
+        }
+
+    }
+    public class LocationAvecId : Location
+    {
+        public long IdLocation { get; set; }
+
+        public LocationAvecId(Client clientLocation, string moyenPaiement,
+            DateTime dateDebut, DateTime dateFin, decimal tva, string etat,long idLocation)
+            : base(clientLocation, moyenPaiement, dateDebut, dateFin, tva, etat)
+        {
+            this.IdLocation = idLocation;
         }
     }
 }
