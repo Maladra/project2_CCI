@@ -31,6 +31,7 @@ namespace Projet2_CCI.Affichage
                 snowboards.Select(snowboard => new DynamicStockSnowboard(snowboard)));
             this.LocationListe = new ObservableCollection<DynamicStockSnowboard>();
         }
+
         /// <summary>
         /// Si true => ajout de la planche a la location
         /// SI false => fais rien et retourne un message
@@ -59,6 +60,7 @@ namespace Projet2_CCI.Affichage
             }
             return true;
         }
+
         public void RemoveSnowboard(DynamicStockSnowboard snowboard)
         {
             snowboard.Stock--;
@@ -104,10 +106,24 @@ namespace Projet2_CCI.Affichage
 
                     RequeteSqlLocation.updateStockSnowboard(snowboard.Stock, snowboard.IdSnowboard);
                 }
+                
+                var dureeLocation = (DateTime)finLocation - (DateTime)debutLocation;
+                decimal totalLocationEuroHt = ConvertedListLocation.Sum(s => (s.PrixSnowboardEuro * s.Stock) * dureeLocation.Days);
+                decimal totalLocationDollarHt = ConvertedListLocation.Sum(s => s.PrixSnowboardDollar * s.Stock * dureeLocation.Days);
+                decimal ajoutprixEuroTva = totalLocationEuroHt * (tva / 100);
+                decimal ajoutprixDollarTva = totalLocationDollarHt * (tva / 100);
 
+                decimal totalLocationEuro = totalLocationEuroHt + ajoutprixEuroTva;
+                decimal totalLocationDollar = totalLocationDollarHt + ajoutprixDollarTva;
+
+
+                var recapitulatifLocation = new RecapitulatifLocation(nomClient, prenomClient, totalLocationEuroHt, totalLocationDollarHt,
+                    totalLocationEuro,totalLocationDollar,tva,finLocation,debutLocation, ConvertedListLocation, dureeLocation.Days);
+                recapitulatifLocation.ShowDialog();             
             }
         }
     }
+
     /// <summary>
     /// Logique d'interaction pour SelectionLocation.xaml
     /// </summary>
@@ -208,21 +224,8 @@ namespace Projet2_CCI.Affichage
                 // TODO VALIDATION (SQL)
                 //Location location = new Location(this.nomClient.Text, this.prenomClient.Text, this.moyenPaiement.Text,  
 
-                var dureeLocation = (DateTime)this.dateFin.SelectedDate - (DateTime)this.dateDebut.SelectedDate;
-                //dureeLocation.Days
-
-
-
-                var recapitulatifLocation = new RecapitulatifLocation(this.nomClient.Text, this.prenomClient.Text,,,,
-                    this.dateDebut.SelectedDate, this.dateFin.SelectedDate,this.listeLocation);
-
                 this.ViewModel.ValiderLocation(this.nomClient.Text, this.prenomClient.Text, this.numeroTelephoneClient.Text, this.moyenPaiement.Text, Convert.ToDecimal(this.tva.Text),
                                    (DateTime)this.dateDebut.SelectedDate, (DateTime)this.dateFin.SelectedDate);
-
-
-
-                recapitulatifLocation.ShowDialog();
-
             }
             else
             {
@@ -250,6 +253,4 @@ namespace Projet2_CCI.Affichage
     }
 
 }
-
-
 // TODO : Pouvoir rentrer une value plutôt que Double Click

@@ -30,7 +30,6 @@ public class DynamicStockSnowboard : ViewModelBase
             public Marque Marque { get; }
             public Niveau Niveau { get; }
             public Projet2_CCI.Donnee.Style style { get; }
-            public string Etat { get; set; }
             private int stock;
 
             /// <summary>

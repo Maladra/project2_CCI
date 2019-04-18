@@ -111,7 +111,7 @@ namespace Projet2_CCI.DAL
         }
         
 
-        public List<Location> listLocationSnowboard()
+        public static List<Location> listLocationSnowboard(long idClient)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
             List<Location> listeLocation = new List<Location>();
@@ -120,25 +120,22 @@ namespace Projet2_CCI.DAL
             {
                 SqliteConnection.Open();
 
-                string SelectLocation = "SELECT Moyen_paiement, Date_debut, Date_fin, Tva, En_cours, Nom, Prenom, Numero_telephone" +
-                    " FROM LOCATION WHERE Location.Fk_Client = @idClient";
+                string SelectLocation = "SELECT Moyen_paiement, Date_debut, Date_fin, Tva, En_cours" +
+                    " FROM Location WHERE Location.Fk_Client = @idClient";
                 using (SQLiteCommand SqlCommandSelect = new SQLiteCommand(SelectLocation, SqliteConnection))
                 {
+                    SqlCommandSelect.Parameters.AddWithValue("@idClient", idClient);
                     using (SQLiteDataReader SqliteReader = SqlCommandSelect.ExecuteReader())
                     {
                         while (SqliteReader.Read())
                         {
                             //TODO : A MODIFIER 
-                            Client clientLocation = new Client((string)SqliteReader["Nom"], (string)SqliteReader["Prenom"],
-                                (string)SqliteReader["Numero_telephone"]);
-
-                            string prenomClientLocation = (string)SqliteReader["Prenom"];
                             string moyenPaiementClient = (string)SqliteReader["Moyen_paiement"];
                             DateTime dateDebutLocation = (DateTime)SqliteReader["Date_debut"];
                             DateTime dateFinLocation = (DateTime)SqliteReader["Date_fin"];
                             decimal tva = (decimal)SqliteReader["Tva"] * 100;
                             string etatLocation = (string)SqliteReader["En_cours"];
-                            listeLocation.Add(new Location(clientLocation, moyenPaiementClient,
+                            listeLocation.Add(new Location(moyenPaiementClient,
                                 dateDebutLocation, dateFinLocation, tva, etatLocation));
                         }
                     }

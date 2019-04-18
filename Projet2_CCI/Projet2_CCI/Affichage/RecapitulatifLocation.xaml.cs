@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +21,30 @@ namespace Projet2_CCI.Affichage
     /// </summary>
     public partial class RecapitulatifLocation : Window
     {
-        public RecapitulatifLocation(string nomClient, string prenomClient, decimal prixTotalHt, decimal prixTotal,
-            decimal tva, DateTime dateDebut, DateTime dateFin, DynamicStockSnowboard listLocation )
+        public RecapitulatifLocation(string nomClient, string prenomClient, decimal prixTotalEuroHt,
+            decimal prixTotalDollarHt, decimal prixEuroTotal,decimal prixDollarTotal,
+            decimal tva, DateTime dateDebut, DateTime dateFin,
+            List<DynamicStockSnowboard> listLocation, int duree)
         {
+            string TotalEuroHtFormated = prixTotalEuroHt.ToString("C", CultureInfo.CreateSpecificCulture("fr-FR"));
+            string TotalEuroFormated = prixEuroTotal.ToString("C", CultureInfo.CreateSpecificCulture("fr-FR"));
+            string TotalDollarHtFormated = prixTotalDollarHt.ToString("C", CultureInfo.CreateSpecificCulture("en-US"));
+
             InitializeComponent();
+            this.listeLocation.ItemsSource = listLocation;
+            this.nomClient.Content = nomClient;
+            this.prenomClient.Content = prenomClient;
+            this.prixTotalEuroHt.Content = TotalEuroHtFormated;
+            this.dureeLocation.Content = Pluriel("un jour", "{0} jours", duree, duree);
+            this.tva.Content = tva + " %";
+            this.dateDebut.Content = dateDebut.ToLongDateString();
+            this.dateFin.Content = dateFin.ToLongDateString();
+            this.prixTotalEuro.Content = TotalEuroFormated;
+
         }
+        static string Pluriel(string singulier, string pluriel, long n, params object[] fmt)
+            => string.Format(
+                n == 1 ? singulier : pluriel,
+                fmt);
     }
 }

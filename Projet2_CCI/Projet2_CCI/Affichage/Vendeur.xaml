@@ -74,7 +74,7 @@
                 <local:SelectionLocation x:Name="selectionLocation"/>
             </TabItem>
 
-            <TabItem Header="Location en cours">
+            <TabItem Header="Location en cours" Height="22" VerticalAlignment="Top" Selector.Selected="locationEncoursSelected">
                 <local:AffichageLocation x:Name="affichageLocation"/>
             </TabItem>
         </TabControl>

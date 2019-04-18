@@ -39,9 +39,10 @@ namespace Projet2_CCI.Affichage
 
 
             this.selectionLocation.DataContext = new SelectionLocationViewModel(snowboardListe);
+            this.affichageLocation.DataContext = new ViewModelAffichageLocation();
             this.stockAffichage.ItemsSource = snowboardListe;
             _login = login;
-            
+
         }
 
         private void Button_ajoutMarque_Click(object sender, RoutedEventArgs e)
@@ -68,6 +69,12 @@ namespace Projet2_CCI.Affichage
         {
             ChangePassword changePassword = new ChangePassword(_login);
             changePassword.ShowDialog();
+        }
+
+        private void locationEncoursSelected(object sender, RoutedEventArgs e)
+        {
+            List<ClientRequete> clientList = DAL.RequeteSqlClient.SQLiteListClient();
+            affichageLocation.listeClient.ItemsSource = clientList;
         }
     }
 }

@@ -66,6 +66,11 @@ namespace Projet2_CCI
         {
             this.IdClient = idClient;
         }
+
+        public override string ToString()
+        {
+            return "Nom :" + this.Nom + "\nPrenom :" + this.Prenom;
+        }
     }
 
 
