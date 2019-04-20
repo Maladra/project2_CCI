@@ -12,6 +12,7 @@ namespace Models
 public class ViewModelBase : INotifyPropertyChanged
         {
             public event PropertyChangedEventHandler PropertyChanged;
+
             protected void OnPropertyChange([CallerMemberName]string propertyName = null)
             {
                 this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

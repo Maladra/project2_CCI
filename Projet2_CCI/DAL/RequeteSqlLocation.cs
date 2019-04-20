@@ -7,6 +7,7 @@ using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Text;
+using static Projet2_CCI.LocationAvecId;
 
 namespace Projet2_CCI.DAL
 {
@@ -111,16 +112,16 @@ namespace Projet2_CCI.DAL
         }
         
 
-        public static List<Location> listLocationSnowboard(long idClient)
+        public static List<DynamicLocationId> listLocationSnowboard(long idClient)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
-            List<Location> listeLocation = new List<Location>();
+            List<DynamicLocationId> listeLocation = new List<DynamicLocationId>();
 
             using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
             {
                 SqliteConnection.Open();
 
-                string SelectLocation = "SELECT Moyen_paiement, Date_debut, Date_fin, Tva, En_cours" +
+                string SelectLocation = "SELECT Id_location,Moyen_paiement, Date_debut, Date_fin, Tva, En_cours" +
                     " FROM Location WHERE Location.Fk_Client = @idClient";
                 using (SQLiteCommand SqlCommandSelect = new SQLiteCommand(SelectLocation, SqliteConnection))
                 {
@@ -130,12 +131,13 @@ namespace Projet2_CCI.DAL
                         while (SqliteReader.Read())
                         {
                             //TODO : A MODIFIER 
+                            long idLocation = (long)SqliteReader["Id_location"];
                             string moyenPaiementClient = (string)SqliteReader["Moyen_paiement"];
                             DateTime dateDebutLocation = (DateTime)SqliteReader["Date_debut"];
                             DateTime dateFinLocation = (DateTime)SqliteReader["Date_fin"];
                             decimal tva = (decimal)SqliteReader["Tva"] * 100;
                             string etatLocation = (string)SqliteReader["En_cours"];
-                            listeLocation.Add(new Location(moyenPaiementClient,
+                            listeLocation.Add(new DynamicLocationId(idLocation, moyenPaiementClient,
                                 dateDebutLocation, dateFinLocation, tva, etatLocation));
                         }
                     }

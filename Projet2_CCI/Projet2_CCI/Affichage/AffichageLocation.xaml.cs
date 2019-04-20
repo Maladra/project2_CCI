@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using Models;
 using Projet2_CCI.DAL;
+using static Projet2_CCI.LocationAvecId;
+
 namespace Projet2_CCI.Affichage
 {
     /// <summary>
@@ -13,28 +15,12 @@ namespace Projet2_CCI.Affichage
 
     public class ViewModelAffichageLocation : ViewModelBase
     {
-        public ObservableCollection<ClientRequete> Clients { get; } = new ObservableCollection<ClientRequete>();
-        public ObservableCollection<Location> Location { get; } = new ObservableCollection<Location>();
+        public ObservableCollection<ClientRequete> Clients { get; } =
+            new ObservableCollection<ClientRequete>();
+        public ObservableCollection<DynamicLocationId> Location { get; } =
+            new ObservableCollection<DynamicLocationId>();
 
-
-        public bool EtatLocation { get; set; }
-
-        Location locationS;
-        public Location LocationS
-        {
-            get { return locationS; }
-            set
-            {
-                locationS = value;
-                this.OnPropertyChange();
-            }
-        }
-        ClientRequete clientSelectione;
-        public ViewModelAffichageLocation()
-        {
-            var a = this.LocationS;
-        }
-
+        public ClientRequete clientSelectione;
         public ClientRequete ClientSelectione
         {
             get { return clientSelectione; }
@@ -45,7 +31,6 @@ namespace Projet2_CCI.Affichage
                 this.ChargeListeLocation();
             }
         }
-
         public void ChargeListeLocation()
         {
             Location.Clear();
@@ -54,9 +39,16 @@ namespace Projet2_CCI.Affichage
                 Location.Add(i);
         }
 
-        public void etatLocation(Location location)
+        DynamicLocationId locationS;
+        public DynamicLocationId LocationS
         {
-            
+            get { return locationS; }
+            set
+            {
+                locationS = value;
+                this.OnPropertyChange();
+                // faire quelque chose
+            }
         }
     }
 
@@ -69,6 +61,10 @@ namespace Projet2_CCI.Affichage
         public AffichageLocation()
         {
             InitializeComponent();
+            List <string> etatPossible = new List<string>();
+            etatPossible.Add("Rendu");
+            etatPossible.Add("Non rendu");
+            this.etatCommande.ItemsSource = etatPossible;
         }
 
         private void ListBoxListeClientSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -85,7 +81,8 @@ namespace Projet2_CCI.Affichage
         {
             if (listeLocation.SelectedItem != null)
             {
-                Location location = (Location)listeLocation.SelectedItem;
+                this.Test.Content = ViewModel.LocationS.EtatLocation;
+                this.etatCommande.SelectedItem = ViewModel.LocationS.EtatLocation;
             }
 
         }
