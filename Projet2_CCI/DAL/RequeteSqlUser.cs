@@ -252,16 +252,41 @@ namespace Projet2_CCI.DAL
         /// <summary>
         /// Prend un login utilisateur en parametre et change le password associe au login
         /// </summary>
-        public static bool SQLiteChangePassword(string login)
+        public static bool SQLiteChangePassword(string login, string password)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
+
+            // Generation Salt
+            byte[] salt = HashingPassword.SaltGeneration();
+            // Convert en byte array le password
+            byte[] employePasswordByte = Encoding.UTF8.GetBytes(password);
+            // Creation Hash a partir du password et du salt
+            employePasswordByte = HashingPassword.HashPasswordSalt(password, salt);
+
+
+
+
             using (SQLiteConnection sqlConn = new SQLiteConnection(connString))
             {
-                string  requeteChangePassword = "UPDATE Employe" +
-                    "set Password = @password WHERE Login = @login";
+                string requeteChangePassword = "UPDATE Employe" +
+                    " set Password = @password, Salt=@salt WHERE Login = @login";
+
+                sqlConn.Open();
+                using (SQLiteCommand sqliteCommande = new SQLiteCommand(requeteChangePassword, sqlConn))
+                {
+                    sqliteCommande.Parameters.AddWithValue("@login", login);
+                    sqliteCommande.Parameters.AddWithValue("@password", employePasswordByte);
+                    sqliteCommande.Parameters.AddWithValue("@Salt", salt);
+                    sqliteCommande.ExecuteNonQuery();
+                }
             }
             return true;
         }
+
+
+
+
+
         // FONCTION probablement inutile
         //public static Employe SQLiteSelectUser(string login)
         //{

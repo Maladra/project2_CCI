@@ -29,9 +29,8 @@
         <Label Content="Liste des clients :" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top"/>
         <Label Content="Liste commandes :" HorizontalAlignment="Left" Margin="167,31,0,0" VerticalAlignment="Top" Width="148"/>
         <Label Content="Etat de la commande :" HorizontalAlignment="Left" Margin="580,121,0,0" VerticalAlignment="Top"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="463,276,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="valider" Content="Valider" HorizontalAlignment="Left" Margin="566,301,0,0" VerticalAlignment="Top" Width="75" Click="Valider_Click"/>
 
-        <Label x:Name="Test" HorizontalAlignment="Left" Margin="520,276,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

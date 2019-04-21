@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using Models;
 using Projet2_CCI.DAL;
@@ -34,9 +35,13 @@ namespace Projet2_CCI.Affichage
         public void ChargeListeLocation()
         {
             Location.Clear();
-            var newLocations = DAL.RequeteSqlLocation.listLocationSnowboard(ClientSelectione.IdClient);
-            foreach (var i in newLocations)
-                Location.Add(i);
+            if (clientSelectione != null)
+            {
+                var newLocations = DAL.RequeteSqlLocation.listLocationSnowboard(ClientSelectione.IdClient);
+                foreach (var i in newLocations)
+                    Location.Add(i);
+            }
+
         }
 
         DynamicLocationId locationS;
@@ -61,7 +66,7 @@ namespace Projet2_CCI.Affichage
         public AffichageLocation()
         {
             InitializeComponent();
-            List <string> etatPossible = new List<string>();
+            List<string> etatPossible = new List<string>();
             etatPossible.Add("Rendu");
             etatPossible.Add("Non rendu");
             this.etatCommande.ItemsSource = etatPossible;
@@ -81,10 +86,19 @@ namespace Projet2_CCI.Affichage
         {
             if (listeLocation.SelectedItem != null)
             {
-                this.Test.Content = ViewModel.LocationS.EtatLocation;
+
                 this.etatCommande.SelectedItem = ViewModel.LocationS.EtatLocation;
             }
 
+        }
+
+        private void Valider_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (ViewModel.LocationS != null)
+            {
+                RequeteSqlLocation.updateEtatLocation(ViewModel.LocationS.IdLocation, this.etatCommande.Text);
+                MessageBox.Show("Etat de la location mis à jour");
+            }
         }
     }
 }

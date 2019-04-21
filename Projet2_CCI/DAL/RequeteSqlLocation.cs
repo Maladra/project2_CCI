@@ -90,7 +90,7 @@ namespace Projet2_CCI.DAL
             }
         }
 
-        public static void updateStockSnowboard (int snowboardStock, long snowboardId)
+        public static void updateStockSnowboard(int snowboardStock, long snowboardId)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
 
@@ -105,12 +105,11 @@ namespace Projet2_CCI.DAL
                     SqliteUpdateSnowboardCommand.Parameters.AddWithValue("@stock", snowboardStock);
                     SqliteUpdateSnowboardCommand.Parameters.AddWithValue("@idPlanche", snowboardId);
                     SqliteUpdateSnowboardCommand.ExecuteNonQuery();
-                    
+
                 }
             }
-       
+
         }
-        
 
         public static List<DynamicLocationId> listLocationSnowboard(long idClient)
         {
@@ -160,6 +159,28 @@ namespace Projet2_CCI.DAL
 
 
 
+            }
+        }
+
+        /// <summary>
+        /// Prend un long represente l'Id de la location et un string represente l'etat et met à jour la DB
+        /// </summary>
+        public static bool updateEtatLocation(long idLocation, string etat)
+        {
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
+            {
+                string updateLocation = "UPDATE Location SET En_cours = @etat WHERE Id_location=@idLocation ";
+
+                SqliteConnection.Open();
+                using (SQLiteCommand SqliteUpdateEtat = new SQLiteCommand(updateLocation, SqliteConnection))
+                {
+                    SqliteUpdateEtat.Parameters.AddWithValue("@idLocation", idLocation);
+                    SqliteUpdateEtat.Parameters.AddWithValue("@etat", etat);
+                    SqliteUpdateEtat.ExecuteNonQuery();
+                }
+
+                return true;
             }
         }
     }
