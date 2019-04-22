@@ -10,28 +10,30 @@
 
         <ListBox x:Name="listeClient"
                  HorizontalAlignment="Left" 
-                 Height="378" 
+                 Height="376" 
                  VerticalAlignment="Top" 
                  Width="313" 
-                 Margin="10,62,0,0" 
+                 Margin="10,64,0,0" 
                  SelectionChanged="ListBoxListeClientSelectionChanged"
                  ItemsSource="{Binding Clients}"
                  SelectedItem="{Binding ClientSelectione}"/>
         <ListBox x:Name="listeLocation"
                  HorizontalAlignment="Left"
-                 Height="378"
-                 Margin="328,62,0,0"
+                 Height="376"
+                 Margin="328,64,0,0"
                  VerticalAlignment="Top"
                  ItemsSource="{Binding Location}"
                  SelectedItem="{Binding LocationS}"
                  Width="287" SelectionChanged="ListeLocation_SelectionChanged"/>
-        <ComboBox x:Name="etatCommande" ItemsSource="{Binding Locations}" HorizontalAlignment="Left" Margin="628,298,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="EtatCommande_SelectionChanged"/>
-        <Label Content="Liste des clients :" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top"/>
-        <Label Content="Liste commandes :" HorizontalAlignment="Left" Margin="328,31,0,0" VerticalAlignment="Top" Width="148"/>
-        <Label Content="Etat de la commande :" HorizontalAlignment="Left" Margin="620,267,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="valider" Content="Valider" HorizontalAlignment="Left" Margin="673,399,0,0" VerticalAlignment="Top" Width="75" Click="Valider_Click"/>
-        <Label Content="N° Téléphone Client :" HorizontalAlignment="Left" Margin="620,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.026,-0.231"/>
+        <ComboBox x:Name="etatCommande" ItemsSource="{Binding Locations}" HorizontalAlignment="Left" Margin="628,165,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="EtatCommande_SelectionChanged"/>
+        <Label Content="Liste des clients :" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
+        <Label Content="Liste commandes :" HorizontalAlignment="Left" Margin="328,38,0,0" VerticalAlignment="Top" Width="148"/>
+        <Label Content="Etat de la commande :" HorizontalAlignment="Left" Margin="628,134,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="valider" Content="Valider" HorizontalAlignment="Left" Margin="628,204,0,0" VerticalAlignment="Top" Width="75" Click="Valider_Click"/>
+        <Label Content="N° Téléphone Client :" HorizontalAlignment="Left" Margin="628,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.026,-0.231"/>
         <Label x:Name="numeroClient" HorizontalAlignment="Left" Margin="628,88,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Recherche" HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
 
 
     </Grid>

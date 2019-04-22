@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Models;
 using Projet2_CCI.DAL;
+using Projet2_CCI.Donnee;
 using static Projet2_CCI.LocationAvecId;
 
 namespace Projet2_CCI.Affichage
@@ -78,6 +79,10 @@ namespace Projet2_CCI.Affichage
             {
                 this.numeroClient.Content = ViewModel.clientSelectione.NumeroTelephone;
             }
+            else
+            {
+                this.numeroClient.Content = string.Empty;
+            }
         }
 
         private void EtatCommande_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -89,8 +94,11 @@ namespace Projet2_CCI.Affichage
         {
             if (listeLocation.SelectedItem != null)
             {
-
                 this.etatCommande.SelectedItem = ViewModel.LocationS.EtatLocation;
+            }
+            else
+            {
+                this.etatCommande.SelectedItem = string.Empty;
             }
 
         }
@@ -99,6 +107,14 @@ namespace Projet2_CCI.Affichage
         {
             if (ViewModel.LocationS != null)
             {
+                var listePlancheLouee = RequeteSqlLocation.SelectPlancheLouee(ViewModel.LocationS.IdLocation);
+                var listePlancheStock = new List<PlancheLouee>();
+                foreach (var planche in listePlancheLouee)
+                {
+                    listePlancheStock.Add(RequeteSqlLocation.SelectPlancheStock(planche));
+                }
+
+
                 RequeteSqlLocation.updateEtatLocation(ViewModel.LocationS.IdLocation, this.etatCommande.Text);
                 MessageBox.Show("Etat de la location mis à jour");
             }

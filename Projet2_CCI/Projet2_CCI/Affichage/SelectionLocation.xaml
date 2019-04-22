@@ -93,8 +93,6 @@
                 <DataGridTextColumn Header="Prix €" Binding="{Binding PrixSnowboardEuro}"/>
                 <DataGridTextColumn Header="Prix $" Binding="{Binding PrixSnowboardDollar}"/>
                 <DataGridTextColumn Header="Genre" Binding="{Binding Genre}"/>
-                
-
             </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
