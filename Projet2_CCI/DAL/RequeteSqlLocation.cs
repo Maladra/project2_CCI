@@ -183,5 +183,46 @@ namespace Projet2_CCI.DAL
                 return true;
             }
         }
+
+        public static List<PlancheLouee> selectPlancheLouee(long idLocation)
+        {
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
+            {
+                string selectPlancheLouee = "SELECT Id_planche_louee, Quantite FROM Planche_louee WHERE Fk_location=@idLocation";
+                List<PlancheLouee> listePlancheLouee = new List<PlancheLouee>();
+                SqliteConnection.Open();
+
+                using (SQLiteCommand SqliteSelectPlancheLouee = new SQLiteCommand(selectPlancheLouee, SqliteConnection))
+                {
+                    SQLiteDataReader SqliteReader = SqliteSelectPlancheLouee.ExecuteReader();
+                    SqliteSelectPlancheLouee.Parameters.AddWithValue("@idLocation", idLocation);
+                    while (SqliteReader.Read())
+                    {
+
+                        long idPlanche = (long)SqliteReader["id_planche_louee"];
+                        int quantite = (int)SqliteReader["Quantite"];
+                        listePlancheLouee.Add(new PlancheLouee (idPlanche, quantite));
+                    }
+                }
+                return listePlancheLouee;
+
+            }
+        }
+        public static bool updateStockRenduLocation(List<PlancheLouee> plancheLouee)
+        {
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
+            {
+
+            }
+
+                foreach (var planche in plancheLouee)
+                {
+                    // SELECT et ensuite INSERT 
+                }
+
+            return true;
+        }
     }
 }

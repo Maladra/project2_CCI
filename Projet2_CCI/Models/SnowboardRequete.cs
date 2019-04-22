@@ -36,7 +36,18 @@ namespace Projet2_CCI.Donnee
         }
 
     }
+    public class PlancheLouee
+    {
+        public long IdPlanche { get; set; }
+        public int Quantite { get; set; }
 
+        public PlancheLouee(long idPlanche, int quantite)
+        {
+            this.IdPlanche = idPlanche;
+            this.Quantite = quantite;
+        }
+
+    }
 }
 
 

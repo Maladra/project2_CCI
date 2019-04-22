@@ -26,7 +26,6 @@ namespace Projet2_CCI.Affichage
             this.stockAffichage.ItemsSource = snowboardListe;
         }
 
-
         string _login = string.Empty;
         public Vendeur(string login)
         {
@@ -38,7 +37,6 @@ namespace Projet2_CCI.Affichage
             this.selectionLocation.dateFin.DisplayDateStart = DateTime.UtcNow.AddDays(1);
 
 
-            this.selectionLocation.DataContext = new SelectionLocationViewModel(snowboardListe);
             this.affichageLocation.DataContext = new ViewModelAffichageLocation();
             this.stockAffichage.ItemsSource = snowboardListe;
             _login = login;
@@ -75,6 +73,13 @@ namespace Projet2_CCI.Affichage
         {
             List<ClientRequete> clientList = DAL.RequeteSqlClient.SQLiteListClient();
             affichageLocation.listeClient.ItemsSource = clientList;
+        }
+
+
+        private void creationLocationSelected(object sender, RoutedEventArgs e)
+        {
+            ObservableCollection<Donnee.SnowboardRequeteId> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
+            this.selectionLocation.DataContext = new SelectionLocationViewModel(snowboardListe);
         }
     }
 }
