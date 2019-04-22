@@ -41,11 +41,6 @@ namespace Projet2_CCI.Affichage
                 verificationForm = false;
                 erreurFormulaire.AppendLine("- Login de l'utilisateur");
             }
-            if (string.IsNullOrWhiteSpace(this.groupeUtilisateur.Text))
-            {
-                verificationForm = false;
-                erreurFormulaire.AppendLine("- Groupe de l'utilisateur");
-            }
 
             if (!verificationForm)
             {
@@ -67,11 +62,18 @@ namespace Projet2_CCI.Affichage
             }
         }
         Employe userBefore;
-        // TODO : VERIFICATION DES CHAMPS
         public EditUtilisateur(Employe user)
         {
+
             this.userBefore = user;
+
             InitializeComponent();
+
+            List<string> groupeUtilisateurSelect = new List<string>();
+            groupeUtilisateurSelect.Add("Administrateur");
+            groupeUtilisateurSelect.Add("Vendeur");
+            this.groupeUtilisateur.ItemsSource = groupeUtilisateurSelect;
+
             this.loginUtilisateur.Text = user.Login;
             this.nomUtilisateur.Text = user.Nom;
             this.prenomUtilisateur.Text = user.Prenom;

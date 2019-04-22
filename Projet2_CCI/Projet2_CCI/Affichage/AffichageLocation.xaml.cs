@@ -52,7 +52,6 @@ namespace Projet2_CCI.Affichage
             {
                 locationS = value;
                 this.OnPropertyChange();
-                // faire quelque chose
             }
         }
     }
@@ -75,6 +74,10 @@ namespace Projet2_CCI.Affichage
         private void ListBoxListeClientSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ViewModel.ChargeListeLocation();
+            if (ViewModel.clientSelectione != null)
+            {
+                this.numeroClient.Content = ViewModel.clientSelectione.NumeroTelephone;
+            }
         }
 
         private void EtatCommande_SelectionChanged(object sender, SelectionChangedEventArgs e)

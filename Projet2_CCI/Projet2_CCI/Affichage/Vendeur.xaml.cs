@@ -69,6 +69,13 @@ namespace Projet2_CCI.Affichage
             changePassword.ShowDialog();
         }
 
+
+
+        private void stockMaterielSelected (object sender, RoutedEventArgs e)
+        {
+            loadSnowboardList();
+        }
+
         private void locationEncoursSelected(object sender, RoutedEventArgs e)
         {
             List<ClientRequete> clientList = DAL.RequeteSqlClient.SQLiteListClient();
