@@ -108,16 +108,28 @@ namespace Projet2_CCI.Affichage
             if (ViewModel.LocationS != null)
             {
                 var listePlancheLouee = RequeteSqlLocation.SelectPlancheLouee(ViewModel.LocationS.IdLocation);
-                var listePlancheStock = new List<PlancheLouee>();
-                foreach (var planche in listePlancheLouee)
+
+                if (this.etatCommande.Text == "Rendu" && ViewModel.LocationS.EtatLocation != "Rendu")
                 {
-                    listePlancheStock.Add(RequeteSqlLocation.SelectPlancheStock(planche));
+                    ViewModel.LocationS.EtatLocation = this.etatCommande.Text;
+
+                    foreach (var plancheLocation in listePlancheLouee)
+                    {
+                        {
+                            PlancheLouee PlancheStock = RequeteSqlLocation.SelectPlancheStock(plancheLocation);
+                            int stock = plancheLocation.Quantite + PlancheStock.Quantite;
+                            RequeteSqlLocation.UpdateStock(plancheLocation.IdPlanche, stock);
+                        }
+                    }
+                    RequeteSqlLocation.updateEtatLocation(ViewModel.LocationS.IdLocation, this.etatCommande.Text);
+                    MessageBox.Show("Etat de la location mis à jour");
                 }
-
-
-                RequeteSqlLocation.updateEtatLocation(ViewModel.LocationS.IdLocation, this.etatCommande.Text);
-                MessageBox.Show("Etat de la location mis à jour");
+                else
+                {
+                    MessageBox.Show("Commande déja rendue");
+                }
             }
         }
     }
 }
+

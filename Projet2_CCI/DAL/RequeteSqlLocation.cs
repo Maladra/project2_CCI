@@ -72,7 +72,7 @@ namespace Projet2_CCI.DAL
                 }
 
                 string creationSnowboardLocation = "INSERT INTO Planche_louee (Prix_location_euro," +
-                    " Prix_location_dollar, Fk_planche, Fk_location) VALUES (?,?,?,?)";
+                    " Prix_location_dollar, Fk_planche, Fk_location, Quantite) VALUES (?,?,?,?,?)";
 
                 using (SQLiteCommand SqlInsertPlancheLouee = new SQLiteCommand(creationSnowboardLocation,
                     SqliteConnection))
@@ -83,6 +83,7 @@ namespace Projet2_CCI.DAL
                         SqlInsertPlancheLouee.Parameters.AddWithValue("@Prix_location_dollar", snowboard.PrixDollar);
                         SqlInsertPlancheLouee.Parameters.AddWithValue("@Fk_planche", snowboard.IdSnowboard);
                         SqlInsertPlancheLouee.Parameters.AddWithValue("@Fk_location", lastId);
+                        SqlInsertPlancheLouee.Parameters.AddWithValue("@Quantite", snowboard.Stock);
                         SqlInsertPlancheLouee.ExecuteNonQuery();
                     }
                 }
@@ -195,13 +196,15 @@ namespace Projet2_CCI.DAL
 
                 using (SQLiteCommand SqliteSelectPlancheLouee = new SQLiteCommand(selectPlancheLouee, SqliteConnection))
                 {
-                    SQLiteDataReader SqliteReader = SqliteSelectPlancheLouee.ExecuteReader();
                     SqliteSelectPlancheLouee.Parameters.AddWithValue("@idLocation", idLocation);
+                    SQLiteDataReader SqliteReader = SqliteSelectPlancheLouee.ExecuteReader();
+
+
                     while (SqliteReader.Read())
                     {
 
                         long idPlanche = (long)SqliteReader["Fk_planche"];
-                        int quantite = (int)SqliteReader["Quantite"];
+                        int quantite = (int)(long)SqliteReader["Quantite"];
                         listePlancheLouee.Add(new PlancheLouee(idPlanche, quantite));
                     }
                 }
@@ -215,50 +218,64 @@ namespace Projet2_CCI.DAL
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
             {
+                SqliteConnection.Open();
                 string selectPlanche = "SELECT Id_planche, Stock FROM Planche_snowboard WHERE Id_planche=@idPlancheLocation";
+
                 using (SQLiteCommand SqliteSelectPlanche = new SQLiteCommand(selectPlanche, SqliteConnection))
                 {
-                    SQLiteDataReader SqliteReader = SqliteSelectPlanche.ExecuteReader();
-
-                    SqliteConnection.Open();
-
                     SqliteSelectPlanche.Parameters.AddWithValue("@idPlancheLocation", plancheLouee.IdPlanche);
-                    if (SqliteReader.Read())
+                    using (SQLiteDataReader SqliteReader = SqliteSelectPlanche.ExecuteReader())
                     {
-                        long idPlanche = (long)SqliteReader["Id_planche"];
-                        int stock = (int)SqliteReader["Quantite"];
-                        PlancheLouee plancheStock = new PlancheLouee(idPlanche, stock);
-                        return plancheStock;
+                        if (SqliteReader.Read())
+                        {
+                            long idPlanche = (long)SqliteReader["Id_planche"];
+                            int stock = (int)(long)SqliteReader["Stock"];
+                            PlancheLouee plancheStock = new PlancheLouee(idPlanche, stock);
+                            return plancheStock;
+                        }
+
                     }
                     return null;
-
                 }
 
             }
-
-
         }
 
 
-        public static bool updateStockRenduLocation(List<PlancheLouee> plancheLouee)
+        public static void UpdateStock(long idPlanche, int quantite)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
             {
-                string updateStock = "UPDATE Planche_snowboard SET Stock=@stock WHERE Id_planche=@idPlanche";
-
-
                 SqliteConnection.Open();
-                using ()
+                string updateStock = "UPDATE Planche_snowboard SET Stock = @quantite WHERE Id_planche = @idPlanche ";
+                using (SQLiteCommand sQLiteCommand = new SQLiteCommand(updateStock, SqliteConnection))
+                {
+                    sQLiteCommand.Parameters.AddWithValue("@quantite", quantite);
+                    sQLiteCommand.Parameters.AddWithValue("@idPlanche", idPlanche);
+                    sQLiteCommand.ExecuteNonQuery();
+                }
             }
-
-
-            foreach (var planche in plancheLouee)
-            {
-                // SELECT et ensuite INSERT 
-            }
-
-            return true;
         }
+        //public static bool updateStockRenduLocation(List<PlancheLouee> plancheLouee)
+        //{
+        //    string connString = ConfigurationManager.AppSettings["connectionString"];
+        //    using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
+        //    {
+        //        string updateStock = "UPDATE Planche_snowboard SET Stock=@stock WHERE Id_planche=@idPlanche";
+        //
+        //
+        //        SqliteConnection.Open();
+        //        using ()
+        //    }
+        //
+
+        //            foreach (var planche in plancheLouee)
+        //            {
+        //                // SELECT et ensuite INSERT 
+        //            }
+        //
+        //            return true;
+        //        }
     }
 }
