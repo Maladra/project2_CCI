@@ -94,5 +94,11 @@ namespace Projet2_CCI
             }
         }
 
+        private void BouttonDbClick(object sender, RoutedEventArgs e)
+        {
+            ChangePathDb changePathDb = new ChangePathDb();
+            changePathDb.ShowDialog();
+
+        }
     }
 }

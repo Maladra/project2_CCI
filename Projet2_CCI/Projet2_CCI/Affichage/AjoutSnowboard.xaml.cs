@@ -134,7 +134,6 @@ namespace Projet2_CCI.Affichage
                     marqueSnowboard, genreSnowboard,
                     niveauSnowboard, styleSnowboard,
                     prixEuroFinal, prixDollarFinal, stockSnowboard);
-                // TODO : INSERT PROPRE SI Planche est deja presente augmenter le stock
                 RequeteSqlSnowboard.SQLAddSnowboard(snowboard);
                 MessageBox.Show("Le snowboard a été rajouté");
                 

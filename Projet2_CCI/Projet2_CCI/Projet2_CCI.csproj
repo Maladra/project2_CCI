@@ -77,6 +77,9 @@
     <Compile Include="Affichage\ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Affichage\ChangePathDb.xaml.cs">
+      <DependentUpon>ChangePathDb.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Affichage\EditUtilisateur.xaml.cs">
       <DependentUpon>EditUtilisateur.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Affichage\ChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Affichage\ChangePathDb.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

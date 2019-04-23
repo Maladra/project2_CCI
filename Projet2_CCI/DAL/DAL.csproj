@@ -55,6 +55,7 @@
     <Compile Include="RequeteSqlSnowboard.cs" />
     <Compile Include="RequeteSqlStyle.cs" />
     <Compile Include="RequeteSqlUser.cs" />
+    <Compile Include="TestDb.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
