@@ -32,12 +32,12 @@ namespace Projet2_CCI
             string nomEmploye = nom.Text;
             string prenomEmploye = prenom.Text;
             string loginEmploye = login.Text;
-            string passwordEmploye = password.Text;
+            string passwordEmploye = password.Password;
             string groupeEmploye = listeGroupe.Text;
             if (UtilsClass.VerifString(nomEmploye, prenomEmploye, loginEmploye, passwordEmploye, groupeEmploye))
             {
 
-                Employe employe = new Employe(nom.Text, prenom.Text, login.Text, password.Text, listeGroupe.Text);
+                Employe employe = new Employe(nom.Text, prenom.Text, login.Text, password.Password, listeGroupe.Text);
                 if (RequeteSqlUser.SQLiteAddUser(employe))
                 {
                     MessageBox.Show("L'utilisateur a été crée");

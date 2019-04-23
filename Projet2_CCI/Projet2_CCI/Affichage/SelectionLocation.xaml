@@ -8,9 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="1000">
     <Grid Background="#FFE5E5E5">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
 
@@ -20,73 +20,53 @@
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="122*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Nom Client :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,71,0,0"/>
-            <Label Content="Prénom Client :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,121,0,0"/>
-            <Label Content="Moyen paiement :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,171,0,0"/>
-            <Label Content="Date début :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,222,0,0"/>
-            <Label Content="Date fin :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="233,267,0,0"/>
-            <TextBox x:Name="nomClient"
-                 Grid.Column="1"
-                 HorizontalAlignment="Left"
-                 Height="23"
-                 Margin="233,102,0,0"
-                 TextWrapping="Wrap"
-                 VerticalAlignment="Top"
-                 Width="120"/>
-            <TextBox x:Name="prenomClient"
-                 Grid.Column="1"
-                 HorizontalAlignment="Left" 
-                 Height="23" 
-                 Margin="233,143,0,0" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" 
-                 Width="120"/>
+            <Label Content="Moyen paiement :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="10,10,0,0"/>
+            <Label Content="Date début :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="535,72,-85,0"/>
+            <Label Content="Date fin :" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="535,98,-67,0"/>
             <ComboBox Grid.Column="1"
                   HorizontalAlignment="Left"
-                  Margin="233,202,0,0"
+                  Margin="121,14,0,0"
                   VerticalAlignment="Top" 
                   Width="120" 
                 x:Name="moyenPaiement"/>
-            <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="233,248,0,0" VerticalAlignment="Top" x:Name="dateDebut"/>
-            <Button Content="Valider" Grid.Column="1" HorizontalAlignment="Left" Margin="250,343,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
-            <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="233,293,0,0" VerticalAlignment="Top" x:Name="dateFin"/>
+            <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="629,74,-224,0" VerticalAlignment="Top" x:Name="dateDebut" Width="120"/>
+            <Button Content="Valider" Grid.Column="1" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
+            <DatePicker Grid.Column="1" HorizontalAlignment="Left" Margin="629,103,-224,0" VerticalAlignment="Top" x:Name="dateFin" Width="120"/>
             <ComboBox ScrollViewer.CanContentScroll="False"
                   Grid.Column="1" 
                   HorizontalAlignment="Left" 
-                  Margin="409,202,0,0" 
+                  Margin="629,14,-224,0" 
                   VerticalAlignment="Top" 
                   Width="120" 
                   x:Name="hourPicker"/>
             <ComboBox ScrollViewer.CanContentScroll="False" 
                   Grid.Column="1" 
                   HorizontalAlignment="Left" 
-                  Margin="409,260,0,0" 
+                  Margin="629,41,-224,0" 
                   VerticalAlignment="Top" 
                   Width="120" 
                   x:Name="minutePicker"/>
-            <Label Content="Heure Debut :" Grid.Column="1" HorizontalAlignment="Left" Margin="409,171,0,0" VerticalAlignment="Top"/>
-            <Label Content="Minute Debut :" Grid.Column="1" HorizontalAlignment="Left" Margin="409,229,0,0" VerticalAlignment="Top"/>
+            <Label Content="Heure Debut :" Grid.Column="1" HorizontalAlignment="Left" Margin="535,10,-94,0" VerticalAlignment="Top"/>
+            <Label Content="Minute Debut :" Grid.Column="1" HorizontalAlignment="Left" Margin="535,41,-99,0" VerticalAlignment="Top"/>
             <TextBox x:Name="tva"
                  Text="19,6"
                  Grid.Column="1"
                  HorizontalAlignment="Left"
                  Height="23"
-                 Margin="444,317,0,0"
+                 Margin="288,17,0,0"
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
                  Width="120"/>
-            <Label Content="TVA :" Grid.Column="1" HorizontalAlignment="Left" Margin="401,314,0,0" VerticalAlignment="Top"/>
-            <Label Content="N° téléphone :" Grid.Column="1" HorizontalAlignment="Left" Margin="429,109,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="numeroTelephoneClient" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="411,135,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <Label Content="TVA :" Grid.Column="1" HorizontalAlignment="Left" Margin="246,14,0,0" VerticalAlignment="Top"/>
         </Grid >
-        
-        
-        
+
+
+
         <DataGrid Grid.Column="0"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding StockTempSnowboard}"
-                  x:Name="stockSnowboard">
+                  x:Name="stockSnowboard" Margin="10,134,263,10" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                 <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
@@ -101,12 +81,12 @@
             </DataGrid.RowStyle>
         </DataGrid>
 
-        <DataGrid Grid.Column="2"
+        <DataGrid Grid.Column="1"
                   MinWidth="200"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding LocationListe}"
-                  x:Name="listeLocation">
+                  x:Name="listeLocation" Margin="267,134,-236,10" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
                 <DataGridTextColumn Header="Reservé" Binding="{Binding Stock}"/>
@@ -119,7 +99,25 @@
                 </Style>
             </DataGrid.RowStyle>
         </DataGrid>
-       
+        <Label Content="Nom Client :" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+        <TextBox x:Name="nomClient"
+                 HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="106,13,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="120"/>
+        <Label Content="Prénom Client :" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,41,0,0"/>
+        <TextBox x:Name="prenomClient"
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="106,41,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="120"/>
+        <Label Content="N° téléphone :" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="numeroTelephoneClient" HorizontalAlignment="Left" Height="23" Margin="106,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
 
     </Grid>
 </UserControl>

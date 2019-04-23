@@ -14,14 +14,14 @@
         
         
         
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="334,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.669,0.252" x:Name="login"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="315,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.669,0.252" x:Name="login"/>
         <Label Content="Nom :" HorizontalAlignment="Left" Margin="40,46,0,0" VerticalAlignment="Top"/>
         <Label Content="Prenom :" HorizontalAlignment="Left" Margin="40,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.053,0.462"/>
-        <Label Content="Password :" HorizontalAlignment="Left" Margin="264,77,0,0" VerticalAlignment="Top"/>
-        <Label Content="Login :" HorizontalAlignment="Left" Margin="284,46,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="334,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="password" RenderTransformOrigin="0.167,0.565"/>
-        <ComboBox HorizontalAlignment="Left" Margin="245,127,0,0" VerticalAlignment="Top" Width="120" x:Name="listeGroupe"/>
-        <Label Content="Groupe :" HorizontalAlignment="Left" Margin="185,123,0,0" VerticalAlignment="Top"/>
+        <Label Content="Password :" HorizontalAlignment="Left" Margin="245,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.22,0.402"/>
+        <Label Content="Login :" HorizontalAlignment="Left" Margin="245,46,0,0" VerticalAlignment="Top"/>
+        <PasswordBox HorizontalAlignment="Left" Height="23" Margin="315,80,0,0" VerticalAlignment="Top" Width="120" x:Name="password" RenderTransformOrigin="0.167,0.565"/>
+        <ComboBox HorizontalAlignment="Center" Margin="0,127,0,0" VerticalAlignment="Top" Width="120" x:Name="listeGroupe"/>
+        <Label Content="Groupe :" HorizontalAlignment="Left" Margin="147,123,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

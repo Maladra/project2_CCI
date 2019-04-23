@@ -33,9 +33,10 @@
         <Button x:Name="valider" Content="Valider" HorizontalAlignment="Left" Margin="628,241,0,0" VerticalAlignment="Top" Width="75" Click="Valider_Click"/>
         <Label Content="N° Téléphone Client :" HorizontalAlignment="Left" Margin="628,98,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.026,-0.231"/>
         <Label x:Name="numeroClient" HorizontalAlignment="Left" Margin="628,124,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="txtFilter" TextChanged="txtFilter_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="169,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="txtFilter" TextChanged="txtFilter_TextChanged"/>
         <Label Content="N° Commande :" HorizontalAlignment="Left" Margin="628,67,0,0" VerticalAlignment="Top"/>
         <Label x:Name="numeroCommande" HorizontalAlignment="Left" Margin="727,67,0,0" VerticalAlignment="Top"/>
+        <Label Content="Recherche client par nom : " HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

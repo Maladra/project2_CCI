@@ -7,28 +7,28 @@
         mc:Ignorable="d"
         Title="RecapitulatifLocation" Height="450" Width="800">
     <Grid>
-        <Label Content="Nom Client :" HorizontalAlignment="Left" Margin="99,36,0,0" VerticalAlignment="Top"/>
-        <Label Content="Prenom Client :" HorizontalAlignment="Left" Margin="99,67,0,0" VerticalAlignment="Top"/>
-        <Label Content="Prix Total HT :" HorizontalAlignment="Left" Margin="99,98,0,0" VerticalAlignment="Top"/>
-        <Label Content="Prix Total :" HorizontalAlignment="Left" Margin="99,299,0,0" VerticalAlignment="Top"/>
-        <Label Content="TVA :" HorizontalAlignment="Left" Margin="99,155,0,0" VerticalAlignment="Top"/>
-        <Label Content="Liste location :" HorizontalAlignment="Left" Margin="591,36,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="nomClient" Content="Default" HorizontalAlignment="Left" Margin="230,36,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="prenomClient" Content="Default" HorizontalAlignment="Left" Margin="230,67,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="prixTotalEuroHt" Content="Default" HorizontalAlignment="Left" Margin="230,98,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="prixTotalEuro" Content="Default" HorizontalAlignment="Left" Margin="212,299,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="tva" Content="Default" HorizontalAlignment="Left" Margin="230,155,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.637,0.439"/>
+        <Label Content="Nom Client :" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top"/>
+        <Label Content="Prenom Client :" HorizontalAlignment="Left" Margin="11,62,0,0" VerticalAlignment="Top"/>
+        <Label Content="Prix Total HT :" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top"/>
+        <Label Content="Prix Total :" HorizontalAlignment="Left" Margin="10,248,0,0" VerticalAlignment="Top"/>
+        <Label Content="TVA :" HorizontalAlignment="Left" Margin="11,217,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.459,0.513"/>
+        <Label Content="Liste matériel loué :" HorizontalAlignment="Left" Margin="494,18,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="nomClient" Content="Default" HorizontalAlignment="Left" Margin="107,31,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="prenomClient" Content="Default" HorizontalAlignment="Left" Margin="107,62,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="prixTotalEuroHt" Content="Default" HorizontalAlignment="Left" Margin="107,186,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="prixTotalEuro" Content="Default" HorizontalAlignment="Left" Margin="107,248,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="tva" Content="Default" HorizontalAlignment="Left" Margin="107,217,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.637,0.439"/>
         <DataGrid x:Name="listeLocation"
                   HorizontalAlignment="Left"
-                  Height="100"
-                  Margin="591,62,0,0"
+                  Height="360"
+                  Margin="357,49,0,0"
                   VerticalAlignment="Top"
-                  Width="100"/>
-        <Label Content="Date de début :"  HorizontalAlignment="Left" Margin="99,219,0,0" VerticalAlignment="Top"/>
-        <Label Content="Date de fin :" HorizontalAlignment="Left" Margin="99,250,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="dateDebut" Content="Default" HorizontalAlignment="Left" Margin="230,219,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.463,-0.066"/>
-        <Label x:Name="dateFin" Content="Default" HorizontalAlignment="Left" Margin="230,250,0,0" VerticalAlignment="Top"/>
-        <Label Content="Durée" HorizontalAlignment="Left" Margin="99,124,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="dureeLocation" Content="Default" HorizontalAlignment="Left" Margin="230,129,0,0" VerticalAlignment="Top"/>
+                  Width="425"/>
+        <Label Content="Date de début :"  HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top"/>
+        <Label Content="Date de fin :" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="dateDebut" Content="Default" HorizontalAlignment="Left" Margin="107,93,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.463,-0.066"/>
+        <Label x:Name="dateFin" Content="Default" HorizontalAlignment="Left" Margin="107,124,0,0" VerticalAlignment="Top"/>
+        <Label Content="Durée :" HorizontalAlignment="Left" Margin="11,155,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="dureeLocation" Content="Default" HorizontalAlignment="Left" Margin="107,155,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

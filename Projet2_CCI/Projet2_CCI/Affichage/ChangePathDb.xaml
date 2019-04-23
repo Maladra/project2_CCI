@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet2_CCI.Affichage"
         mc:Ignorable="d"
-        Title="ChangePathDb" Height="389.049" Width="636.599">
+        Title="Changer base de donnée" Height="149.117" Width="574.934">
     <Grid>
-        <Button Content="Valider" HorizontalAlignment="Left" Margin="179,208,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
-        <Button Content="Retour" HorizontalAlignment="Left" Margin="341,208,0,0" VerticalAlignment="Top" Width="75" Click="ButtonRetour_Click" />
-        <Label Content="Changer BD :" HorizontalAlignment="Left" Margin="29,133,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="dbPath" HorizontalAlignment="Left" Height="23" Margin="109,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="435"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Margin="155,89,0,0" VerticalAlignment="Top" Width="75" Click="ButtonValider_Click"/>
+        <Button Content="Retour" HorizontalAlignment="Left" Margin="379,89,0,0" VerticalAlignment="Top" Width="75" Click="ButtonRetour_Click" />
+        <Label Content="Changer BD :" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="dbPath" HorizontalAlignment="Left" Height="23" Margin="94,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="435"/>
 
     </Grid>
 </Window>

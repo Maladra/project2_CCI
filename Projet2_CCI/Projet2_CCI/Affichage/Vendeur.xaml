@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet2_CCI.Affichage"
         mc:Ignorable="d"
-        Title="Location" Height="450" Width="800">
+        Title="Location" Height="450" Width="1015">
     <Grid>
 
         <Label Content="Welcome" HorizontalAlignment="Left" Margin="359,337,0,0" VerticalAlignment="Top"/>

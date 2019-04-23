@@ -48,7 +48,7 @@ namespace Projet2_CCI.Affichage
             }
             else
             {
-                Employe userAfter = new Employe(this.nomUtilisateur.Text, this.prenomUtilisateur.Text, this.loginUtilisateur.Text, this.passwordUtilisateur.Text, this.groupeUtilisateur.Text);
+                Employe userAfter = new Employe(this.nomUtilisateur.Text, this.prenomUtilisateur.Text, this.loginUtilisateur.Text, this.passwordUtilisateur.Password, this.groupeUtilisateur.Text);
                 try
                 {
                     RequeteSqlUser.SQLiteEditUser(this.userBefore, userAfter);
