@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using Models;
 using Projet2_CCI.DAL;
 using Projet2_CCI.Donnee;
@@ -17,8 +20,16 @@ namespace Projet2_CCI.Affichage
 
     public class ViewModelAffichageLocation : ViewModelBase
     {
-        public ObservableCollection<ClientRequete> Clients { get; } =
-            new ObservableCollection<ClientRequete>();
+        public ObservableCollection<ClientRequete> Clients { get; } = new ObservableCollection<ClientRequete>();
+
+        public ViewModelAffichageLocation(List<ClientRequete> listeClient)
+        {
+            this.Clients = new ObservableCollection<ClientRequete>(
+                listeClient.Select(client => new ClientRequete(client.IdClient, client.Nom, client.Prenom, client.NumeroTelephone)));
+
+        }
+
+
         public ObservableCollection<DynamicLocationId> Location { get; } =
             new ObservableCollection<DynamicLocationId>();
 
@@ -63,6 +74,7 @@ namespace Projet2_CCI.Affichage
     {
         ViewModelAffichageLocation ViewModel => (ViewModelAffichageLocation)this.DataContext;
 
+
         public AffichageLocation()
         {
             InitializeComponent();
@@ -71,6 +83,39 @@ namespace Projet2_CCI.Affichage
             etatPossible.Add("Non rendu");
             this.etatCommande.ItemsSource = etatPossible;
         }
+
+
+        void OnLoad (object sender, RoutedEventArgs e)
+        {
+            listeClient.ItemsSource = ViewModel.Clients;
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(this.listeClient.ItemsSource);
+            view.Filter = UserFilter;
+        }
+
+
+        private bool UserFilter(object item)
+        {
+            if (string.IsNullOrEmpty(txtFilter.Text))
+                return true;
+            else
+                return ((item as ClientRequete).Nom.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(listeClient.ItemsSource).Refresh();
+        }
+
+
+
+
+
+
+
+
+
+
 
         private void ListBoxListeClientSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -95,10 +140,12 @@ namespace Projet2_CCI.Affichage
             if (listeLocation.SelectedItem != null)
             {
                 this.etatCommande.SelectedItem = ViewModel.LocationS.EtatLocation;
+                this.numeroCommande.Content = ViewModel.LocationS.IdLocation;
             }
             else
             {
                 this.etatCommande.SelectedItem = string.Empty;
+                this.numeroCommande.Content = string.Empty;
             }
 
         }

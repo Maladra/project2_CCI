@@ -214,9 +214,6 @@ namespace Projet2_CCI.Affichage
         {
             if (ValidationForm())
             {
-                // TODO VALIDATION (SQL)
-                //Location location = new Location(this.nomClient.Text, this.prenomClient.Text, this.moyenPaiement.Text,  
-
                 this.ViewModel.ValiderLocation(this.nomClient.Text, this.prenomClient.Text, this.numeroTelephoneClient.Text, this.moyenPaiement.Text, Convert.ToDecimal(this.tva.Text),
                                    (DateTime)this.dateDebut.SelectedDate, (DateTime)this.dateFin.SelectedDate);
             }

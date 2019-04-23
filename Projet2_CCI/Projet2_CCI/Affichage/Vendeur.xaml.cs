@@ -8,6 +8,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Data;
+
 namespace Projet2_CCI.Affichage
 {
 
@@ -35,10 +37,14 @@ namespace Projet2_CCI.Affichage
             this.selectionLocation.moyenPaiement.ItemsSource = new string[] { "Carte Bleue", "Espèce", "Chèque" };
             this.selectionLocation.dateDebut.DisplayDateStart = DateTime.UtcNow;
             this.selectionLocation.dateFin.DisplayDateStart = DateTime.UtcNow.AddDays(1);
-
-
-            this.affichageLocation.DataContext = new ViewModelAffichageLocation();
             this.stockAffichage.ItemsSource = snowboardListe;
+
+            List<ClientRequete> clientList = DAL.RequeteSqlClient.SQLiteListClient();
+            this.affichageLocation.DataContext = new ViewModelAffichageLocation(clientList);
+
+            ObservableCollection<Donnee.SnowboardRequeteId> snowboardListeRequete = RequeteSqlSnowboard.SQLitePlancheRead();
+            this.selectionLocation.DataContext = new SelectionLocationViewModel(snowboardListeRequete);
+
             _login = login;
 
         }
@@ -57,7 +63,6 @@ namespace Projet2_CCI.Affichage
 
         private void Button_ajoutSnowboard_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: SI deja presente ajoute au Stock plutôt que nouvelle planche
             AjoutSnowboard ajoutSnowboard = new AjoutSnowboard();
             ajoutSnowboard.ShowDialog();
             loadSnowboardList();
@@ -79,7 +84,7 @@ namespace Projet2_CCI.Affichage
         private void locationEncoursSelected(object sender, RoutedEventArgs e)
         {
             List<ClientRequete> clientList = DAL.RequeteSqlClient.SQLiteListClient();
-            affichageLocation.listeClient.ItemsSource = clientList;
+            this.affichageLocation.DataContext = new ViewModelAffichageLocation(clientList);
         }
 
 
