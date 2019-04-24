@@ -40,7 +40,7 @@ namespace Projet2_CCI.Affichage
             if (string.IsNullOrWhiteSpace(nomSnowboard))
             {
                 verificationForm = false;
-                erreurFormulaire.Append(" Merci de renseigner une valeur dans le Nom\n");
+                erreurFormulaire.Append("- Merci de renseigner une valeur dans le Nom\n");
             }
 
             // Test la Marque
@@ -135,7 +135,7 @@ namespace Projet2_CCI.Affichage
                     niveauSnowboard, styleSnowboard,
                     prixEuroFinal, prixDollarFinal, stockSnowboard);
                 RequeteSqlSnowboard.SQLAddSnowboard(snowboard);
-                MessageBox.Show("Le snowboard a été rajouté");
+                MessageBox.Show("Le snowboard à été rajouté");
                 
             }
             else

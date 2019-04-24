@@ -28,7 +28,7 @@ namespace Projet2_CCI.Affichage
         {
             bool verificationForm = true;
             StringBuilder erreurFormulaire = new StringBuilder();
-            erreurFormulaire.AppendLine("Le(s) champs suivants sont vide :");
+            erreurFormulaire.AppendLine("Le(s) champ(s) suivants sont vide :");
             if (string.IsNullOrWhiteSpace(this.nomUtilisateur.Text))
             {
                 verificationForm = false;

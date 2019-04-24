@@ -39,7 +39,7 @@ namespace Projet2_CCI
                 Employe employe = new Employe(nom.Text, prenom.Text, login.Text, password.Password, listeGroupe.Text);
                 if (RequeteSqlUser.SQLiteAddUser(employe))
                 {
-                    MessageBox.Show("L'utilisateur a été crée");
+                    MessageBox.Show("L'utilisateur à été crée");
                     this.Close();
                 }
                 else

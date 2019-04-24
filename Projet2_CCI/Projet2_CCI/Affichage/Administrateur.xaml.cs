@@ -31,7 +31,7 @@ namespace Projet2_CCI
 
             if (user != null)
             {
-                var res = MessageBox.Show(this, "Confirmation suppression utilisateur", "Confirmation suppression", MessageBoxButton.OKCancel,
+                var res = MessageBox.Show(this, "Confirmation suppression de l'utilisateur", "Confirmation suppression", MessageBoxButton.OKCancel,
                 MessageBoxImage.Question);
                 if (res == MessageBoxResult.OK)
                 {

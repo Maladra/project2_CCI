@@ -16,7 +16,7 @@
         <Label Content="Prénom de l'utilisateur :" HorizontalAlignment="Left" Margin="85,152,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="18" Margin="225,160,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" x:Name="prenomUtilisateur"/>
         <Label Content="Groupe de l'utilisateur :" HorizontalAlignment="Left" Margin="405,90,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="543,98,0,0" VerticalAlignment="Top" Width="120" x:Name="groupeUtilisateur" Height="18"/>
+        <ComboBox HorizontalAlignment="Left" Margin="543,98,0,0" VerticalAlignment="Top" Width="120" x:Name="groupeUtilisateur" />
         <Label Content="Mot de passe de l'utilisateur :" HorizontalAlignment="Left" Margin="373,121,0,0" VerticalAlignment="Top"/>
         <PasswordBox HorizontalAlignment="Left" Height="18" Margin="543,129,0,0" VerticalAlignment="Top" Width="120" x:Name="passwordUtilisateur"/>
         
