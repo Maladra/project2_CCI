@@ -89,9 +89,8 @@
                   x:Name="listeLocation" Margin="267,134,-236,10" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
-                <DataGridTextColumn Header="Reservé" Binding="{Binding Stock}"/>
+                <DataGridTextColumn Header="Réservé" Binding="{Binding Stock}"/>
                 <DataGridTextColumn Header="Marque" Binding="{Binding Marque}"/>
-                <DataGridTextColumn Header="Style" Binding="{Binding Style}"/>
             </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
