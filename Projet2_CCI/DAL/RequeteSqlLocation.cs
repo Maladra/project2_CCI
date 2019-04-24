@@ -198,6 +198,9 @@ namespace Projet2_CCI.DAL
             }
         }
 
+        /// <summary>
+        /// Prend un Long représente l'Id d'une location et retourne une liste de planche assignée a la location
+        /// </summary>
         public static List<PlancheLouee> SelectPlancheLouee(long idLocation)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
@@ -226,6 +229,9 @@ namespace Projet2_CCI.DAL
             }
         }
 
+        /// <summary>
+        /// Retourne une planche de snowboard du stock ou l'Id correspond a sa FK dans Planche_Louee
+        /// </summary>
         public static PlancheLouee SelectPlancheStock(PlancheLouee plancheLouee)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
@@ -254,7 +260,9 @@ namespace Projet2_CCI.DAL
             }
         }
 
-
+        /// <summary>
+        /// Prend un int (représente la quantité) et un long (représente l'Id) et remplace la valeur dans la DB
+        /// </summary>
         public static void UpdateStock(long idPlanche, int quantite)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
@@ -270,25 +278,5 @@ namespace Projet2_CCI.DAL
                 }
             }
         }
-        //public static bool updateStockRenduLocation(List<PlancheLouee> plancheLouee)
-        //{
-        //    string connString = ConfigurationManager.AppSettings["connectionString"];
-        //    using (SQLiteConnection SqliteConnection = new SQLiteConnection(connString))
-        //    {
-        //        string updateStock = "UPDATE Planche_snowboard SET Stock=@stock WHERE Id_planche=@idPlanche";
-        //
-        //
-        //        SqliteConnection.Open();
-        //        using ()
-        //    }
-        //
-
-        //            foreach (var planche in plancheLouee)
-        //            {
-        //                // SELECT et ensuite INSERT 
-        //            }
-        //
-        //            return true;
-        //        }
     }
 }

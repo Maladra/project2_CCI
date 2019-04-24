@@ -140,9 +140,7 @@ namespace Projet2_CCI.Affichage
             }
             else
             {
-                MessageBox.Show(erreurFormulaire.ToString());
-                // ERREUR
-                
+                MessageBox.Show(erreurFormulaire.ToString());             
             }
 
         }

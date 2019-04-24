@@ -11,14 +11,20 @@ namespace Projet2_CCI.DAL
 {
    public class RequeteSqlMarque
     {
+
+        public static string PathDb()
+        {
+            string connString = ConfigurationManager.AppSettings["connectionString"];
+            return connString;
+
+        }
+
         /// <summary>
         /// Prend un string et fait une requete SQL pour inserer une marque de snowboard dans la DB
         /// </summary>
         public static bool SQLiteAddMarque(string marque)
         {
-
-            string connString = ConfigurationManager.AppSettings["connectionString"];
-            using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
+            using (SQLiteConnection SQLiteConn = new SQLiteConnection(PathDb()))
             {
                 string querySelect = "SELECT Marque FROM Marque_snowboard WHERE Marque = @marque";
                 string queryInsert = "INSERT INTO Marque_snowboard (Marque) VALUES (?)";
@@ -51,8 +57,7 @@ namespace Projet2_CCI.DAL
         /// </summary>
         public static List<Marque> SqlReadMarque()
         {
-            string connString = ConfigurationManager.AppSettings["connectionString"];
-            using (SQLiteConnection sqliteConn = new SQLiteConnection(connString))
+            using (SQLiteConnection sqliteConn = new SQLiteConnection(PathDb()))
             {
                 string querySelect = "SELECT Id_marque ,Marque FROM Marque_snowboard ORDER BY Marque;";
                 sqliteConn.Open();

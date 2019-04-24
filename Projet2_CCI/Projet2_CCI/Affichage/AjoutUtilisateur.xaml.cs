@@ -28,7 +28,6 @@ namespace Projet2_CCI
         /// </summary>
         private void addUser()
         {
-
             string nomEmploye = nom.Text;
             string prenomEmploye = prenom.Text;
             string loginEmploye = login.Text;

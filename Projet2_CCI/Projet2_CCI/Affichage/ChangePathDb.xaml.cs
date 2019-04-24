@@ -24,7 +24,6 @@ namespace Projet2_CCI.Affichage
         {
             InitializeComponent();
             this.dbPath.Text = ConfigurationManager.AppSettings["connectionString"];
-
         }
 
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
@@ -36,9 +35,7 @@ namespace Projet2_CCI.Affichage
             if (testConnection != "Connexion établie")
             {
                 ConfigurationManager.AppSettings["connectionString"] = oldConfigue;
-                MessageBox.Show(testConnection);
-                
-                
+                MessageBox.Show(testConnection);        
             }
             else
             {
