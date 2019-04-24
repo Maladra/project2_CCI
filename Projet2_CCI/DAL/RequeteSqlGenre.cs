@@ -11,8 +11,6 @@ namespace Projet2_CCI.DAL
 {
     public class RequeteSqlGenre
     {
-
-
         public static List<Genre> SqlReadGenre()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];

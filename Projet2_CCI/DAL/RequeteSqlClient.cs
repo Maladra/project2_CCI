@@ -41,7 +41,6 @@ namespace Projet2_CCI.DAL
             return clientList;
         }
 
-
         /// <summary>
         /// Prend un long qui représente un Id Client et retourne un objet ClientRequete
         /// </summary>

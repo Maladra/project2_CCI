@@ -1,6 +1,8 @@
-﻿using Projet2_CCI.DAL;
+﻿using DAL;
+using Projet2_CCI.DAL;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -47,9 +49,11 @@ namespace Projet2_CCI.Affichage
             this.Close();
         }
 
+
         public Connexion()
-        {
+        {     
             InitializeComponent();
+            LoadDbPath.setDbPath();
         }
 
         private void Button_Connexion_Click(object sender, RoutedEventArgs e)
