@@ -29,8 +29,10 @@ namespace Projet2_CCI.Affichage
         /// </summary>
         private void procConnexion()
         {
+
             UtilisateurConnexion utilisateur = RequeteSqlConnexion.SQLiteConnexionHash(
                 this.UsernameText.Text, this.PasswordText.Password.ToString());
+
 
             if (utilisateur == null)
             {
