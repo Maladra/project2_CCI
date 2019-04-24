@@ -28,12 +28,12 @@ namespace Projet2_CCI
             else { 
                 if (DAL.RequeteSqlStyle.SQLiteAddStyle(this.nomStyle.Text) == true)
                 {
-                    MessageBox.Show("Style bien ajouté dans BD");
+                    MessageBox.Show("Le style à bien été ajouté");
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Style déja present dans BD");
+                    MessageBox.Show("Le style est déja present");
                 }
             }
         }

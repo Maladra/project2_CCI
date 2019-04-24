@@ -12,7 +12,7 @@ namespace Projet2_CCI.DAL
    public class RequeteSqlMarque
     {
         /// <summary>
-        /// Prend un string et fait une requete SQL pour inserer une marque de snowboard dans la BD
+        /// Prend un string et fait une requete SQL pour inserer une marque de snowboard dans la DB
         /// </summary>
         public static bool SQLiteAddMarque(string marque)
         {
@@ -45,6 +45,10 @@ namespace Projet2_CCI.DAL
             }
         }
 
+
+        /// <summary>
+        /// Donne la liste des marques présente dans la DB
+        /// </summary>
         public static List<Marque> SqlReadMarque()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];

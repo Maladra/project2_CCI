@@ -22,6 +22,7 @@ namespace Projet2_CCI.Affichage
     {
 
         ObservableCollection<Donnee.SnowboardRequeteId> snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
+
         private void loadSnowboardList()
         {
             this.snowboardListe = RequeteSqlSnowboard.SQLitePlancheRead();
@@ -29,6 +30,7 @@ namespace Projet2_CCI.Affichage
         }
 
         string _login = string.Empty;
+
         public Vendeur(string login)
         {
             InitializeComponent();

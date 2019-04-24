@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace Projet2_CCI.DAL
 {
+
+    /// <summary>
+    /// Erreur retournée si le login utilisateur est déja présent dans la DB pendant l'insert d'un utilisateur ou son édition
+    /// </summary>
     [Serializable]
     public class LoginExistentException : Exception
     {
@@ -50,7 +54,7 @@ namespace Projet2_CCI.DAL
         }
 
         /// <summary>
-        /// Prend un objet employe et l'ajoute dans la BD
+        /// Prend un objet Employe et l'ajoute dans la BD
         /// </summary>
         public static bool SQLiteAddUser(Employe employe)
         {
@@ -105,13 +109,13 @@ namespace Projet2_CCI.DAL
         /// </summary>
         public static void SQLiteEditUser(Employe employeBefore, Employe employeAfter)
         {
-            // CONNEXION BDD
+
             string connString = ConfigurationManager.AppSettings["connectionString"];
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 SQLiteConn.Open();
 
-                // VERIFICATION USERS
+
                 string queryVerifUser = "SELECT Login FROM Employe WHERE Login = @loginAfter LIMIT 1;";
                 SQLiteCommand SQLiteVerificationUser = new SQLiteCommand(queryVerifUser, SQLiteConn);
                 SQLiteVerificationUser.Parameters.AddWithValue("@loginAfter", employeAfter.Login);
@@ -123,17 +127,14 @@ namespace Projet2_CCI.DAL
                 // Avec modification de password
                 if (!string.IsNullOrEmpty(employeAfter.Password))
                 {
-                    // Generation Salt
+
                     byte[] salt = HashingPassword.SaltGeneration();
-                    // Convert en byte array le password
                     byte[] employePasswordByte = Encoding.UTF8.GetBytes(employeAfter.Password);
-                    // Creation Hash a partir du password et du salt
                     employePasswordByte = HashingPassword.HashPasswordSalt(employeAfter.Password, salt);
 
-                    // SQL INSERT
+
                     if (!existe)
                     {
-                        // a finir
                         string queryInsert = "UPDATE Employe SET Nom=@Nom, Prenom=@Prenom, Login=@loginAfter, Password=@Password, Groupe=@Groupe ,Salt=@Salt WHERE Login=@LoginBefore;";
                         SQLiteCommand SQLiteInsert = new SQLiteCommand(queryInsert, SQLiteConn);
                         SQLiteInsert.Parameters.AddWithValue("@Nom", employeAfter.Nom);
@@ -203,13 +204,11 @@ namespace Projet2_CCI.DAL
         }
 
         /// <summary>
-        /// Prend un string (le login de l'utilisateur) et supprime l'utilisateur de la BD 
+        /// Prend un string (le login de l'utilisateur) et supprime l'utilisateur de la BD
+        /// vérifie qu'il reste au moins 1 utilisateur admin
         /// </summary>
         public static string SQLiteDeleteUser(Employe employe)
         {
-            //TODO: VERIFICATION si il reste au moins 1 administrateur :
-            // selectionner user a selectionner si il est admin verifier qu'il en reste plus que 1 si oui delete si non rien faire
-            // si user n'est pas admin delete
             string connString = ConfigurationManager.AppSettings["connectionString"];
 
             using (SQLiteConnection sqliteConn = new SQLiteConnection(connString))
@@ -225,7 +224,6 @@ namespace Projet2_CCI.DAL
                 if (employe.Groupe == "Administrateur")
                 {
                     sqliteConn.Open();
-                    // TODO: FAIRE PROPRE (virer les strings a mettre dans interface)
                     long count = (long)sqliteCountAdmin.ExecuteScalar();
 
                     if (count > 1)
@@ -250,7 +248,7 @@ namespace Projet2_CCI.DAL
         }
 
         /// <summary>
-        /// Prend un login utilisateur en parametre et change le password associe au login
+        /// Prend un login utilisateur en parametre et change le password associé au login
         /// </summary>
         public static bool SQLiteChangePassword(string login, string password)
         {
@@ -282,38 +280,6 @@ namespace Projet2_CCI.DAL
             }
             return true;
         }
-
-
-
-
-
-        // FONCTION probablement inutile
-        //public static Employe SQLiteSelectUser(string login)
-        //{
-        //    string connString = ConfigurationManager.AppSettings["connectionString"];
-        //
-        //
-        //    using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
-        //    {
-        //        string selectUset = "SELECT Nom, Prenom, Login, Password, Groupe FROM Employe WHERE Login=@login LIMIT 1;";
-        //        SQLiteCommand SQLiteCommandSelectUser = new SQLiteCommand(selectUset, SQLiteConn);
-        //        SQLiteConn.Open();
-        //        SQLiteCommandSelectUser.Parameters.AddWithValue("login", login);
-        //        using (SQLiteDataReader dataReadUser = SQLiteCommandSelectUser.ExecuteReader())
-        //        {
-        //            string nomEmploye = dataReadUser["Nom"].ToString();
-        //            string prenomEmploye = dataReadUser["Prenom"].ToString();
-        //            string loginEmploye = dataReadUser["Login"].ToString();
-        //            string passwordEmploye = dataReadUser["Password"].ToString();
-        //            string groupeEmploye = dataReadUser["Groupe"].ToString();
-        //
-        //            Employe employe = new Employe(nomEmploye, prenomEmploye, loginEmploye, passwordEmploye, groupeEmploye);
-        //
-        //    
-        //    return employe;
-        //        }
-        //    }
-        //}
 
     }
 }

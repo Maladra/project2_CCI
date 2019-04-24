@@ -93,7 +93,9 @@ namespace Projet2_CCI
                 MessageBox.Show("Merci de selectionner un utilisateur");
             }
         }
-
+        /// <summary>
+        /// Ouvre fenêtre de configuration pour le chemin de la DB
+        /// </summary>
         private void BouttonDbClick(object sender, RoutedEventArgs e)
         {
             ChangePathDb changePathDb = new ChangePathDb();

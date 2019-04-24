@@ -12,22 +12,19 @@ namespace Projet2_CCI.DAL
     {
         /// <summary>
         /// Prend 2 string (username et password) et test la connexion de l'utilisateur a l'application
+        /// et retourne un objet UtilisateurConnexion
         /// </summary>
         public static UtilisateurConnexion SQLiteConnexionHash(string username, string password)
         {
-            // DEF VARIABLE
             UtilisateurConnexion utilisateurConnexion = new UtilisateurConnexion(string.Empty, string.Empty, string.Empty, string.Empty);
-
-            // DEF SQL
             string connString = ConfigurationManager.AppSettings["connectionString"];
+
             using (SQLiteConnection SQLiteConn = new SQLiteConnection(connString))
             {
                 string queryConnexion = "SELECT Salt,Nom,Prenom,Groupe,Password FROM Employe WHERE Login = @login LIMIT 1;";
                 SQLiteCommand SQLiteCommandUser = new SQLiteCommand(queryConnexion, SQLiteConn);
-
                 SQLiteConn.Open();
                 SQLiteCommandUser.Parameters.AddWithValue("login", username);
-
 
                 using (SQLiteDataReader SQLiteReaderUser = SQLiteCommandUser.ExecuteReader())
                 {

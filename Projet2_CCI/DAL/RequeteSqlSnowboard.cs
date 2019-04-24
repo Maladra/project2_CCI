@@ -13,7 +13,7 @@ namespace Projet2_CCI.DAL
     public class RequeteSqlSnowboard
     {
         /// <summary>
-        /// Requete SQL qui retourne une liste de planche de snowboard
+        /// Requete SQL retourne une liste de planche de snowboard
         /// </summary>
 
         public static ObservableCollection<Donnee.SnowboardRequeteId> SQLitePlancheRead()
@@ -72,10 +72,13 @@ INNER JOIN Style_snowboard ON Style_snowboard.Id_style = Planche_snowboard.Fk_st
             return snowboardListe;
         } 
 
-        public static bool SQLAddSnowboard (SnowboardRequete snowboard)
+
+        /// <summary>
+        /// Prend un objet SnowboardRequete et l'insert dans la DB
+        /// </summary>
+
+        public static void SQLAddSnowboard (SnowboardRequete snowboard)
         {
-            // TODO: VERIFICATION PRESENCE PLANCHE (SI LE TEMPS)
-            //string queryVerificationSnowboard = "SELECT * FROM Planche_snowboard WHERE Login = @login";
             string queryInsertSnowboard = "INSERT INTO " +
                     "Planche_snowboard(Stock, Prix_euro, Prix_dollar, Nom_modele, Fk_niveau," +
                     " Fk_marque, Fk_genre, Fk_style) VALUES (?,?,?,?,?,?,?,?)";
@@ -96,10 +99,7 @@ INNER JOIN Style_snowboard ON Style_snowboard.Id_style = Planche_snowboard.Fk_st
                     sqliteCommand.Parameters.AddWithValue("@Fk_genre", snowboard.Genre.Id);
                     sqliteCommand.Parameters.AddWithValue("@Fk_style", snowboard.Style.Id);
                     sqliteCommand.ExecuteNonQuery();
-                    return true;
-
                 };
-                //return false;
             }
             
         }

@@ -8,11 +8,11 @@ namespace Projet2_CCI.DAL
     public class RequeteSqlStyle
     {
         /// <summary>
-        /// Prend un string et fait une requete SQL pour inserer un style de snowboard dans la BD
+        /// Prend un string et fait une requete SQL pour vérifier la présence dans la DB
+        /// et inserer le style de snowboard dans la DB si non présent
         /// </summary>
         public static bool SQLiteAddStyle(string style)
         {
-            // TODO : VERIFIER QUE LE STYLE N'EST PAS DEJA PRESENT
             string connString = ConfigurationManager.AppSettings["connectionString"];
 
             using (SQLiteConnection sqliteConn = new SQLiteConnection(connString))
@@ -42,6 +42,9 @@ namespace Projet2_CCI.DAL
             }
         }
 
+        /// <summary>
+        /// Retourne une liste de style
+        /// </summary>
         public static List<Style> SqlReadStyle()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet2_CCI.Affichage"
         mc:Ignorable="d"
-        Title="RecapitulatifLocation" Height="450" Width="800">
+        Title="RecapitulatifLocation" Height="450" Width="1000">
     <Grid>
         <Label Content="Nom Client :" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top"/>
         <Label Content="Prenom Client :" HorizontalAlignment="Left" Margin="11,62,0,0" VerticalAlignment="Top"/>
@@ -23,7 +23,7 @@
                   Height="360"
                   Margin="357,49,0,0"
                   VerticalAlignment="Top"
-                  Width="425"/>
+                  Width="625"/>
         <Label Content="Date de début :"  HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top"/>
         <Label Content="Date de fin :" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top"/>
         <Label x:Name="dateDebut" Content="Default" HorizontalAlignment="Left" Margin="107,93,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.463,-0.066"/>

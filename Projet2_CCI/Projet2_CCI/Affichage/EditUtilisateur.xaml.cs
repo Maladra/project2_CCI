@@ -21,6 +21,9 @@ namespace Projet2_CCI.Affichage
     public partial class EditUtilisateur : Window
     {
 
+        /// <summary>
+        /// Test les champs et insert l'utilisateur dans la DB
+        /// </summary>
         public void editUser()
         {
             bool verificationForm = true;
@@ -62,9 +65,9 @@ namespace Projet2_CCI.Affichage
             }
         }
         Employe userBefore;
+
         public EditUtilisateur(Employe user)
         {
-
             this.userBefore = user;
 
             InitializeComponent();

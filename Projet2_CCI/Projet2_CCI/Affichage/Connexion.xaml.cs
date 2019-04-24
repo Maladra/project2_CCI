@@ -30,9 +30,6 @@ namespace Projet2_CCI.Affichage
             UtilisateurConnexion utilisateur = RequeteSqlConnexion.SQLiteConnexionHash(
                 this.UsernameText.Text, this.PasswordText.Password.ToString());
 
-            if (utilisateur == null )
-                utilisateur = new UtilisateurConnexion("bypass", "bypass", "Vendeur", "bypass");
-
             if (utilisateur == null)
             {
                 MessageBox.Show("Erreur pendant la connexion");

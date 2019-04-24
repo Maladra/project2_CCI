@@ -28,7 +28,6 @@ namespace Projet2_CCI
             }
             else
             {
-                // TODO : VERIFIER QUE LA MARQUE N'EST PAS DEJA PRESENT
                 if (RequeteSqlMarque.SQLiteAddMarque(this.NomMarque.Text))
                 {
                     MessageBox.Show("Ajout de la marque avec succès");
@@ -47,19 +46,13 @@ namespace Projet2_CCI
         }
 
 
-        /// <summary>
-        /// AJOUT MARQUE SNOWBOARD DANS BD
-        /// </summary>
+
         private void Button_Valider_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: VERIFICATION CHAMP NON VIDE et verif que marque n'existe pas deja
             addMarque();
             
         }
 
-        /// <summary>
-        /// ANNULE ET FERME LA FENETRE
-        /// </summary>
         private void Button_Annuler_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

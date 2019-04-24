@@ -54,6 +54,9 @@ namespace Projet2_CCI.Affichage
             return true;
         }
 
+        /// <summary>
+        /// Enlève une planche de la liste de location
+        /// </summary>
         public void RemoveSnowboard(DynamicStockSnowboard snowboard)
         {
             snowboard.Stock--;
@@ -69,6 +72,9 @@ namespace Projet2_CCI.Affichage
             snowboardStock.Stock++;
         }
 
+        /// <summary>
+        /// Insert la location dans la DB ainsi que les planches associés avant d'afficher un recapitulatif
+        /// </summary>
         public void ValiderLocation(string nomClient, string prenomClient, string NumeroTelephoneClient, string moyenPaiement, decimal tva,
             DateTime debutLocation, DateTime finLocation)
         {
@@ -109,7 +115,6 @@ namespace Projet2_CCI.Affichage
                 decimal totalLocationEuro = totalLocationEuroHt + ajoutprixEuroTva;
                 decimal totalLocationDollar = totalLocationDollarHt + ajoutprixDollarTva;
 
-
                 var recapitulatifLocation = new RecapitulatifLocation(nomClient, prenomClient, totalLocationEuroHt, totalLocationDollarHt,
                     totalLocationEuro,totalLocationDollar,tva,finLocation,debutLocation, ConvertedListLocation, dureeLocation.Days);
                 recapitulatifLocation.ShowDialog();             
@@ -136,7 +141,6 @@ namespace Projet2_CCI.Affichage
             decimal tvaRounded = default(decimal);
 
             bool verificationForm = true;
-            //StringBuilder erreurFormulaire = new StringBuilder();
             erreurFormulaire.Append("Merci de renseigner :\n");
 
             // Test le nom du client

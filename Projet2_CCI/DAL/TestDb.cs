@@ -8,12 +8,12 @@ namespace Projet2_CCI.DAL
     public class TestDb
     {
 
+        /// <summary>
+        /// Test la connexion à la BD 
+        /// </summary>
         public static string ServerConnected()
         {
-
             string connString = ConfigurationManager.AppSettings["connectionString"];
-
-
 
             using (SQLiteConnection sqliteConn = new SQLiteConnection(connString))
             {
@@ -25,7 +25,6 @@ namespace Projet2_CCI.DAL
                 catch (Exception e)
                 {
                     return e.Message;
-
                 }
             }
         }

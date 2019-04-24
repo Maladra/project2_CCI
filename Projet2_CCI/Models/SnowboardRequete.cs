@@ -14,8 +14,6 @@ namespace Projet2_CCI.Donnee
     {
 
         public int Stock { get; set; }
-
-        // CONSTRUCTEUR
         public SnowboardRequete(string nom, Marque marque, Genre genre, Niveau niveau, Style style,
             decimal prixEuro, decimal prixDollar, int stock) :
             base(nom, marque, genre, niveau, style, prixEuro, prixDollar)
@@ -49,9 +47,3 @@ namespace Projet2_CCI.Donnee
 
     }
 }
-
-
-
-
-// TODO: MODIFICATION BASE DE DONNÉE (SUPPRIMER TABLE Niveau_snowboard, Genre_Snowboard)
-// TODO: MODIFICATION table Planche_snowboard (les FK si modification de la DB) 

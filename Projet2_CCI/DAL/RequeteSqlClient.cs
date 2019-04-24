@@ -11,6 +11,10 @@ namespace Projet2_CCI.DAL
 {
     public class RequeteSqlClient
     {
+
+        /// <summary>
+        /// Liste les clients et retourne une List de ClientRequete
+        /// </summary>
         public static List<ClientRequete> SQLiteListClient()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
@@ -37,6 +41,10 @@ namespace Projet2_CCI.DAL
             return clientList;
         }
 
+
+        /// <summary>
+        /// Prend un long qui représente un Id Client et retourne un objet ClientRequete
+        /// </summary>
         public static ClientRequete SQLiteSelectClient(long selectedIdClient)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
@@ -60,7 +68,7 @@ namespace Projet2_CCI.DAL
                     }
                     else
                     {
-                        throw new ArgumentException("Id is bullshit", nameof(selectedIdClient));
+                        throw new ArgumentException("Id invalide", nameof(selectedIdClient));
                     }
                 }
             }

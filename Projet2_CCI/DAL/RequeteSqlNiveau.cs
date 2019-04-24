@@ -11,6 +11,10 @@ namespace Projet2_CCI.DAL
 {
     public class RequeteSqlNiveau
     {
+
+        /// <summary>
+        /// Retourne une liste des niveaux de planche présent dans la DB
+        /// </summary>
         public static List<Niveau> SqlReadNiveau()
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];

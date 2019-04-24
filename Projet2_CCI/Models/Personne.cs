@@ -11,7 +11,6 @@ namespace Projet2_CCI
         public string Nom { get; set; }
         public string Prenom { get; set; }
 
-        // CONSTRUCTEUR
         public Personne(string nom, string prenom)
         {
             this.Nom = nom;

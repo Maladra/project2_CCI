@@ -13,6 +13,11 @@ namespace Projet2_CCI.DAL
 {
     public class RequeteSqlLocation
     {
+
+        /// <summary>
+        /// Prend un objet LocationAvecListeSnowboard comme paramètre, vérifie la présence du client sinon l'ajoute, 
+        /// et insert dans la DB la location avec les planches associées
+        /// </summary>
         public static bool insertLocationSnowboard(LocationAvecListeSnowboard location)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
@@ -22,7 +27,7 @@ namespace Projet2_CCI.DAL
 
 
                 long lastId = default(long);
-                // VERIFICATION PRESENCE CLIENT
+
                 string selectClient = "SELECT *" +
                     "FROM Client " +
                     "WHERE Nom=@nom AND Prenom=@prenom LIMIT 1;";
@@ -91,6 +96,10 @@ namespace Projet2_CCI.DAL
             }
         }
 
+
+        /// <summary>
+        /// Prend un int (représente la quantité) et un long (représente l'Id) et remplace la valeur dans la DB
+        /// </summary>
         public static void updateStockSnowboard(int snowboardStock, long snowboardId)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];
@@ -112,6 +121,10 @@ namespace Projet2_CCI.DAL
 
         }
 
+
+        /// <summary>
+        /// Prend un long (représente l'Id client) et retourne une liste de location
+        /// </summary>
         public static List<DynamicLocationId> listLocationSnowboard(long idClient)
         {
             string connString = ConfigurationManager.AppSettings["connectionString"];

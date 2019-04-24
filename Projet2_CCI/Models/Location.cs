@@ -73,6 +73,9 @@ namespace Projet2_CCI
             this.IdLocation = idLocation;
         }
 
+        /// <summary>
+        /// Classe snowboard pour update de l'interface graphique de anière dynamique
+        /// </summary>
         public class DynamicLocationId  : ViewModelBase
         {
             public long IdLocation { get; set; }
