@@ -19,8 +19,12 @@ namespace DAL
                 string dbFile = "gestion.db";
                 string dbDirectory = "SnowShop";
                 string fullPath = Path.Combine(path, dbDirectory, dbFile);
-                ConfigurationManager.AppSettings["connectionString"] = "Data Source = " +fullPath;
 
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                string Dbacces = "Data Source = " +fullPath;
+                config.AppSettings.Settings["connectionString"].Value = Dbacces;
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
 
             }
         }

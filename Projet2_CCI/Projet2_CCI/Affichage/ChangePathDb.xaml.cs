@@ -20,25 +20,35 @@ namespace Projet2_CCI.Affichage
     /// </summary>
     public partial class ChangePathDb : Window
     {
+
         public ChangePathDb()
         {
             InitializeComponent();
             this.dbPath.Text = ConfigurationManager.AppSettings["connectionString"];
         }
 
+
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
         {
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
             string oldConfigue = ConfigurationManager.AppSettings["connectionString"];
             ConfigurationManager.AppSettings["connectionString"] = this.dbPath.Text;
+
             string testConnection = DAL.TestDb.ServerConnected();
 
             if (testConnection != "Connexion établie")
             {
+
                 ConfigurationManager.AppSettings["connectionString"] = oldConfigue;
                 MessageBox.Show(testConnection);        
             }
             else
             {
+                config.AppSettings.Settings["connectionString"].Value = this.dbPath.Text;
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
                 MessageBox.Show(testConnection);
                 this.Close();
             }
